@@ -1,6 +1,7 @@
 /** 场景页静态正文：按任务比较工具，所有编辑字段及目录字段均转义。 */
 import catalog from "../data/catalog.json" with { type: "json" };
 import { escapeHtml as escape } from "../src/escape.ts";
+import { guideIconMarkup } from "../src/tool-icon.ts";
 import type { Language } from "../src/translations.ts";
 import {
   guides,
@@ -19,7 +20,7 @@ function toolRow(tool: GuideTool, language: Language): string {
 }
 function toolDetail(tool: GuideTool, language: Language): string {
   const item = catalog.find((item) => item.id === tool.id)!;
-  return `<article class="guide-tool" id="${escape(item.id)}"><div class="guide-tool-heading"><img src="/icons/${escape(item.icon)}" alt="" width="40" height="40"><h3>${escape(item.name)}</h3><a class="text-button" href="${path(`/tools/${item.id}/`, language)}">${copy(language, "工具详情 →", "Tool details →")}</a></div><dl><div><dt>${copy(language, "适合什么任务", "When it fits")}</dt><dd>${escape(guideText(tool.fit, language))}</dd></div><div><dt>${copy(language, "开始前需要什么", "Before you start")}</dt><dd>${escape(guideText(tool.requirements, language))}</dd></div><div><dt>${copy(language, "限制与取舍", "Limits and tradeoffs")}</dt><dd>${escape(guideText(tool.caveat, language))}</dd></div></dl><div class="guide-sources"><strong>${copy(language, "官方依据", "Official sources")}</strong>${tool.sources.map((url, index) => `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(new URL(url).hostname)}${tool.sources.length > 1 ? ` · ${index + 1}` : ""} ↗</a>`).join("")}</div></article>`;
+  return `<article class="guide-tool" id="${escape(item.id)}"><div class="guide-tool-heading">${guideIconMarkup(item)}<h3>${escape(item.name)}</h3><a class="text-button" href="${path(`/tools/${item.id}/`, language)}">${copy(language, "工具详情 →", "Tool details →")}</a></div><dl><div><dt>${copy(language, "适合什么任务", "When it fits")}</dt><dd>${escape(guideText(tool.fit, language))}</dd></div><div><dt>${copy(language, "开始前需要什么", "Before you start")}</dt><dd>${escape(guideText(tool.requirements, language))}</dd></div><div><dt>${copy(language, "限制与取舍", "Limits and tradeoffs")}</dt><dd>${escape(guideText(tool.caveat, language))}</dd></div></dl><div class="guide-sources"><strong>${copy(language, "官方依据", "Official sources")}</strong>${tool.sources.map((url, index) => `<a href="${escape(url)}" target="_blank" rel="noopener noreferrer">${escape(new URL(url).hostname)}${tool.sources.length > 1 ? ` · ${index + 1}` : ""} ↗</a>`).join("")}</div></article>`;
 }
 function related(guide: Guide, language: Language): string {
   return `<section class="guide-related"><h2>${copy(language, "继续按场景探索", "Explore another workflow")}</h2><div>${guides

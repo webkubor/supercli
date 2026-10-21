@@ -3,7 +3,10 @@
 .credits-section {
   padding-top: 56px;
 }
-.recent-section h2,
+/* 最近收录是次级栏目：标题低于排行榜，避免两个同级承诺互相争夺记忆。 */
+.recent-section h2 {
+  font-size: 22px;
+}
 .credits-section h2 {
   font-size: 24px;
 }
@@ -31,7 +34,8 @@
   object-fit: contain;
   flex-shrink: 0;
 }
-.recent-tool > span {
+/* 文字列占满剩余空间；字母块是 span，需排除以免被拉伸。 */
+.recent-tool > span:not(.icon-initial) {
   flex: 1;
   min-width: 0;
 }
@@ -46,14 +50,16 @@
   color: var(--muted);
   margin-top: 4px;
 }
+/* 收录日期右对齐，与左侧文字区形成稳定的双列基线。 */
+.recent-tool time {
+  flex-shrink: 0;
+  font-size: 11px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
 .recent-tool svg {
   width: 14px;
   color: var(--faint);
-}
-.community-caption {
-  font-size: 11px;
-  color: var(--muted);
-  margin-top: 12px;
 }
 .contribute-heading .submission-note {
   font-size: 11px;

@@ -140,6 +140,30 @@
       "bg": "terminal-line",
       "min": 4.5,
       "label": "安装复制成功反馈"
+    },
+    {
+      "fg": "muted",
+      "bg": "surface",
+      "min": 4.5,
+      "label": "字母块图标 / surface"
+    },
+    {
+      "fg": "accent",
+      "bg": "bg",
+      "min": 4.5,
+      "label": "榜单计数裸蓝数字 / bg"
+    },
+    {
+      "fg": "faint",
+      "bg": "bg",
+      "min": 4.5,
+      "label": "收录日期 / bg"
+    },
+    {
+      "fg": "faint",
+      "bg": "surface",
+      "min": 4.5,
+      "label": "收录日期 / surface"
     }
   ]
 }

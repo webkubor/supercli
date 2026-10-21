@@ -87,3 +87,30 @@
 | renjiegod.png | [来源](https://github.com/renjiegod) |
 
 GitHub 图标来自上述官方项目组织或维护者的 owner.avatar_url。GNU 使用 Simple Icons 的 GNU 商标 SVG；LocateMe 无独立品牌资产，使用其官方托管平台 SourceForge 标识，不代表 LocateMe 专属 logo。
+
+## 头像类图标改用字母块
+
+`scripts/sync.mjs` 的图标同步取的是 `repo.owner.avatar_url`。对于厂商组织，这就是品牌 logo；但对于个人维护者，它是**人物或动物照片**，不是品牌标识。
+
+工具目录里展示人脸会与厂商 logo 混淆，因此以下图标不渲染图片，改用中性字母块（`src/tool-icon.ts` 的 `PORTRAIT_ICONS`）：
+
+| 图标 | 维护者 | 实际内容 |
+| --- | --- | --- |
+| agent-reach.png | Panniantong | 人物头像 |
+| apktool.png | iBotPeaches | 人物与马合影 |
+| bat.png | sharkdp | 海边人物照片 |
+| crawl4ai.png | unclecode | 人物头像 |
+| fzf.png | junegunn | 人物照片 |
+| git-filter-repo.png | newren | 人物照片 |
+| lazygit.png | jesseduffield | 人物头像 |
+| mise.png | jdx | 人物照片 |
+| ripgrep.png | BurntSushi | 人物头像 |
+| summarize.png | steipete | 人物照片 |
+| terminal-notifier.png | julienXX | 人物照片 |
+
+字母块取工具名首字母，`aria-hidden` 标记为纯装饰（工具名已由同屏标题提供），不进焦点链。四处渲染路径——目录卡片、首页工具预览、详情弹窗、指南与工具静态页——共用同一判定，新增渲染位置必须复用 `src/tool-icon.ts`。
+
+**厂商自有 logo 不在此列**，仍保留原品牌几何，不做全量去色。若后续为某个维护者拿到正式 logo 资产，把它从 `PORTRAIT_ICONS` 移除并替换图标文件即可。
+
+图标文件仍保留在 `public/icons/` 供其他场景引用；本表只说明渲染层的降级规则。
+

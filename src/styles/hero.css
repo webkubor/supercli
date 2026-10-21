@@ -27,6 +27,17 @@ h1 span {
   font-size: 15px;
   line-height: 1.9;
 }
+/* 主张行：唯一品牌色在此承担内容，而不是只做装饰。 */
+.lead {
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+.lead span {
+  color: var(--accent);
+  font-weight: 600;
+}
 .explore {
   margin-top: 28px;
   display: inline-flex;

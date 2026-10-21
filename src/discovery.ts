@@ -4,6 +4,7 @@ import { t, msg } from "./i18n";
 import { resetCopyFeedback } from "./interaction-feedback";
 import { catalog, stats } from "./catalog";
 import { escapeHtml as escape } from "./html";
+import { stageIconMarkup } from "./tool-icon";
 import type { Entry } from "./catalog";
 
 export function setupDiscovery(
@@ -17,7 +18,7 @@ export function setupDiscovery(
   root.innerHTML = picks
     .map(
       (item, index) =>
-        `<button class="stage-tool" aria-describedby="stage-caption stage-command" data-stage="${escape(item.id)}"><img src="/icons/${escape(item.icon)}" alt="" width="36" height="36"><span><strong>${escape(t(item.name))}</strong><small>${escape(t(item.vendor))}</small></span><span class="stage-stars">${stats(item)?.stars.toLocaleString("en") ?? t("未计分")}<small>${stats(item) ? "GitHub Stars" : t("官方来源")}</small></span><span class="stage-number">0${index + 1}</span></button>`,
+        `<button class="stage-tool" aria-describedby="stage-caption stage-command" data-stage="${escape(item.id)}">${stageIconMarkup(item)}<span><strong>${escape(t(item.name))}</strong><small>${escape(t(item.vendor))}</small></span><span class="stage-stars">${stats(item)?.stars.toLocaleString("en") ?? t("未计分")}<small>${stats(item) ? "GitHub Stars" : t("官方来源")}</small></span><span class="stage-number">0${index + 1}</span></button>`,
     )
     .join("");
   let selected = picks[0];

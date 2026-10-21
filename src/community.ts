@@ -3,6 +3,7 @@ import { msg, t, locale, countLabel } from "./i18n";
 import rawRecords from "../data/community.json";
 import { catalog, type Entry } from "./catalog";
 import { escapeHtml as escape } from "./escape";
+import { iconMarkup } from "./tool-icon";
 /** 收录出处和署名角色，历史维护不等于用户推荐。 */
 export interface CommunityRecord {
   readonly id: string;
@@ -59,7 +60,7 @@ export function setupCommunity(): void {
   document.querySelector("#recent-tools")!.innerHTML = recentEntries()
     .map((row) => {
       const item = catalog.find((entry) => entry.id === row.id)!;
-      return `<button class="recent-tool" data-detail="${escape(item.id)}"><img src="/icons/${escape(item.icon)}" alt="" width="32" height="32"><span><strong>${escape(t(item.name))}</strong><small>${row.recommendedBy ? msg`由 @${escape(row.recommendedBy)} 推荐` : t("维护者收录")} · ${date(row.addedAt)}</small></span><i data-lucide="arrow-up-right"></i></button>`;
+      return `<button class="recent-tool" data-detail="${escape(item.id)}">${iconMarkup(item)}<span><strong>${escape(t(item.name))}</strong><small>${row.recommendedBy ? msg`由 @${escape(row.recommendedBy)} 推荐` : t("维护者收录")}</small></span><time datetime="${escape(row.addedAt)}">${date(row.addedAt)}</time></button>`;
     })
     .join("");
   const creditList = (

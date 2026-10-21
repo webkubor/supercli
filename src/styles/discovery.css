@@ -65,7 +65,8 @@
   object-fit: contain;
   border-radius: var(--radius);
 }
-.stage-tool > span:first-of-type {
+/* 文字列占满剩余空间；字母块是 span，需排除以免被拉伸。 */
+.stage-tool > span:first-of-type:not(.icon-initial) {
   flex: 1;
   min-width: 0;
 }
