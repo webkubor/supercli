@@ -1176,7 +1176,7 @@
     "category": "data",
     "repo": "renjiegod/dyt-ashare-cli",
     "description": "面向 A 股历史分钟数据研究的 Rust CLI，支持覆盖查询、分钟同步和本地质量分析。",
-    "install": "git clone https://github.com/renjiegod/dyt-ashare-cli.git && cd dyt-ashare-cli && cargo install --locked --path .",
+    "install": "curl -fsSL https://data.doyoutrade.cloud/releases/dyt-ashare/install.sh | sh",
     "docs": "https://github.com/renjiegod/dyt-ashare-cli#readme",
     "icon": "renjiegod.png",
     "maintainerType": "community"

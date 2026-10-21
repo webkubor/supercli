@@ -353,7 +353,7 @@
   "返回 SuperCLI →": "Back to SuperCLI →",
   "设计规范与产品共用代码，随版本维护。": "Design guidelines share product code and are maintained with each release.",
   "核对原作者仓库、README 与目录来源。": "Checked the original author repository, README, and catalog source.",
-  "安装命令与 README 源码安装步骤一致；本站此次未独立执行 CLI 安装。": "The installation command matches the README source-install instructions; SuperCLI did not independently install the CLI during this review.",
+  "安装命令与 README 官方预编译安装步骤一致；本站此次未独立执行 CLI 安装。": "The installation command matches the README prebuilt-install instructions; SuperCLI did not independently install the CLI during this review.",
   "云平台": "Cloud platforms",
   "AI 与 Agent": "AI and agents",
   "开发与协作": "Development",

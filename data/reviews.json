@@ -3,10 +3,10 @@
     "id": "dyt-ashare-cli",
     "repo": "renjiegod/dyt-ashare-cli",
     "docs": "https://github.com/renjiegod/dyt-ashare-cli#readme",
-    "install": "git clone https://github.com/renjiegod/dyt-ashare-cli.git && cd dyt-ashare-cli && cargo install --locked --path .",
-    "reviewedAt": "2026-10-21T02:59:13Z",
+    "install": "curl -fsSL https://data.doyoutrade.cloud/releases/dyt-ashare/install.sh | sh",
+    "reviewedAt": "2026-10-21T08:21:25Z",
     "reviewer": "webkubor",
-    "evidence": "https://github.com/webkubor/supercli/pull/2#pullrequestreview-5594435975",
+    "evidence": "https://github.com/webkubor/supercli/pull/4",
     "checks": [
       {
         "kind": "source",
@@ -19,8 +19,8 @@
       {
         "kind": "installation",
         "method": "documentation",
-        "reference": "https://github.com/renjiegod/dyt-ashare-cli/blob/8e0d330853cf62083e14e664426bf6007ebd1332/README.md#L122-L135",
-        "note": "安装命令与 README 源码安装步骤一致；本站此次未独立执行 CLI 安装。",
+        "reference": "https://github.com/renjiegod/dyt-ashare-cli/blob/de39936ba6be9d71ef5860fe230aa73d05f31544/README.md#L45-L74",
+        "note": "安装命令与 README 官方预编译安装步骤一致；本站此次未独立执行 CLI 安装。",
         "environment": null,
         "version": null
       }

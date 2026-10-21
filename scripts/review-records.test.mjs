@@ -16,7 +16,7 @@ test("documentary evidence stays distinct from independent installation testing"
   assert.match(html, /资料核对/);
   assert.match(html, /未包含本站独立安装实测/);
   assert.doesNotMatch(html, /class="review-method">安装实测/);
-  assert.match(html, /pull\/2#pullrequestreview-/);
+  assert.ok(html.includes(`href="${reviewFor(item).evidence}"`));
   const missing = catalog.find((row) => row.id === "wrangler");
   assert.equal(reviewFor(missing), null);
   assert.match(reviewCard(missing), /范围待补充/);
