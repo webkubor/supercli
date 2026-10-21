@@ -1,58 +1,21 @@
 /** 卡片核验与详情记录：只呈现有依据的范围，缺失记录不推断为通过或失败。 */
 import { t, msg, locale, language, countLabel } from "./i18n";
-import rawReviews from "../data/reviews.json";
 import collections from "../data/community.json";
 import type { Entry } from "./catalog";
 import { maintainerLabels } from "./catalog";
 import { escapeHtml as escape } from "./escape";
-/** 人工核验记录；JSON 结构与执行环境约束由构建门禁验证。 */
-export interface ReviewRecord {
-  readonly id: string;
-  readonly name: string;
-  readonly vendor: string;
-  readonly maintainerType: string;
-  readonly description: string;
-  readonly repo: string | null;
-  readonly docs: string;
-  readonly install: string | null;
-  readonly reviewedAt: string;
-  readonly reviewer: string;
-  readonly evidence: string;
-  readonly checks: readonly {
-    readonly kind: string;
-    readonly method: string;
-    readonly reference: string;
-    readonly note: string;
-    readonly environment: string | null;
-    readonly version: string | null;
-  }[];
-}
-const records: readonly ReviewRecord[] = rawReviews;
+import {
+  reviewFor,
+  reviewRecords as records,
+  type ReviewRecord,
+} from "./review-data";
+export { reviewFor, type ReviewRecord } from "./review-data";
 const labels: Readonly<Record<string, string>> = {
   source: t("来源与维护方"),
   installation: t("安装方式"),
   purpose: t("用途与限制"),
   maintenance: t("公开维护信息"),
 };
-/** 当前快照字段必须匹配核验时的目录内容，旧记录不能继续冒充有效。 */
-export function reviewFor(
-  item: Entry,
-  candidates: readonly ReviewRecord[] = records,
-): ReviewRecord | null {
-  return (
-    candidates.find(
-      (row) =>
-        row.id === item.id &&
-        row.repo === item.repo &&
-        row.docs === item.docs &&
-        row.install === item.install &&
-        row.name === item.name &&
-        row.vendor === item.vendor &&
-        row.maintainerType === item.maintainerType &&
-        row.description === item.description,
-    ) ?? null
-  );
-}
 /** 来源标记表达维护方，厂商与社区使用等规格视觉，不暗示质量等级。 */
 export function sourceBadge(item: Entry): string {
   return msg`<span class="source-badge" data-kind="${escape(item.maintainerType)}" title="维护来源，不代表质量评级"><i data-lucide="${item.maintainerType === "vendor" ? "building-2" : "users"}" aria-hidden="true"></i>${maintainerLabels[item.maintainerType]}</span>`;

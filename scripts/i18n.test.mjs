@@ -2,7 +2,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { localizedPage, pagePaths, sitemap } from "./localized-pages.ts";
+import {
+  localizedPage,
+  pagePaths,
+  pageSource,
+  sitemap,
+} from "./localized-pages.ts";
 import { translate } from "../src/translations.ts";
 const read = (path) =>
   readFileSync(new URL(`../${path}`, import.meta.url), "utf8");
@@ -22,13 +27,7 @@ test("every catalog entry has a distinct English description and no orphan trans
 test("static pages have reciprocal language links, self canonicals, and crawlable content", () => {
   for (const lang of ["zh", "en"])
     for (const path of ["/", "/standards", "/brand", "/tools/wrangler/"]) {
-      const template = read(
-        path === "/standards"
-          ? "standards.html"
-          : path === "/brand"
-            ? "brand.html"
-            : "index.html",
-      );
+      const template = read(pageSource(path));
       const html = localizedPage(template, path, lang);
       const url = `https://supercli.site${lang === "en" ? "/en" : ""}${path}`;
       assert(html.includes(`<link rel="canonical" href="${url}">`));

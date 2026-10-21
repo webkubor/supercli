@@ -3,6 +3,27 @@
   max-width: 1120px;
   padding-bottom: 56px;
 }
+.tool-install pre {
+  padding: 16px;
+  margin: 20px 0 0;
+  background: var(--terminal);
+  color: var(--terminal-text);
+  border-radius: var(--radius);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.tool-evidence a {
+  color: var(--accent);
+  overflow-wrap: anywhere;
+}
+.tool-evidence ul {
+  padding-left: 24px;
+  line-height: 1.9;
+}
+.tool-evidence > .text-button {
+  display: inline-block;
+  margin-top: 20px;
+}
 .guide-breadcrumb {
   display: flex;
   gap: 12px;

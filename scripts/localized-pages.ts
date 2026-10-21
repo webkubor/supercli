@@ -2,6 +2,7 @@
 import { guides, guideFor, guideText } from "./guide-content.ts";
 import { guideMarkup, guideStructuredData } from "./guide-markup.ts";
 import catalog from "../data/catalog.json" with { type: "json" };
+import { toolMarkup } from "./tool-markup.ts";
 import metrics from "../data/metrics.json" with { type: "json" };
 import english from "../data/catalog.en.json" with { type: "json" };
 import { translate, type Language } from "../src/translations.ts";
@@ -39,7 +40,7 @@ export function pageSource(path: string): string | null {
     return "standards.html";
   if (path === "/brand.html" || path === "/brand") return "brand.html";
   return catalog.some((item) => path === `/tools/${item.id}/`)
-    ? "index.html"
+    ? "guides.html"
     : null;
 }
 function toolDescription(
@@ -198,13 +199,14 @@ export function localizedPage(
   const item = catalog.find((row) => path === `/tools/${row.id}/`);
   if (item) {
     html = html
+      .replace("<!-- guide-content -->", toolMarkup(item, language))
       .replace(
-        /<h1>.*?<\/h1>/s,
-        `<h1>${escape(translate(item.name, language))}</h1>`,
+        'href="#guide-main">跳到场景指南',
+        'href="#guide-main">跳到工具详情',
       )
       .replace(
-        /<p class="intro">.*?<\/p>/s,
-        `<p class="intro">${escape(toolDescription(item, language))}</p>`,
+        'href="#guide-main">Skip to workflow guide',
+        'href="#guide-main">Skip to tool details',
       );
   }
   const guide = guideFor(path);
