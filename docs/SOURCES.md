@@ -50,7 +50,7 @@
 | Lark / 飞书 CLI | 厂商官方 | 飞书 Lark | [文档](https://github.com/larksuite/cli) · [仓库](https://github.com/larksuite/cli) |
 | MUSE AV CLI | 厂商官方 | MUSE AV | [文档](https://github.com/webkubor/museav-cli) · [仓库](https://github.com/webkubor/museav-cli) |
 | KyVault | 社区项目 | webkubor | [文档](https://github.com/webkubor/kyvault) · [仓库](https://github.com/webkubor/kyvault) |
-| ego-browser | 厂商官方 | Ego Lite | [文档](https://github.com/webkubor/ego-lite) · [仓库](https://github.com/webkubor/ego-lite) |
+| ego-browser | 厂商官方 | Ego Lite | [文档](https://github.com/citrolabs/ego-lite) · [仓库](https://github.com/citrolabs/ego-lite) |
 | Agent Reach | 社区项目 | Panniantong | [文档](https://github.com/Panniantong/agent-reach) · [仓库](https://github.com/Panniantong/agent-reach) |
 | path-guard | 社区项目 | webkubor | [文档](https://github.com/webkubor/path-guard) · [仓库](https://github.com/webkubor/path-guard) |
 | MLX VLM Kit | 社区项目 | webkubor | [文档](https://github.com/webkubor/mlx-vlm-kit) · [仓库](https://github.com/webkubor/mlx-vlm-kit) |

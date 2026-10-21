@@ -485,10 +485,10 @@
     "name": "ego-browser",
     "vendor": "Ego Lite",
     "category": "dev",
-    "repo": "webkubor/ego-lite",
+    "repo": "citrolabs/ego-lite",
     "description": "为 AI Agent 提供浏览器自动化，与用户共享已登录的浏览器。",
     "install": null,
-    "docs": "https://github.com/webkubor/ego-lite",
+    "docs": "https://github.com/citrolabs/ego-lite",
     "icon": "webkubor.png",
     "locallyInstalled": true,
     "maintainerType": "vendor"

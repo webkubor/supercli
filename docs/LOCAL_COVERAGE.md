@@ -30,7 +30,7 @@
 | Lark / 飞书 CLI | [官方来源](https://github.com/larksuite/cli) |
 | MUSE AV CLI | [官方来源](https://github.com/webkubor/museav-cli) |
 | KyVault | [官方来源](https://github.com/webkubor/kyvault) |
-| ego-browser | [官方来源](https://github.com/webkubor/ego-lite) |
+| ego-browser | [官方来源](https://github.com/citrolabs/ego-lite) |
 | Agent Reach | [官方来源](https://github.com/Panniantong/agent-reach) |
 | path-guard | [官方来源](https://github.com/webkubor/path-guard) |
 | MLX VLM Kit | [官方来源](https://github.com/webkubor/mlx-vlm-kit) |

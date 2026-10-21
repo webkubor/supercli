@@ -7,7 +7,7 @@
 | [awesome-cli-apps](https://github.com/agarrharr/awesome-cli-apps) | 按用途分类、简短用途描述、PR 维护 | 首版保留七个可浏览分类，提供搜索与厂商筛选 |
 | [cli-apps](https://github.com/toolleeo/cli-apps) | 结构化记录，目录数据与展示分开 | JSON 单一真源，字段校验、重复校验，视图由同一份数据生成 |
 | [modern-unix](https://github.com/ibraheemdev/modern-unix) | 说明工具解决什么问题 | 每条描述讲实际用途，详情提供命令、文档和上游源码 |
-| [awesome-dsh-plugins](https://github.com/webkubor/awesome-dsh-plugins) | 用户既有社区项目，搜索、分类、安装命令与 PR 收录 | 保留熟悉的贡献方式；本地审核时同步指标并构建预览，确认后手动发布 |
+| [awesome-dsh-plugins](https://github.com/kejixiaoliang/awesome-dsh-plugins) | 用户既有社区项目，搜索、分类、安装命令与 PR 收录 | 保留熟悉的贡献方式；本地审核时同步指标并构建预览，确认后手动发布 |
 
 ## 排名数据
 
