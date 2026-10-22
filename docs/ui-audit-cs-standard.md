@@ -149,24 +149,34 @@ th { text-transform: uppercase; letter-spacing: .04em; }
 
 ## 4. 可执行清单
 
+> 状态更新 2026-10-22：supercli 侧 2 项已修（commit `f53c5a5`）；CS 系统侧 6 项已修（CortexOS commit `04705f2`）。均已推送。
+
 ### supercli
 
-| 优先级 | 改动 | 文件 |
-|---|---|---|
-| P1 | 字体栈换成 `-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif` | `src/styles/base.css:28` |
-| P2 | 分类标签 10px → 11px，字重 → 500 | `src/styles/directory.css:171` |
-| — | 语义 warning/error 暂不加（当前无错误态） | — |
+| 状态 | 优先级 | 改动 | 文件 |
+|---|---|---|---|
+| ✅ 已修 | P1 | 字体栈换成 `-apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif` | `src/styles/base.css:28` |
+| ✅ 已修 | P2 | 分类标签 10px → 11px，字重 → 500 | `src/styles/directory.css:171` |
+| ⏸ 不做 | — | 语义 warning/error 暂不加（当前无错误态，不提前造令牌） | — |
 
-### CS 系统（顺带）
+### CS 系统
 
-| 优先级 | 改动 | 文件 |
-|---|---|---|
-| P1 | footer `#999` → `#6b6b73` | `templates/weekly-report.html:71` |
-| P1 | 表格包 `overflow-x:auto`，`table{min-width:560px}` | `cmd/templates/task-watch.html:22` |
-| P2 | 删 `th{text-transform:uppercase}`，`letter-spacing` 归零 | `cmd/templates/task-watch.html:25` |
-| P2 | 补 `th scope="col"` 与 `<caption>` | 同上 |
-| P3 | 统一两条字体栈 | 两个模板 |
-| P3 | footer 人名改占位符 | `templates/weekly-report.html:111` |
+| 状态 | 优先级 | 改动 | 文件 |
+|---|---|---|---|
+| ✅ 已修 | P1 | footer `#999` → `#6b6b73`（2.85:1 → 5.28:1） | `templates/weekly-report.html` |
+| ✅ 已修 | P1 | 表格包 `.table-scroll{overflow-x:auto}`，`table{min-width:560px}`；375px 实测页面溢出 0px | `cmd/templates/task-watch.html` |
+| ✅ 已修 | P2 | 删 `th{text-transform:uppercase}`，`letter-spacing` 归零 | 同上 |
+| ✅ 已修 | P2 | 补 `<caption>` 与 6 个 `th scope="col"` | 同上 |
+| ✅ 已修 | P3 | 两条字体栈统一为含 `Microsoft YaHei` 的完整链 | 两个模板 |
+| ✅ 已修 | P3 | footer 人名改 `{{SENDER}}` 占位符，SKILL.md 补填法与「不得原样发出」约束 | `templates/weekly-report.html`、`skills/productivity/weekly-report/SKILL.md` |
+
+**保留未动**：`a{color:var(--idle)}` 在标记里暂无对应元素。这不是缺陷——数据里若出现 URL，需要有兜底链接色，属于防御性样式，故意保留。
+
+### 验证记录
+
+- `cs weekly check` 12 项中，依赖模板结构的全部通过：HTML 结构完整、无左侧竖条、标题格式、统计栏完整、AI 使用深度。剩余未通过项是我构造的样例内容不够「三段式叙事」，与模板无关。
+- CDP 实测计算样式：footer `rgb(107,107,115)`、`th text-transform: none`、`letter-spacing: normal`、`table min-width: 560px`、容器 `overflow-x: auto`、6 个 `th scope=col`。
+- 375px 视口实测：`docScrollWidth 375 = bodyClientWidth 375`，溢出 0px；表格内容 560px 在 341px 容器内横滚。
 
 ---
 
