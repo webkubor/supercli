@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="public/social-card.png" alt="SuperCLI — 发现值得装进终端的工具" width="720">
-</p>
+<h1 align="center">SuperCLI</h1>
 
 <p align="center">
   <strong>人工收录 91 个 CLI，公开核验范围，不编造数据。</strong><br>
@@ -15,20 +13,6 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-002fa7?style=flat-square" alt="License"></a>
   <a href="README.en.md"><img src="https://img.shields.io/badge/lang-English-d4d4d4?style=flat-square" alt="English"></a>
 </p>
-
-<p align="center">
-  <a href="#为什么是-supercli">为什么</a> ·
-  <a href="#它解决什么问题">解决什么</a> ·
-  <a href="#怎么参与">参与</a> ·
-  <a href="#本地运行">本地运行</a> ·
-  <a href="#透明与边界">边界</a>
-</p>
-
-<img src="docs/home-hero.png" alt="SuperCLI 首页：左侧是品牌主张与探索入口，右侧是真实工具预览与可复制的安装命令" width="100%">
-
-**[在线浏览 →](https://supercli.site)**
-
----
 
 ## 为什么是 SuperCLI
 
@@ -53,18 +37,20 @@ SuperCLI 的做法是**人工收录 + 公开依据**：
 | 想收藏一组筛选结果 | 筛选状态写进 URL，刷新和分享都还原 |
 | 不知道该装什么 | 三个场景指南：AI 编程选型 / 云端部署 / 终端效率组合 |
 
-### 筛选与详情长什么样
-
-分类、厂商、排序可组合，筛选状态同步 URL。
-
-<img src="docs/directory-filter.png" alt="目录筛选界面：搜索框、厂商与排序下拉、分类标签、活跃筛选条件与工具卡片" width="100%">
-
-点开任一工具，详情里给出用途、来源、指标口径、安装命令和收录记录。
-
-<img src="docs/tool-detail.png" alt="Wrangler 工具详情弹窗：来源标签、Stars 与下载量、安装命令、官方文档链接、收录与核验记录" width="100%">
+<img src="docs/home-hero.png" alt="SuperCLI 首页：左侧品牌主张与探索入口，右侧真实工具预览与可复制的安装命令" width="720" style="max-width:100%">
 
 <details>
-<summary>当前收录一览（91 个工具）</summary>
+<summary>展开看界面与收录分布</summary>
+
+**目录筛选**——分类、厂商、排序可组合，筛选状态同步 URL。
+
+<img src="docs/directory-filter.png" alt="目录筛选界面：搜索框、厂商与排序下拉、分类标签、活跃筛选条件与工具卡片" width="720" style="max-width:100%">
+
+**工具详情**——点开任一工具，给出用途、来源、指标口径、安装命令和收录记录。
+
+<img src="docs/tool-detail.png" alt="Wrangler 工具详情弹窗：来源标签、Stars 与下载量、安装命令、官方文档链接、收录与核验记录" width="720" style="max-width:100%">
+
+**收录分布**（91 个工具）
 
 | 分类 | 数量 | 示例 |
 | --- | --- | --- |

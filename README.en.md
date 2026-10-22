@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="public/social-card.png" alt="SuperCLI — Find your next favorite command-line tool" width="720">
-</p>
+<h1 align="center">SuperCLI</h1>
 
 <p align="center">
   <strong>Manually curated 91 CLIs. Public review scope. No fabricated metrics.</strong><br>
@@ -15,20 +13,6 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-002fa7?style=flat-square" alt="License"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/lang-中文-d4d4d4?style=flat-square" alt="Chinese"></a>
 </p>
-
-<p align="center">
-  <a href="#why-supercli">Why</a> ·
-  <a href="#what-it-solves">What it solves</a> ·
-  <a href="#how-to-contribute">Contribute</a> ·
-  <a href="#run-locally">Run locally</a> ·
-  <a href="#transparency-and-limits">Boundaries</a>
-</p>
-
-<img src="docs/home-hero.png" alt="SuperCLI homepage: brand statement and discovery entry on the left, live tool preview with a copyable install command on the right" width="100%">
-
-**[Browse the directory →](https://supercli.site)**
-
----
 
 ## Why SuperCLI
 
@@ -53,18 +37,20 @@ SuperCLI is **manually curated with public evidence**:
 | Want to keep a filtered set | Filter state lives in the URL — refresh and sharing both restore it |
 | Do not know what to install | Three scenario guides: AI coding, cloud deployment, terminal productivity |
 
-### Filters and detail view
-
-Category, vendor, and sort combine freely — filter state stays in the URL.
-
-<img src="docs/directory-filter.png" alt="Directory filters: search box, vendor and sort dropdowns, category tabs, active filter chips, and tool cards" width="100%">
-
-Open any tool for its purpose, source, metric definitions, install command, and inclusion record.
-
-<img src="docs/tool-detail.png" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="100%">
+<img src="docs/home-hero.png" alt="SuperCLI homepage: brand statement and discovery entry on the left, live tool preview with a copyable install command on the right" width="720" style="max-width:100%">
 
 <details>
-<summary>Current directory at a glance (91 tools)</summary>
+<summary>See the filters, a tool detail, and the full breakdown</summary>
+
+**Directory filters** — category, vendor, and sort combine freely; filter state stays in the URL.
+
+<img src="docs/directory-filter.png" alt="Directory filters: search box, vendor and sort dropdowns, category tabs, active filter chips, and tool cards" width="720" style="max-width:100%">
+
+**Tool detail** — open any tool for its purpose, source, metric definitions, install command, and inclusion record.
+
+<img src="docs/tool-detail.png" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="720" style="max-width:100%">
+
+**Directory at a glance** (91 tools)
 
 | Category | Count | Examples |
 | --- | --- | --- |
