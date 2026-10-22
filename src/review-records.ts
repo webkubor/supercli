@@ -20,13 +20,18 @@ const labels: Readonly<Record<string, string>> = {
 export function sourceBadge(item: Entry): string {
   return msg`<span class="source-badge" data-kind="${escape(item.maintainerType)}" title="维护来源，不代表质量评级"><i data-lucide="${item.maintainerType === "vendor" ? "building-2" : "users"}" aria-hidden="true"></i>${maintainerLabels[item.maintainerType]}</span>`;
 }
-/** 卡片到详情的证据入口，不将资料核对写成安装实测。 */
+/**
+ * 卡片到详情的证据入口，不将资料核对写成安装实测。
+ * 只在有真实核验记录时出现：把「范围待补充」在 90 张卡片上重复一遍，
+ * 既没有新增信息，也会把「本站没核验」喊成主视觉。待补状态在详情里如实说明。
+ */
 export function reviewCard(
   item: Entry,
   candidates: readonly ReviewRecord[] = records,
 ): string {
   const row = reviewFor(item, candidates);
-  return msg`<button class="review-entry" data-review="${escape(item.id)}" aria-label="查看 ${escape(item.name)} 的收录与核验记录"><span><i data-lucide="file-text" aria-hidden="true"></i>收录与核验</span><small>${row ? countLabel(row.checks.length, "checks") : t("范围待补充")}</small><i data-lucide="arrow-up-right" aria-hidden="true"></i></button>`;
+  if (!row) return "";
+  return msg`<button class="review-entry" data-review="${escape(item.id)}" aria-label="查看 ${escape(item.name)} 的收录与核验记录"><span><i data-lucide="file-text" aria-hidden="true"></i>收录与核验</span><small>${countLabel(row.checks.length, "checks")}</small><i data-lucide="arrow-up-right" aria-hidden="true"></i></button>`;
 }
 /** 展示核验时间、审核者、范围与证据；历史记录仅公开收录依据。 */
 export function reviewDetail(

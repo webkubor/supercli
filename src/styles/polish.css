@@ -183,22 +183,23 @@ html:has(dialog[open]) {
   color: var(--success);
   border-color: var(--success);
 }
-.catalog .card:nth-child(-n + 6) {
+/* 入场只在首屏播一次；筛选、翻页重渲染不重播，避免整块卡片闪动。 */
+.catalog.is-enter .card:nth-child(-n + 6) {
   animation: panel-in var(--medium) var(--ease) backwards;
 }
-.catalog .card:nth-child(2) {
+.catalog.is-enter .card:nth-child(2) {
   animation-delay: 30ms;
 }
-.catalog .card:nth-child(3) {
+.catalog.is-enter .card:nth-child(3) {
   animation-delay: 60ms;
 }
-.catalog .card:nth-child(4) {
+.catalog.is-enter .card:nth-child(4) {
   animation-delay: 90ms;
 }
-.catalog .card:nth-child(5) {
+.catalog.is-enter .card:nth-child(5) {
   animation-delay: 120ms;
 }
-.catalog .card:nth-child(6) {
+.catalog.is-enter .card:nth-child(6) {
   animation-delay: 150ms;
 }
 @media (max-width: 640px) {
@@ -239,7 +240,7 @@ html:has(dialog[open]) {
 }
 @media (prefers-reduced-motion: reduce) {
   .hero h1 span::after,
-  .catalog .card:nth-child(-n + 6) {
+  .catalog.is-enter .card:nth-child(-n + 6) {
     animation: none;
   }
   .card::before,

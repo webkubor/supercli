@@ -274,3 +274,21 @@
 [hidden] {
   display: none !important;
 }
+
+/* 目录分页：首屏只给一屏量，其余按需追加，避免手机上滚过上百张卡片。 */
+.catalog-more {
+  display: flex;
+  justify-content: center;
+  padding-top: 28px;
+}
+.load-more {
+  gap: 10px;
+  min-height: 44px;
+  padding-inline: 22px;
+  font-size: 13px;
+}
+.load-more-count {
+  color: var(--faint);
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}

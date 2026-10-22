@@ -49,6 +49,10 @@
   font-size: 11px;
   color: var(--muted);
   margin-top: 4px;
+  /* 用途文案可能较长，单行截断，避免撑高整行破坏日期基线。 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 /* 收录日期右对齐，与左侧文字区形成稳定的双列基线。 */
 .recent-tool time {

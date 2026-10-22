@@ -19,9 +19,12 @@ test("documentary evidence stays distinct from independent installation testing"
   assert.ok(html.includes(`href="${reviewFor(item).evidence}"`));
   const missing = catalog.find((row) => row.id === "wrangler");
   assert.equal(reviewFor(missing), null);
-  assert.match(reviewCard(missing), /范围待补充/);
-  assert.match(reviewDetail(missing), /查看已有收录依据/);
+  // 卡片只在有记录时给入口：90 张卡片重复「范围待补充」不新增信息，
+  // 待补状态由详情如实说明，且卡片不得反过来暗示已核验。
+  assert.equal(reviewCard(missing), "");
+  assert.match(reviewDetail(missing), /范围待补充|查看已有收录依据/);
   assert.doesNotMatch(cardMarkup(missing, 0, "stars"), /实测通过|核验通过/);
+  assert.doesNotMatch(cardMarkup(missing, 0, "stars"), /已核验|已验证/);
 });
 test("changing identity, purpose or installation invalidates the bound record", () => {
   for (const key of [

@@ -69,8 +69,19 @@ const detail = document.querySelector<HTMLDialogElement>("#detail")!;
 let category = "";
 let maintainerType = "";
 let toastTimer: ReturnType<typeof setTimeout>;
+/** 目录分页：首屏只渲染一屏能看完的数量，避免手机上滚过上百张卡片。 */
+const PAGE_SIZE = 12;
+let visibleCount = PAGE_SIZE;
+/** 入场动画只在首屏播一次，翻页和筛选重渲染不重播。 */
+let hasEntered = false;
 const iconify = () => createIcons({ icons });
-function render(): void {
+function render(resetPage = true): void {
+  if (resetPage) visibleCount = PAGE_SIZE;
+  if (!hasEntered) {
+    hasEntered = true;
+    root.classList.add("is-enter");
+    setTimeout(() => root.classList.remove("is-enter"), 600);
+  }
   const items = queryEntries(
     search.value,
     category,
@@ -78,9 +89,17 @@ function render(): void {
     sort.value,
     maintainerType,
   );
-  root.innerHTML = items
+  const shown = items.slice(0, visibleCount);
+  root.innerHTML = shown
     .map((item, index) => cardMarkup(item, index, sort.value))
     .join("");
+  const more = document.querySelector<HTMLElement>("#catalog-more")!;
+  const remaining = items.length - shown.length;
+  more.hidden = remaining <= 0;
+  more.innerHTML =
+    remaining > 0
+      ? msg`<button class="button load-more" id="load-more">再看 ${String(Math.min(remaining, PAGE_SIZE))} 个<span class="load-more-count">还有 ${String(remaining)} 个</span></button>`
+      : "";
   document.querySelector("#result-count")!.textContent = countLabel(
     items.length,
     "results",
@@ -232,9 +251,16 @@ function initFilters(): void {
 }
 function setupEvents(): void {
   [search, vendor, sort].forEach((element) =>
-    element.addEventListener(element === search ? "input" : "change", render),
+    element.addEventListener(element === search ? "input" : "change", () =>
+      render(),
+    ),
   );
   document.addEventListener("click", (event) => {
+    if ((event.target as HTMLElement).closest("#load-more")) {
+      visibleCount += PAGE_SIZE;
+      render(false);
+      return;
+    }
     const target = (event.target as HTMLElement).closest<HTMLElement>(
       "button, a[data-detail]",
     );
