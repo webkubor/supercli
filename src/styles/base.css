@@ -25,7 +25,12 @@
   --fast: 150ms;
   --medium: 240ms;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-  font-family: "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+  /* 系统 UI 字体打头，中文字体紧随其后；Arial 不能排在 PingFang 之前，
+     否则中英混排时数字走 Arial、汉字走 PingFang，基线视觉重量不匹配。
+     Microsoft YaHei 是 Windows 的中文兜底，缺了会掉到默认宋体。 */
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
   font-synthesis: none;
