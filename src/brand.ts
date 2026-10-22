@@ -5,6 +5,7 @@ import { createIcons, Search } from "lucide";
 import "./style.css";
 import "./styles/brand.css";
 import "./styles/brand-responsive.css";
+import { setupTheme } from "./theme";
 createIcons({ icons: { Search } });
 let timer: ReturnType<typeof setTimeout>;
 document.querySelector("#demo-toast")!.addEventListener("click", () => {
@@ -38,4 +39,5 @@ document.querySelector("#motion-replay")!.addEventListener("click", (event) => {
   );
 });
 
+setupTheme();
 setupLanguage();

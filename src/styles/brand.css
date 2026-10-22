@@ -55,8 +55,8 @@
   border-radius: var(--radius-lg);
 }
 .logo-board-blue {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: #002fa7;
+  color: #fff;
 }
 .logo-board strong {
   font-size: 32px;
@@ -104,19 +104,23 @@
 .swatch span {
   font-size: 12px;
 }
+/* 色板与主标记展示的是具体品牌资产，必须显示该颜色本身：
+   跟随主题令牌会让标着 #FFFFFF 的色块在深色下渲染成近黑，文档就成了假的。 */
 .swatch-blue {
-  background: var(--accent);
-  color: var(--on-accent);
+  background: #002fa7;
+  color: #fff;
 }
 .swatch-ink {
-  background: var(--ink);
-  color: var(--bg);
+  background: #19191d;
+  color: #fff;
 }
 .swatch-surface {
-  background: var(--surface);
+  background: #f7f7f8;
+  color: #19191d;
 }
 .swatch-white {
-  background: var(--bg);
+  background: #fff;
+  color: #19191d;
   border: 1px solid var(--line);
 }
 .type-spec {

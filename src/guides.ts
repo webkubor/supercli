@@ -2,4 +2,6 @@
 import { setupLanguage } from "./i18n";
 import "./style.css";
 import "./styles/guides.css";
+import { setupTheme } from "./theme";
+setupTheme();
 setupLanguage();

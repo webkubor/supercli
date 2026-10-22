@@ -1,0 +1,136 @@
+/* 深色主题：只覆盖语义令牌，不改任何组件规则。
+   底色用带蓝的深灰而不是纯黑，避免和终端窗口一样死板；
+   品牌蓝在深底上不可读，因此提亮为 #7d9dff 承担文字与链接，
+   实心按钮反转为「亮蓝底 + 深色字」，保持同一色相家族。 */
+:root[data-theme="dark"] {
+  --bg: #0b0d12;
+  --surface: #14171e;
+  --surface-hover: #1c2028;
+  --ink: #eef1f7;
+  --muted: #a3aab8;
+  --faint: #8d94a3;
+  --line: #252a34;
+  --accent: #7d9dff;
+  --accent-hover: #9ab3ff;
+  --on-accent: #0b0d12;
+  --terminal: #05070a;
+  --terminal-line: #2a3040;
+  --terminal-text: #eef1f7;
+  --terminal-muted: #a3aab8;
+  --success: #7fd39a;
+  --brand-tint: #141b2e;
+  --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+  --backdrop: rgb(3 5 10 / 0.72);
+}
+
+/* 系统偏好深色时跟随，但手动选择浅色要能覆盖。 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0d12;
+    --surface: #14171e;
+    --surface-hover: #1c2028;
+    --ink: #eef1f7;
+    --muted: #a3aab8;
+    --faint: #8d94a3;
+    --line: #252a34;
+    --accent: #7d9dff;
+    --accent-hover: #9ab3ff;
+    --on-accent: #0b0d12;
+    --terminal: #05070a;
+    --terminal-line: #2a3040;
+    --terminal-text: #eef1f7;
+    --terminal-muted: #a3aab8;
+    --success: #7fd39a;
+    --brand-tint: #141b2e;
+    --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+    --backdrop: rgb(3 5 10 / 0.72);
+  }
+}
+
+/* 深色底上字标换成浅色版本，否则 SVG 里写死的 #19191d 会消失。 */
+:root[data-theme="dark"] .brand-lockup {
+  content: url("/brand/supercli-wordmark-dark.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand-lockup {
+    content: url("/brand/supercli-wordmark-dark.svg");
+  }
+}
+
+/* 主标记的蓝底方块在近黑背景上会糊掉，补一圈极淡描边。 */
+:root[data-theme="dark"] .brand-lockup,
+:root[data-theme="dark"] .stage-watermark {
+  filter: drop-shadow(0 0 0.5px rgb(255 255 255 / 0.18));
+}
+
+/* 深色下层次靠「越亮越靠前」，与浅色相反。
+   预览卡片原本用 --bg，会比面板更暗读成凹陷，这里抬到 surface-hover。
+   选中态由描边和左侧内阴影承担，不再改底色。 */
+:root[data-theme="dark"] .stage-tool {
+  background: var(--surface-hover);
+}
+:root[data-theme="dark"] .tool-stage {
+  box-shadow: none;
+  border-color: var(--line);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .stage-tool {
+    background: var(--surface-hover);
+  }
+  :root:not([data-theme="light"]) .tool-stage {
+    box-shadow: none;
+    border-color: var(--line);
+  }
+}
+
+/* 主题切换按钮：与导航同高，图标随当前主题切换。 */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--muted);
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+/* 浅色下露出月亮（点击进入深色），深色下露出太阳。 */
+.theme-toggle svg:last-child {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle svg:first-child {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle svg:last-child {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle svg:first-child {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-toggle svg:last-child {
+    display: block;
+  }
+}
+
+/* 单色标记是 #19191d，深底上会消失，换成浅色版本展示同一几何。 */
+:root[data-theme="dark"] .logo-board img[src$="supercli-symbol-mono.svg"] {
+  content: url("/brand/supercli-symbol-mono-light.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])
+    .logo-board
+    img[src$="supercli-symbol-mono.svg"] {
+    content: url("/brand/supercli-symbol-mono-light.svg");
+  }
+}

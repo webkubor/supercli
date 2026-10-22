@@ -86,3 +86,31 @@
     padding-top: 40px;
   }
 }
+
+/* 翻页时新卡片按 45ms 错峰滑入，已有卡片原地不动，视觉上「追加」而不是「重绘」。 */
+.card-new {
+  animation: card-append 320ms var(--ease) backwards;
+}
+@keyframes card-append {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* 主题按钮按下有轻微回弹，让切换这个动作有手感。 */
+.theme-toggle:active {
+  transform: scale(0.92);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-new {
+    animation: none;
+  }
+  .theme-toggle:active {
+    transform: none;
+  }
+}

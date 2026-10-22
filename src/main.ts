@@ -1,6 +1,7 @@
 /** 目录页面交互：搜索、筛选、排序、详情、安装命令复制；路由：/。 */
 import { setupSharing, updateSharing } from "./sharing";
 import { setupLanguage, countLabel } from "./i18n";
+import { setupTheme } from "./theme";
 import { msg, t, locale } from "./i18n";
 import {
   createIcons,
@@ -74,6 +75,8 @@ const PAGE_SIZE = 12;
 let visibleCount = PAGE_SIZE;
 /** 入场动画只在首屏播一次，翻页和筛选重渲染不重播。 */
 let hasEntered = false;
+/** 翻页时从哪一张开始算「新增」，用于只给新卡片播入场。 */
+let animateFrom = -1;
 const iconify = () => createIcons({ icons });
 function render(resetPage = true): void {
   if (resetPage) visibleCount = PAGE_SIZE;
@@ -90,8 +93,19 @@ function render(resetPage = true): void {
     maintainerType,
   );
   const shown = items.slice(0, visibleCount);
+  const from = animateFrom;
+  animateFrom = -1;
   root.innerHTML = shown
-    .map((item, index) => cardMarkup(item, index, sort.value))
+    .map((item, index) => {
+      // 只给本次新增的卡片排队入场，已有卡片原地不动。
+      const delay = from >= 0 && index >= from ? (index - from) * 45 : null;
+      const markup = cardMarkup(item, index, sort.value);
+      if (delay === null) return markup;
+      return markup.replace(
+        'class="card"',
+        `class="card card-new" style="animation-delay:${delay}ms"`,
+      );
+    })
     .join("");
   const more = document.querySelector<HTMLElement>("#catalog-more")!;
   const remaining = items.length - shown.length;
@@ -257,6 +271,7 @@ function setupEvents(): void {
   );
   document.addEventListener("click", (event) => {
     if ((event.target as HTMLElement).closest("#load-more")) {
+      animateFrom = visibleCount;
       visibleCount += PAGE_SIZE;
       render(false);
       return;
@@ -334,6 +349,7 @@ setupDetailLinks(showDetail, notify);
 setupDialogDismiss();
 iconify();
 
+setupTheme();
 setupLanguage();
 
 setupSharing();

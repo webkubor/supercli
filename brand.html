@@ -7,7 +7,26 @@
       name="description"
       content="SuperCLI 的品牌资产、页面体系、组件状态与动效规范。"
     />
-    <meta name="theme-color" content="#002fa7" />
+    <meta
+      name="theme-color"
+      content="#002fa7"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b0d12"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script>
+      // 在首次绘制前落定主题，避免浅色闪一下再变深。
+      (() => {
+        try {
+          const saved = localStorage.getItem("supercli-theme");
+          if (saved === "light" || saved === "dark")
+            document.documentElement.dataset.theme = saved;
+        } catch {}
+      })();
+    </script>
     <link rel="icon" href="/favicon.svg" />
     <link rel="canonical" href="https://supercli.site/brand.html" />
     <title>品牌与设计 — SuperCLI</title>

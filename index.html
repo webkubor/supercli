@@ -7,7 +7,26 @@
       name="description"
       content="发现值得装进终端的 CLI。按真实 GitHub Stars 排名，涵盖云平台、AI、开发工具与终端效率，通过 Pull Request 共同维护。"
     />
-    <meta name="theme-color" content="#002fa7" />
+    <meta
+      name="theme-color"
+      content="#002fa7"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0b0d12"
+      media="(prefers-color-scheme: dark)"
+    />
+    <script>
+      // 在首次绘制前落定主题，避免浅色闪一下再变深。
+      (() => {
+        try {
+          const saved = localStorage.getItem("supercli-theme");
+          if (saved === "light" || saved === "dark")
+            document.documentElement.dataset.theme = saved;
+        } catch {}
+      })();
+    </script>
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta property="og:site_name" content="SuperCLI" />
