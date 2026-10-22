@@ -53,6 +53,16 @@ SuperCLI is **manually curated with public evidence**:
 | Want to keep a filtered set | Filter state lives in the URL — refresh and sharing both restore it |
 | Do not know what to install | Three scenario guides: AI coding, cloud deployment, terminal productivity |
 
+### Filters and detail view
+
+Category, vendor, and sort combine freely — filter state stays in the URL.
+
+<img src="docs/directory-filter.png" alt="Directory filters: search box, vendor and sort dropdowns, category tabs, active filter chips, and tool cards" width="100%">
+
+Open any tool for its purpose, source, metric definitions, install command, and inclusion record.
+
+<img src="docs/tool-detail.png" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="100%">
+
 <details>
 <summary>Current directory at a glance (91 tools)</summary>
 

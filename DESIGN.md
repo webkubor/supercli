@@ -58,3 +58,11 @@
 工具图标分两类：**厂商品牌几何保留原样**（含 60 张原色位图 logo），不做全量去色；**GitHub owner 头像类改用中性字母块**——这批图标来自 `scripts/sync.mjs` 的 `repo.owner.avatar_url`，内容是人物或动物照片，不是品牌标识，在目录里展示人脸会与厂商 logo 混淆。字母块覆盖卡片、工具预览、详情弹窗与指南页四处渲染路径，尺寸与同位置品牌图标一致，`aria-hidden` 标记为纯装饰（工具名已由标题提供），不可聚焦、不进焦点链。
 
 收录日期改为右对齐的时间元素，与左侧文字列形成双列基线；移除每个条目重复的灰色 ↗，整行可点时重复箭头无信息且形成竖向噪声带。
+
+## v0.4.1 分享图与仓库门面
+
+分享图按语言分两套：`social-card.png`（英文）与 `social-card-zh.png`（中文），版式完全一致 —— 左侧标记 + 品牌名，主标题两行（第二行品牌蓝），底部分隔线与副信息。中文卡用系统 PingFang / Hiragino Sans GB 渲染，源文件为 `public/social-card-zh.svg`，PNG 由 `rsvg-convert` 生成。
+
+分享图统一用 PNG：社交平台对 SVG 的 `og:image` 支持不一致，SVG 会导致分享预览空白。`og:image` 与 `twitter:image` 按语言分流，中文站指向中文卡，英文站指向英文卡。首页 `index.html` 补齐 `og:site_name`、`og:image:width/height`、`og:image:alt` 与对应的 twitter 字段，与 `scripts/localized-pages.ts` 生成的本地化页面保持一致。
+
+README 门面：首屏用 `public/social-card.png`（暗色主题下不突兀），标题下用一句话说明收录规模，导航锚点控制在 5 项以内，补充目录筛选与工具详情两张真实截图，可折叠区展示按分类的工具一览。中英双版结构对齐。

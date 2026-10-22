@@ -39,7 +39,12 @@ test("static pages have reciprocal language links, self canonicals, and crawlabl
       );
       assert.equal((html.match(/rel="canonical"/g) ?? []).length, 1);
       assert.match(html, /application\/ld\+json/);
-      assert.match(html, /social-card\.png/);
+      // 分享卡按语言区分，社交平台只支持 PNG。
+      assert(
+        html.includes(
+          `https://supercli.site/${lang === "en" ? "social-card.png" : "social-card-zh.png"}`,
+        ),
+      );
       if (path === "/")
         assert.match(
           html,

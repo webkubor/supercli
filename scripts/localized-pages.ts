@@ -64,6 +64,12 @@ function socialMetadata(
   url: string,
   language: Language,
 ): string {
+  // 中文站用中文分享卡，英文站用英文卡；社交平台不支持 SVG，只能用 PNG。
+  const image = `${origin}/${language === "en" ? "social-card.png" : "social-card-zh.png"}`;
+  const imageAlt =
+    language === "en"
+      ? "SuperCLI — Your next favorite command-line tool"
+      : "SuperCLI — 下一条命令，更多可能";
   return [
     ["property", "og:type", "website"],
     ["property", "og:site_name", "SuperCLI"],
@@ -72,23 +78,15 @@ function socialMetadata(
     ["property", "og:url", url],
     ["property", "og:locale", language === "en" ? "en_US" : "zh_CN"],
     ["property", "og:locale:alternate", language === "en" ? "zh_CN" : "en_US"],
-    ["property", "og:image", `${origin}/social-card.png`],
+    ["property", "og:image", image],
     ["property", "og:image:width", "1200"],
     ["property", "og:image:height", "630"],
-    [
-      "property",
-      "og:image:alt",
-      "SuperCLI — Your next favorite command-line tool",
-    ],
+    ["property", "og:image:alt", imageAlt],
     ["name", "twitter:card", "summary_large_image"],
     ["name", "twitter:title", title],
     ["name", "twitter:description", description],
-    ["name", "twitter:image", `${origin}/social-card.png`],
-    [
-      "name",
-      "twitter:image:alt",
-      "SuperCLI — Your next favorite command-line tool",
-    ],
+    ["name", "twitter:image", image],
+    ["name", "twitter:image:alt", imageAlt],
   ]
     .map(
       ([attribute, key, value]) =>

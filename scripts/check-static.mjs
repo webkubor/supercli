@@ -26,9 +26,14 @@ for (const url of paths) {
   assert(html.includes(`<link rel="canonical" href="${url.href}">`), file);
   assert.match(html, /hreflang="en"/);
   assert.match(html, /hreflang="zh-CN"/);
+  // 分享卡按语言区分：英文站用英文卡，中文站用中文卡。
+  const card = lang === "en" ? "social-card.png" : "social-card-zh.png";
   assert.match(
     html,
-    /name="twitter:image" content="https:\/\/supercli.site\/social-card.png"/,
+    new RegExp(
+      `name="twitter:image" content="https:\\/\\/supercli.site\\/${card}"`,
+    ),
+    file,
   );
   for (const script of html.matchAll(
     /<script type="application\/ld\+json">(.*?)<\/script>/gs,
@@ -42,11 +47,15 @@ for (const url of paths) {
 }
 assert.match(read("llms.txt"), /Machine-readable catalog/);
 assert(!JSON.stringify(snapshot).includes("locallyInstalled"));
-assert(
-  readFileSync("dist/social-card.png")
-    .subarray(0, 8)
-    .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
-);
+// 两种语言的分享卡都必须是真实 PNG，社交平台不支持 SVG。
+for (const card of ["social-card.png", "social-card-zh.png"]) {
+  assert(
+    readFileSync(resolve("dist", card))
+      .subarray(0, 8)
+      .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
+    card,
+  );
+}
 console.log(
   `Validated ${paths.length} localized pages, linked assets, share metadata and public discovery indexes.`,
 );
