@@ -1,6 +1,8 @@
 /** 工具独立页：从目录与核验真源输出双语静态正文，路由 /tools/* 和 /en/tools/*。 */
 import categories from "../data/categories.json" with { type: "json" };
 import english from "../data/catalog.en.json" with { type: "json" };
+import community from "../data/community.json" with { type: "json" };
+import type { CommunityRecord } from "../src/community.ts";
 import { escapeHtml as escape } from "../src/escape.ts";
 import { reviewFor, type ReviewSubject } from "../src/review-data.ts";
 import { guideIconMarkup } from "../src/tool-icon.ts";
@@ -12,6 +14,22 @@ const copy = (language: Language, zh: string, en: string): string =>
   language === "en" ? en : zh;
 const path = (value: string, language: Language): string =>
   `${language === "en" ? "/en" : ""}${value}`;
+/** 原始收录出处只表示目录维护，不替代专项核验或上游版本日期。 */
+export function inclusionMarkup(
+  item: Pick<ReviewSubject, "id">,
+  language: Language,
+  records: readonly CommunityRecord[] = community,
+): string {
+  const record = records.find((row) => row.id === item.id);
+  if (!record) return "";
+  const profile = (name: string): string =>
+    `<a href="https://github.com/${encodeURIComponent(name)}">@${escape(name)}</a>`;
+  const date = new Date(record.addedAt).toLocaleDateString(
+    language === "en" ? "en-US" : "zh-CN",
+    { timeZone: "Asia/Taipei" },
+  );
+  return `<div class="attribution"><span>${copy(language, "收录于", "Added on")} <time datetime="${escape(record.addedAt)}">${escape(date)}</time></span><span>${copy(language, "收录维护", "Curated by")} ${profile(record.curatedBy)}</span>${record.recommendedBy ? `<span>${copy(language, "推荐者", "Recommended by")} ${profile(record.recommendedBy)}</span>` : ""}<a href="${escape(record.evidence)}">${copy(language, "查看收录记录", "View inclusion record")}</a></div><p>${copy(language, "收录日期是加入本站目录的时间，不是工具版本发布日期；收录记录不代表独立安装实测。", "The added date records entry into this directory, not an upstream release. Inclusion records are not independent installation tests.")}</p>`;
+}
 function evidence(item: ReviewSubject, language: Language): string {
   const review = reviewFor(item);
   if (!review)
@@ -42,6 +60,6 @@ export function toolMarkup(item: ReviewSubject, language: Language): string {
   <header class="guide-intro"><p class="eyebrow">${escape(translate(item.vendor, language))} / ${category}</p><h1>${escape(translate(item.name, language))}</h1><p class="intro">${escape(language === "en" ? descriptions[item.id] : item.description)}</p></header>
   <section class="guide-section guide-tool"><div class="guide-tool-heading">${guideIconMarkup(item)}<h2>${copy(language, "用途与来源", "Purpose and sources")}</h2></div><dl><div><dt>${copy(language, "分类", "Category")}</dt><dd>${category}</dd></div><div><dt>${copy(language, "维护来源", "Maintenance source")}</dt><dd>${copy(language, item.maintainerType === "vendor" ? "厂商官方" : "社区项目", item.maintainerType === "vendor" ? "Vendor maintained" : "Community maintained")}</dd></div></dl><div class="guide-actions"><a class="button primary" href="${escape(item.docs)}">${copy(language, "官方文档", "Official docs")} ↗</a>${item.repo ? `<a class="button" href="https://github.com/${escape(item.repo)}">${copy(language, "源码仓库", "Source repository")} ↗</a>` : ""}</div></section>
   <section class="guide-checklist tool-install"><h2>${copy(language, "安装方式", "Installation")}</h2>${item.install ? `<pre><code>${escape(item.install)}</code></pre>` : `<p>${copy(language, "本站未提供经确认的一行安装命令，请按官方文档安装。", "No confirmed one-line installation command is listed. Follow the official documentation.")}</p>`}<p>${copy(language, "安装前请阅读上方官方文档，确认系统、运行环境、账号与费用前提。目录收录不代表已在你的环境中验证安装。", "Read the official documentation above and check system, runtime, account, and cost requirements before installing. Catalog inclusion does not mean installation has been verified in your environment.")}</p></section>
-  <section class="guide-checklist tool-evidence"><h2>${copy(language, "收录与核验范围", "Inclusion and review scope")}</h2>${evidence(item, language)}<a class="text-button" href="${path("/standards", language)}">${copy(language, "了解收录与核验标准", "Read our inclusion standards")} →</a></section>${relatedGuides(item, language)}
+  <section class="guide-checklist tool-evidence"><h2>${copy(language, "收录与核验范围", "Inclusion and review scope")}</h2>${inclusionMarkup(item, language)}${evidence(item, language)}<a class="text-button" href="${path("/standards", language)}">${copy(language, "了解收录与核验标准", "Read our inclusion standards")} →</a></section>${relatedGuides(item, language)}
   <div class="guide-actions"><a class="button" href="${path(`/?tool=${encodeURIComponent(item.id)}#directory`, language)}">${copy(language, "查看交互详情与指标", "Open interactive details and metrics")} →</a><a class="button" href="${escape(share.href)}" target="_blank" rel="noopener noreferrer">${copy(language, "分享到 X", "Share on X")}</a><a class="button" href="${directory}">${copy(language, "探索全部工具", "Explore all tools")}</a></div>`;
 }

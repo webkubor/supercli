@@ -5,11 +5,13 @@ import english from "../data/catalog.en.json" with { type: "json" };
 import metrics from "../data/metrics.json" with { type: "json" };
 import usage from "../data/usage.json" with { type: "json" };
 import reviews from "../data/reviews.json" with { type: "json" };
+import community from "../data/community.json" with { type: "json" };
 import { translate } from "../src/translations.ts";
 const origin = "https://supercli.site";
 const descriptions: Readonly<Record<string, string>> = english;
 function toolRecord(item: (typeof catalog)[number]) {
   const review = reviews.find((record) => record.id === item.id);
+  const inclusion = community.find((record) => record.id === item.id);
   return {
     id: item.id,
     name: item.name,
@@ -22,6 +24,14 @@ function toolRecord(item: (typeof catalog)[number]) {
       en: `${origin}/en/tools/${item.id}/`,
     },
     docs: item.docs,
+    inclusion: inclusion
+      ? {
+          addedAt: inclusion.addedAt,
+          curatedBy: inclusion.curatedBy,
+          recommendedBy: inclusion.recommendedBy,
+          evidence: inclusion.evidence,
+        }
+      : null,
     repository: item.repo ? `https://github.com/${item.repo}` : null,
     review: review
       ? {
@@ -58,6 +68,7 @@ export function discoveryIndex(): string {
           "npm downloads include repeat installs and CI; they are not CLI executions or unique users.",
           "Repository pushes are not release dates. Missing metrics are unknown, not zero.",
           "Inclusion is not a security certification or proof of independent installation testing.",
+          "Inclusion dates record entry into this directory, not upstream releases. Curation is distinct from a recommendation.",
         ],
         guides: guides.map((guide) => ({
           title: guide.title,

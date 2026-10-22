@@ -5,7 +5,9 @@ import { readFileSync } from "node:fs";
 import { catalog } from "../src/catalog.ts";
 import { escapeHtml } from "../src/escape.ts";
 import { localizedPage, pageSource } from "./localized-pages.ts";
-import { toolMarkup } from "./tool-markup.ts";
+import { toolMarkup, inclusionMarkup } from "./tool-markup.ts";
+import community from "../data/community.json" with { type: "json" };
+import { discoveryIndex } from "./discovery-index.ts";
 const template = readFileSync(
   new URL("../guides.html", import.meta.url),
   "utf8",
@@ -25,6 +27,10 @@ test("every tool has a bilingual static landing page without the homepage or a m
         assert(html.includes(`<code>${escapeHtml(item.install)}</code>`));
       assert(html.includes(`href="${prefix}/?tool=${item.id}#directory"`));
       assert(html.includes(`href="${prefix}/standards"`));
+      const record = community.find((row) => row.id === item.id);
+      assert(html.includes(`datetime="${record.addedAt}"`));
+      assert(html.includes(`href="${record.evidence}"`));
+      assert(html.includes(`https://github.com/${record.curatedBy}`));
       const share = new URL(
         html
           .match(/href="(https:\/\/twitter.com\/intent\/tweet[^"]*)"/)[1]
@@ -43,6 +49,40 @@ test("every tool has a bilingual static landing page without the homepage or a m
           /[\u3400-\u9fff]/,
         );
     }
+});
+
+test("inclusion attribution does not invent recommendations, release dates or missing records", () => {
+  const record = community.find((row) => row.id === "wrangler");
+  const html = inclusionMarkup({ id: record.id }, "en");
+  assert.match(html, /Curated by/);
+  assert.match(html, /not an upstream release/);
+  assert.match(html, /not independent installation tests/);
+  assert.doesNotMatch(html, /Recommended by/);
+  assert.equal(inclusionMarkup({ id: "missing" }, "en"), "");
+  const attack = '<img src=x onerror="alert(1)">';
+  const recommended = inclusionMarkup({ id: record.id }, "en", [
+    { ...record, curatedBy: attack, recommendedBy: attack },
+  ]);
+  assert.match(recommended, /Recommended by/);
+  assert(!recommended.includes(attack));
+  assert(recommended.includes(escapeHtml(attack)));
+  assert(recommended.includes(encodeURIComponent(attack)));
+});
+
+test("public retrieval data uses the same original inclusion records as the static pages", () => {
+  const data = JSON.parse(discoveryIndex());
+  assert(
+    data.limitations.some((note) => note.includes("not upstream releases")),
+  );
+  for (const tool of data.tools) {
+    const record = community.find((row) => row.id === tool.id);
+    assert.deepEqual(tool.inclusion, {
+      addedAt: record.addedAt,
+      curatedBy: record.curatedBy,
+      recommendedBy: record.recommendedBy,
+      evidence: record.evidence,
+    });
+  }
 });
 
 test("tool pages link back to relevant guides and preserve current review evidence", () => {
