@@ -44,7 +44,7 @@ SuperCLI is **manually curated with public evidence**:
 
 **Directory filters** — category, vendor, and sort combine freely; filter state stays in the URL.
 
-<img src="docs/directory-filter.png" alt="Directory filters: search box, vendor and sort dropdowns, category tabs, active filter chips, and tool cards" width="720" style="max-width:100%">
+<img src="docs/directory-filter.png" alt="CLI directory: inclusion standards notice, search box, vendor and sort dropdowns, category tabs, source filters, and tool cards" width="720" style="max-width:100%">
 
 **Tool detail** — open any tool for its purpose, source, metric definitions, install command, and inclusion record.
 

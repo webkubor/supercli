@@ -44,7 +44,7 @@ SuperCLI 的做法是**人工收录 + 公开依据**：
 
 **目录筛选**——分类、厂商、排序可组合，筛选状态同步 URL。
 
-<img src="docs/directory-filter.png" alt="目录筛选界面：搜索框、厂商与排序下拉、分类标签、活跃筛选条件与工具卡片" width="720" style="max-width:100%">
+<img src="docs/directory-filter.png" alt="CLI 排行榜：收录标准说明、搜索框、厂商与排序下拉、分类标签、来源筛选与工具卡片" width="720" style="max-width:100%">
 
 **工具详情**——点开任一工具，给出用途、来源、指标口径、安装命令和收录记录。
 

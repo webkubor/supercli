@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.6.1
+
+### 修复
+
+- **Windows 上中文不再掉宋体**：字体栈补了 `Microsoft YaHei` 兜底。原来只有 `PingFang SC`，Windows 上没装它时会一路退到 `sans-serif` 默认字体，整个中文界面走形。
+- **中英混排基线一致**：`Arial` 不再排在 `PingFang SC` 之前。原顺序下数字与拉丁字母走 Arial、汉字走 PingFang，两者视觉重量对不上。
+- **macOS 上拉丁字母走系统 UI 字体**：字体栈以 `-apple-system` / `BlinkMacSystemFont` 打头，不再先命中 Helvetica Neue。
+- 分类标签字号从 10px 提到 11px、字重 400 提到 500。10px 是原界面上最小的字，1x 屏上接近可读下限。
+
+### 无障碍
+
+- 首页与英文首页的截图 alt 文案按当前界面重写：补上「收录标准说明」与「来源筛选」，读屏用户听到的描述不再停留在旧版布局。
+
 ## 0.6.0
 
 ### 深色主题
