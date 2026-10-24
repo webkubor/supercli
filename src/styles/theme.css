@@ -134,3 +134,59 @@
     content: url("/brand/supercli-symbol-mono-light.svg");
   }
 }
+
+/* 深色主题图标容器：为纯黑/暗色厂商图标提供微高光边框与衬底，避免与暗底融化 */
+:root[data-theme="dark"] .vendor-icon,
+:root[data-theme="dark"] .card-initial,
+:root[data-theme="dark"] .detail-icon,
+:root[data-theme="dark"] .detail-initial,
+:root[data-theme="dark"] .stage-tool img,
+:root[data-theme="dark"] .stage-initial,
+:root[data-theme="dark"] .recent-tool img,
+:root[data-theme="dark"] .recent-tool .icon-initial {
+  background: var(--surface);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .vendor-icon,
+  :root:not([data-theme="light"]) .card-initial,
+  :root:not([data-theme="light"]) .detail-icon,
+  :root:not([data-theme="light"]) .detail-initial,
+  :root:not([data-theme="light"]) .stage-tool img,
+  :root:not([data-theme="light"]) .stage-initial,
+  :root:not([data-theme="light"]) .recent-tool img,
+  :root:not([data-theme="light"]) .recent-tool .icon-initial {
+    background: var(--surface);
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  }
+}
+
+/* 深色模式下弹窗悬浮层级与 1px 微高光边框 */
+:root[data-theme="dark"] dialog {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.08),
+    0 24px 64px -8px rgba(0, 0, 0, 0.75);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) dialog {
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 24px 64px -8px rgba(0, 0, 0, 0.75);
+  }
+}
+
+/* 深色模式下的质检与核验面板 */
+:root[data-theme="dark"] .quality-panel {
+  background: var(--surface);
+  border-color: var(--line);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .quality-panel {
+    background: var(--surface);
+    border-color: var(--line);
+  }
+}

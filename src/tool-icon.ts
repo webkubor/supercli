@@ -1,5 +1,5 @@
 /** 工具图标渲染：品牌几何优先，个人维护者头像改用字母块。 */
-import { escapeHtml as escape } from "./escape";
+import { escapeHtml as escape } from "./escape.ts";
 
 /** 图标渲染只依赖工具的标识与名称，便于静态页脚本复用。 */
 export interface IconSubject {

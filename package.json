@@ -1,6 +1,6 @@
 {
   "name": "supercli",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "private": true,
   "type": "module",
   "description": "Open-source CLI discovery and rankings, maintained through pull requests.",

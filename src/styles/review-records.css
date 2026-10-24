@@ -46,13 +46,19 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 9px 0;
-  margin-top: 16px;
-  border-top: 1px solid var(--line);
-  background: transparent;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
   text-align: left;
-  min-height: 44px;
+  min-height: 38px;
+  cursor: pointer;
+  transition:
+    background var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
 }
 .review-entry > span {
   display: flex;
@@ -60,11 +66,13 @@
   gap: 6px;
   color: var(--accent);
   font-size: 11px;
+  font-weight: 600;
 }
 .review-entry small {
   margin-left: auto;
-  color: var(--faint);
+  color: var(--muted);
   font-size: 10px;
+  font-weight: 500;
 }
 .review-entry svg {
   width: 13px;
@@ -73,9 +81,13 @@
 }
 .review-entry:hover {
   background: var(--brand-tint);
+  border-color: var(--accent);
+}
+.review-entry:active {
+  transform: scale(0.98);
 }
 .card .review-entry + .tool-metrics {
-  margin-top: 0;
+  margin-top: 12px;
 }
 .review-record {
   border: 1px solid var(--line);
@@ -149,9 +161,25 @@
 .review-method {
   color: var(--accent);
   background: var(--brand-tint);
-  padding: 2px 6px;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  padding: 2px 7px;
   border-radius: var(--radius);
   font-size: 10px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.review-method[data-method="execution"] {
+  color: #15803d;
+  background: #dcfce7;
+  border-color: #86efac;
+  font-weight: 600;
+}
+:root[data-theme="dark"] .review-method[data-method="execution"] {
+  color: var(--success);
+  background: rgb(127 211 154 / 0.15);
+  border-color: rgb(127 211 154 / 0.3);
 }
 .review-checks li p {
   margin: 8px 0;

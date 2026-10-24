@@ -70,6 +70,7 @@ const detail = document.querySelector<HTMLDialogElement>("#detail")!;
 let category = "";
 let maintainerType = "";
 let toastTimer: ReturnType<typeof setTimeout>;
+let currentDetailItem: Entry | null = null;
 /** 目录分页：首屏只渲染一屏能看完的数量，避免手机上滚过上百张卡片。 */
 const PAGE_SIZE = 12;
 let visibleCount = PAGE_SIZE;
@@ -157,6 +158,9 @@ function render(resetPage = true): void {
     "",
     `${location.pathname}${params.size ? `?${params}` : ""}${location.hash}`,
   );
+  const searchClear =
+    document.querySelector<HTMLButtonElement>("#search-clear");
+  if (searchClear) searchClear.hidden = !search.value;
   updateSharing();
   iconify();
 }
@@ -211,6 +215,7 @@ async function copyCommand(item: Entry): Promise<void> {
   }
 }
 function showDetail(item: Entry): void {
+  currentDetailItem = item;
   const data = stats(item);
   document.querySelector("#detail-content")!.innerHTML = detailMarkup(
     item,
@@ -324,7 +329,48 @@ function setupEvents(): void {
   document.querySelector("#reset")!.addEventListener("click", () => {
     clearFilter("all");
   });
+  const searchClear =
+    document.querySelector<HTMLButtonElement>("#search-clear");
+  searchClear?.addEventListener("click", () => {
+    search.value = "";
+    render(true);
+    search.focus();
+  });
+  search.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && search.value) {
+      event.preventDefault();
+      search.value = "";
+      render(true);
+    }
+  });
+  detail.addEventListener("close", () => {
+    currentDetailItem = null;
+  });
   document.addEventListener("keydown", (event) => {
+    if (detail.open && currentDetailItem) {
+      if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+        const items = queryEntries(
+          search.value,
+          category,
+          vendor.value,
+          sort.value,
+          maintainerType,
+        );
+        const idx = items.findIndex(
+          (entry) => entry.id === currentDetailItem!.id,
+        );
+        if (idx !== -1) {
+          if (event.key === "ArrowLeft" && idx > 0) {
+            event.preventDefault();
+            showDetail(items[idx - 1]);
+          } else if (event.key === "ArrowRight" && idx < items.length - 1) {
+            event.preventDefault();
+            showDetail(items[idx + 1]);
+          }
+        }
+        return;
+      }
+    }
     if (
       event.key === "/" &&
       !["INPUT", "TEXTAREA", "SELECT"].includes(

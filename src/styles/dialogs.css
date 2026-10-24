@@ -127,10 +127,11 @@ dialog h3 {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 16px;
+  padding: 16px 18px;
   margin: 20px 0;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
   border-radius: var(--radius);
 }
 .quality-panel > div {

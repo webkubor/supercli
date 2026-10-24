@@ -59,6 +59,27 @@
 .search input:focus-visible {
   outline: none;
 }
+.search-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  cursor: pointer;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  transition: color var(--fast) var(--ease), background var(--fast) var(--ease);
+}
+.search-clear:hover {
+  color: var(--accent);
+  background: var(--surface-hover);
+}
+.search-clear svg {
+  width: 14px;
+  height: 14px;
+}
 .search kbd {
   font-size: 12px;
   background: var(--bg);

@@ -22,10 +22,24 @@
   font-size: 11px;
   font-weight: 600;
 }
-.card:nth-child(-n + 3) .rank {
+/* 前三名是榜单的实质信号：按名次分层递进，既有头部统治感，又保有严谨秩序。 */
+.card:nth-child(1) .rank {
   background: var(--accent);
   color: var(--on-accent);
   font-weight: 700;
+  box-shadow: 0 1px 4px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+.card:nth-child(2) .rank {
+  background: var(--brand-tint);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-weight: 700;
+}
+.card:nth-child(3) .rank {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--line);
+  font-weight: 600;
 }
 
 /* 悬停与键盘焦点给同一条顶部蓝线，位置稳定、不挤压内容。 */
@@ -101,16 +115,32 @@
     transform: none;
   }
 }
-/* 主题按钮按下有轻微回弹，让切换这个动作有手感。 */
+/* 主题按钮与卡片交互元素按下有轻微物理回弹，让操作有扎实手感。 */
 .theme-toggle:active {
   transform: scale(0.92);
+}
+.button:active,
+.copy:active,
+.filter-chip:active,
+.review-entry:active {
+  transform: scale(0.97);
+  transition-duration: 80ms;
+}
+.card:active {
+  transform: translateY(0) scale(0.995);
+  transition-duration: 80ms;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .card-new {
     animation: none;
   }
-  .theme-toggle:active {
+  .theme-toggle:active,
+  .button:active,
+  .copy:active,
+  .filter-chip:active,
+  .review-entry:active,
+  .card:active {
     transform: none;
   }
 }
