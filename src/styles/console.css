@@ -185,11 +185,11 @@
   opacity: 0;
   color: var(--success);
 }
-.console-hit-copy.is-copied .terminal-copy-icon > svg:first-child,
-.console-hit-copy.is-copied .terminal-copy-icon > i {
+.console-hit-copy.copy-success .terminal-copy-icon > svg:first-child,
+.console-hit-copy.copy-success .terminal-copy-icon > i {
   opacity: 0;
 }
-.console-hit-copy.is-copied .terminal-copy-check {
+.console-hit-copy.copy-success .terminal-copy-check {
   opacity: 1;
 }
 .console-empty {
