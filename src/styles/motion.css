@@ -37,6 +37,16 @@ dialog::backdrop {
   dialog[open] {
     animation: none;
   }
+  /* 内容页进场与终端窗口进场一并关闭，保留静态终稿。 */
+  .guide-breadcrumb,
+  .guide-intro,
+  .guide-page > section,
+  .guide-page > .guide-actions,
+  .tool-aside,
+  .tool-main > *,
+  .terminal-window {
+    animation: none;
+  }
   .card:hover,
   .card:active,
   .card:focus-within,

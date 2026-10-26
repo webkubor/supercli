@@ -5,6 +5,7 @@ import { resetCopyFeedback } from "./interaction-feedback";
 import { catalog, stats } from "./catalog";
 import { escapeHtml as escape } from "./html";
 import { stageIconMarkup } from "./tool-icon";
+import { commandMarkup } from "./command-markup";
 import type { Entry } from "./catalog";
 
 export function setupDiscovery(
@@ -26,8 +27,11 @@ export function setupDiscovery(
   function preview(item: Entry): void {
     resetCopyFeedback(copyButton);
     selected = item;
-    document.querySelector("#stage-command")!.textContent =
-      item.install ?? t("请查看官方文档");
+    const command = document.querySelector<HTMLElement>("#stage-command")!;
+    // 与工具页同一套分色与光标：首页是主入口，命令值得同样对待。
+    command.innerHTML = item.install
+      ? `<span class="terminal-prompt">$</span>${commandMarkup(item.install)}<span class="terminal-caret" aria-hidden="true"></span>`
+      : escape(t("请查看官方文档"));
     document.querySelector("#stage-command-label")!.textContent =
       msg`${item.name} 安装命令`;
     copyButton.dataset.preview = item.id;

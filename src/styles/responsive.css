@@ -191,9 +191,19 @@
   .detail-stats {
     font-size: 11px;
   }
-  .install {
-    align-items: start;
+  /* 窄屏：详情头部图标与身份信息上下排列，命令与按钮同样分离。 */
+  .detail-head {
+    gap: 14px;
+  }
+  .detail-icon-wrap {
+    width: 52px;
+    height: 52px;
+    flex-basis: 52px;
+    padding: 9px;
+  }
+  .detail-terminal .terminal-body {
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 @media (prefers-reduced-motion: reduce) {

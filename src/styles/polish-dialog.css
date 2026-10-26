@@ -49,17 +49,22 @@ dialog .close:hover {
   color: var(--terminal-text);
   padding: 16px;
 }
-.install .button {
+/* 安装命令已改为终端窗口（.detail-terminal），复制按钮样式随之迁移。 */
+.detail-terminal {
+  background: var(--terminal);
+  color: var(--terminal-text);
+}
+.detail-copy {
   min-width: 76px;
   min-height: 40px;
   background: var(--terminal-line);
   color: var(--terminal-text);
   border-color: var(--terminal-line);
 }
-.install .button:focus-visible {
+.detail-copy:focus-visible {
   outline-color: var(--terminal-text);
 }
-.install .button.copy-success {
+.detail-copy.copy-success {
   background: var(--terminal-line);
   color: var(--success);
   border-color: var(--success);

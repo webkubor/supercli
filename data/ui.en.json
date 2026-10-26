@@ -381,5 +381,8 @@
   "按收录日期排序": "ordered by the date they were added",
   "按收录时间": "By inclusion date",
   "人工收录，": "Manually curated, ",
-  "—— 和工具的版本发布时间不同。": "— not by release date."
+  "—— 和工具的版本发布时间不同。": "— not by release date.",
+  "终端": "Terminal",
+  "许可证：": "License: ",
+  "工具独立页": "Tool page"
 }

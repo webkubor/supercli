@@ -2,7 +2,7 @@
 import { guides, guideFor, guideText } from "./guide-content.ts";
 import { guideMarkup, guideStructuredData } from "./guide-markup.ts";
 import catalog from "../data/catalog.json" with { type: "json" };
-import { toolMarkup } from "./tool-markup.ts";
+import { toolMarkup, faqs } from "./tool-markup.ts";
 import metrics from "../data/metrics.json" with { type: "json" };
 import english from "../data/catalog.en.json" with { type: "json" };
 import { translate, type Language } from "../src/translations.ts";
@@ -63,13 +63,9 @@ function socialMetadata(
   description: string,
   url: string,
   language: Language,
+  image: string,
+  imageAlt: string,
 ): string {
-  // 中文站用中文分享卡，英文站用英文卡；社交平台不支持 SVG，只能用 PNG。
-  const image = `${origin}/${language === "en" ? "social-card.png" : "social-card-zh.png"}`;
-  const imageAlt =
-    language === "en"
-      ? "SuperCLI — Your next favorite command-line tool"
-      : "SuperCLI — 下一条命令，更多可能";
   return [
     ["property", "og:type", "website"],
     ["property", "og:site_name", "SuperCLI"],
@@ -149,7 +145,18 @@ function metadata(html: string, path: string, language: Language): string {
     ? toolDescription(item, language)
     : (html.match(/name="description"\s+content="([^"]*)"/s)?.[1] ?? "");
   const url = origin + localizedPath(path, language);
-  const meta = socialMetadata(title, description, url, language);
+  // 工具页用本工具的独立分享卡，其余页面按语言用站点通用卡；社交平台不支持 SVG。
+  const image = item
+    ? `${origin}/og/tools/${item.id}.png`
+    : `${origin}/${language === "en" ? "social-card.png" : "social-card-zh.png"}`;
+  const imageAlt = item
+    ? language === "en"
+      ? `${translate(item.name, "en")}: install command and GitHub stars snapshot on SuperCLI`
+      : `${translate(item.name, "zh")} 的安装命令与 GitHub Stars 快照 — SuperCLI`
+    : language === "en"
+      ? "SuperCLI — Your next favorite command-line tool"
+      : "SuperCLI — 下一条命令，更多可能";
+  const meta = socialMetadata(title, description, url, language, image, imageAlt);
   const alternates = (["zh", "en"] as const)
     .map(
       (lang) =>
@@ -157,6 +164,20 @@ function metadata(html: string, path: string, language: Language): string {
     )
     .join("\n");
   const schema = structuredData(title, description, url, path, language, item);
+  // 结构化答案与页面可见 FAQ 同源，见 tool-markup.ts 的 faqs()。
+  const faqSchema = item
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        url,
+        inLanguage: language === "en" ? "en" : "zh-CN",
+        mainEntity: faqs(item, language).map((entry) => ({
+          "@type": "Question",
+          name: entry.question,
+          acceptedAnswer: { "@type": "Answer", text: entry.answer },
+        })),
+      }
+    : null;
   const clean = html
     .replace(/<meta\s+(?:property|name)="(?:og:|twitter:)[^"]*"[^>]*>/gs, "")
     .replace(/<link\s+rel="canonical"[^>]*>/g, "")
@@ -164,7 +185,7 @@ function metadata(html: string, path: string, language: Language): string {
     .replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?>/s, "");
   return clean.replace(
     "</head>",
-    `<title>${title}</title><meta name="description" content="${escape(description)}">${meta}<link rel="alternate" type="application/json" href="${origin}/catalog.json"><link rel="canonical" href="${url}">${alternates}<link rel="alternate" hreflang="x-default" href="${origin}${path}"><script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script></head>`,
+    `<title>${title}</title><meta name="description" content="${escape(description)}">${meta}<link rel="alternate" type="application/json" href="${origin}/catalog.json"><link rel="canonical" href="${url}">${alternates}<link rel="alternate" hreflang="x-default" href="${origin}${path}"><script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>${faqSchema ? `<script type="application/ld+json">${JSON.stringify(faqSchema).replaceAll("<", "\\u003c")}</script>` : ""}</head>`,
   );
 }
 /** 从同一模板生成双语 HTML、预渲染目录和可分享的工具页。 */

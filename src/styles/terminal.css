@@ -1,0 +1,206 @@
+/* 终端组件：窗口栏 + 命令行 + 复制按钮。
+   首页预览、工具页安装方式、详情弹窗共用同一套，通过 --terminal 令牌取色。
+   抽成独立文件是因为首页只加载 style.css，内容页才加载 guides.css。 */
+
+.terminal-window {
+  margin: 0;
+  position: relative;
+  background: var(--terminal);
+  border: 1px solid var(--terminal-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 18px 44px -24px rgb(0 0 0 / 0.5);
+  animation: terminal-in var(--medium) var(--ease) both;
+}
+.terminal-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--terminal-line);
+  border-bottom: 1px solid var(--terminal-line);
+}
+.terminal-dots {
+  display: inline-flex;
+  gap: 6px;
+}
+.terminal-dots i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--terminal-muted);
+  opacity: 0.4;
+}
+.terminal-title {
+  font-size: 11px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--terminal-muted);
+}
+.terminal-body {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 20px;
+}
+.terminal-line {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--terminal-text);
+  overflow-wrap: anywhere;
+}
+/* 提示符与 flags 在深色终端底上不能用品牌蓝（浅色主题下只有 1.64:1），
+   改用终端内的成功绿，对比度 10.82:1。 */
+.terminal-prompt {
+  margin-right: 10px;
+  color: var(--success);
+  font-weight: 600;
+  user-select: none;
+}
+.term-command {
+  color: var(--terminal-text);
+  font-weight: 600;
+}
+.term-flag {
+  color: var(--success);
+}
+.term-value {
+  color: var(--terminal-muted);
+}
+/* 命令逐词点亮：文字一次给出，只是逐词浮现，不是打字机。 */
+.terminal-line .term-command,
+.terminal-line .term-flag,
+.terminal-line .term-value {
+  display: inline-block;
+  animation: term-in 320ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+}
+@keyframes term-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 复制按钮在终端里用深色次级样式，图标成功态翻成对勾。 */
+.terminal-copy,
+.detail-copy {
+  flex: 0 0 auto;
+  min-height: 34px;
+  padding-inline: 14px;
+  color: var(--terminal-text);
+  background: var(--terminal-line);
+  border-color: var(--terminal-line);
+}
+.terminal-copy:hover,
+.detail-copy:hover {
+  border-color: var(--terminal-muted);
+  color: var(--terminal-text);
+}
+.terminal-copy:focus-visible,
+.detail-copy:focus-visible {
+  outline-color: var(--terminal-text);
+}
+.terminal-copy.copy-success,
+.detail-copy.copy-success {
+  color: var(--success);
+  border-color: var(--success);
+}
+.terminal-copy.copy-failed {
+  color: var(--terminal-muted);
+  border-color: var(--terminal-muted);
+}
+/* 图标区：lucide 会把 <i data-lucide> 换成 <svg>，所以是两个平级 svg。 */
+.terminal-copy-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+}
+.terminal-copy-icon > svg {
+  position: absolute;
+  inset: 0;
+  width: 16px;
+  height: 16px;
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--medium) var(--ease);
+}
+.terminal-copy-check {
+  opacity: 0;
+  transform: scale(0.6) rotate(-20deg);
+}
+.terminal-copy.copy-success .terminal-copy-icon > svg.lucide {
+  opacity: 0;
+  transform: scale(0.6) rotate(20deg);
+}
+.terminal-copy.copy-success .terminal-copy-check {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.terminal-empty {
+  margin: 20px 0 0;
+  padding: 18px 20px;
+  background: var(--terminal);
+  border: 1px solid var(--terminal-line);
+  border-radius: var(--radius);
+  color: var(--terminal-muted);
+}
+/* 命令末尾光标：标记「这里可以继续输入」。 */
+.terminal-caret {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  margin-left: 3px;
+  vertical-align: -2px;
+  background: var(--success);
+  animation: caret-blink 1.4s steps(1, end) infinite;
+}
+.stage-command .terminal-caret {
+  width: 6px;
+  height: 12px;
+  margin-left: 2px;
+  vertical-align: -1px;
+}
+@keyframes terminal-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes caret-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .terminal-window,
+  .terminal-caret,
+  .terminal-line .term-command,
+  .terminal-line .term-flag,
+  .terminal-line .term-value {
+    animation: none;
+  }
+  .terminal-caret {
+    opacity: 1;
+  }
+}

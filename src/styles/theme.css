@@ -19,6 +19,7 @@
   --terminal-muted: #a3aab8;
   --success: #7fd39a;
   --brand-tint: #141b2e;
+  --grid-dot: rgb(125 157 255 / 0.18);
   --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
   --backdrop: rgb(3 5 10 / 0.72);
 }
@@ -42,6 +43,7 @@
     --terminal-muted: #a3aab8;
     --success: #7fd39a;
     --brand-tint: #141b2e;
+  --grid-dot: rgb(125 157 255 / 0.18);
     --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
     --backdrop: rgb(3 5 10 / 0.72);
   }

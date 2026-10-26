@@ -88,6 +88,7 @@
     </header>
     <main class="wrap">
       <section class="hero">
+        <div class="ambient-grid" aria-hidden="true"><i style="left:8%;top:30%;animation-delay:0ms"></i><i style="left:19%;top:58%;animation-delay:260ms"></i><i style="left:31%;top:22%;animation-delay:520ms"></i><i style="left:43%;top:66%;animation-delay:780ms"></i><i style="left:55%;top:38%;animation-delay:1040ms"></i><i style="left:66%;top:74%;animation-delay:1300ms"></i><i style="left:77%;top:18%;animation-delay:1560ms"></i><i style="left:88%;top:52%;animation-delay:1820ms"></i><i style="left:94%;top:84%;animation-delay:2080ms"></i><i style="left:12%;top:88%;animation-delay:2340ms"></i><i style="left:38%;top:8%;animation-delay:2600ms"></i><i style="left:72%;top:92%;animation-delay:2860ms"></i></div>
         <div>
           <p class="eyebrow">发现工具 · 少走弯路</p>
           <h1>下一条命令，<br />更多<span>可能。</span></h1>
@@ -115,10 +116,23 @@
             ><code id="stage-command"></code
             ><button
               id="stage-copy"
-              class="copy"
+              class="copy terminal-copy"
               aria-label="复制展示工具的安装命令"
             >
-              <i data-lucide="copy"></i>复制
+              <span class="terminal-copy-icon" aria-hidden="true"
+                ><i data-lucide="copy"></i
+                ><svg
+                  class="terminal-copy-check"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M20 6 9 17l-5-5" />
+                </svg></span
+              ><span class="terminal-copy-label">复制</span>
             </button>
           </div>
           <p class="stage-caption" id="stage-caption">

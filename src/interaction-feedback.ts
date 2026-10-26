@@ -27,7 +27,15 @@ export function showCopySuccess(id: string): void {
     if (previous) clearTimeout(previous.timer);
     const html = previous?.html ?? button.innerHTML;
     const label = previous ? previous.label : button.getAttribute("aria-label");
-    button.textContent = t("已复制");
+    // 保留图标结构，只切换图标与文字，不整体覆盖 innerHTML。
+    const icon = button.querySelector<HTMLElement>(".terminal-copy-icon");
+    const text = button.querySelector<HTMLElement>(".terminal-copy-label");
+    if (icon && text) {
+      icon.dataset.state = "success";
+      text.textContent = t("已复制");
+    } else {
+      button.textContent = t("已复制");
+    }
     button.classList.add("copy-success");
     button.setAttribute("aria-label", t("安装命令已复制"));
     const timer = setTimeout(() => resetCopyFeedback(button), 1800);

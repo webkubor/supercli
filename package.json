@@ -1,6 +1,6 @@
 {
   "name": "supercli",
-  "version": "0.6.2",
+  "version": "0.6.5",
   "private": true,
   "type": "module",
   "description": "Open-source CLI discovery and rankings, maintained through pull requests.",
@@ -11,6 +11,7 @@
     "check": "pnpm typecheck && node scripts/validate.mjs && pnpm test",
     "build": "pnpm check && vite build && node scripts/check-static.mjs",
     "sync": "node scripts/sync.mjs",
+    "og": "tsx scripts/generate-tool-cards.ts",
     "preview": "vite preview --host 127.0.0.1",
     "test": "tsx --test scripts/*.test.mjs",
     "typecheck": "tsc --noEmit",

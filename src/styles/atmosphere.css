@@ -1,0 +1,291 @@
+/* 氛围层：渐变、层次、交互、流动。
+   分工：
+   - ambient.css  底纹与逐点跃动（网格是本项目的视觉语言，此前只当分隔线用）
+   - atmosphere.css  渐变光晕、层次、交互反馈、流动指示
+   两层都只用 transform / opacity / 背景渐变，不触发布局重排。 */
+
+/* ---------- 渐变光晕 ---------- */
+/* 首屏品牌光晕：从标题侧扩散的极淡蓝色渐变，给平面版面一个光源。
+   渐变铺满整块区域会在容器边缘留下矩形边界，用羽化收尾。 */
+.hero::before,
+.guide-intro::before,
+.tool-aside-head::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 60% 55% at 18% 30%,
+      rgb(0 47 167 / 0.07),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 82% 18%,
+      rgb(0 47 167 / 0.045),
+      transparent 72%
+    );
+  /* 整层羽化到透明，避免光晕在容器边缘截断。 */
+  mask-image: radial-gradient(
+    ellipse 95% 95% at 50% 40%,
+    #000 30%,
+    transparent 92%
+  );
+  /* 光晕缓慢漂移，让版面有呼吸感；只改 transform 与 opacity。 */
+  animation: bloom-drift 24s ease-in-out infinite alternate;
+}
+@keyframes bloom-drift {
+  from {
+    transform: translate3d(-1.5%, -1%, 0) scale(1);
+    opacity: 0.85;
+  }
+  to {
+    transform: translate3d(2%, 1.5%, 0) scale(1.06);
+    opacity: 1;
+  }
+}
+:root[data-theme="dark"] .hero::before,
+:root[data-theme="dark"] .guide-intro::before,
+:root[data-theme="dark"] .tool-aside-head::before {
+  background:
+    radial-gradient(
+      ellipse 60% 55% at 18% 30%,
+      rgb(125 157 255 / 0.1),
+      transparent 70%
+    ),
+    radial-gradient(
+      ellipse 45% 40% at 82% 18%,
+      rgb(125 157 255 / 0.06),
+      transparent 72%
+    );
+  mask-image: radial-gradient(
+    ellipse 95% 95% at 50% 40%,
+    #000 30%,
+    transparent 92%
+  );
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero::before,
+  :root:not([data-theme="light"]) .guide-intro::before,
+  :root:not([data-theme="light"]) .tool-aside-head::before {
+    background:
+      radial-gradient(
+        ellipse 60% 55% at 18% 30%,
+        rgb(125 157 255 / 0.1),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 45% 40% at 82% 18%,
+        rgb(125 157 255 / 0.06),
+        transparent 72%
+      );
+    mask-image: radial-gradient(
+      ellipse 95% 95% at 50% 40%,
+      #000 30%,
+      transparent 92%
+    );
+  }
+}
+
+/* ---------- 层次 ---------- */
+/* 页头在滚动后脱离平面：半透明毛玻璃 + 底部细线，形成前后关系。 */
+.header {
+  transition:
+    background var(--medium) var(--ease),
+    border-color var(--medium) var(--ease),
+    box-shadow var(--medium) var(--ease);
+}
+.header.is-scrolled {
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+/* 终端窗口：渐变描边 + 双层投影，从"一个黑框"变成有厚度的窗口。 */
+.terminal-window {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--terminal), var(--terminal)) padding-box,
+    linear-gradient(
+      135deg,
+      rgb(125 157 255 / 0.5),
+      rgb(255 255 255 / 0.08) 45%,
+      rgb(125 157 255 / 0.28)
+    )
+      border-box;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.05) inset,
+    0 20px 48px -28px rgb(0 0 0 / 0.65);
+}
+:root[data-theme="dark"] .terminal-window {
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.06) inset,
+    0 24px 60px -30px rgb(0 0 0 / 0.8);
+}
+
+/* 工具预览面板：抬升一层阴影，与页面背景拉开距离。 */
+.tool-stage {
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.5) inset,
+    var(--shadow);
+}
+:root[data-theme="dark"] .tool-stage {
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.04) inset,
+    0 28px 64px -32px rgb(0 0 0 / 0.8);
+}
+
+/* ---------- 交互 ---------- */
+/* 卡片悬停：一道自左向右扫过的柔光，替代整块底色突变。 */
+.card {
+  position: relative;
+  isolation: isolate;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgb(0 47 167 / 0.05) 48%,
+    transparent 66%
+  );
+  transform: translateX(-30%);
+  transition:
+    opacity var(--medium) var(--ease),
+    transform 700ms var(--ease);
+}
+.card:hover::after,
+.card:focus-within::after {
+  opacity: 1;
+  transform: translateX(30%);
+}
+:root[data-theme="dark"] .card::after {
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgb(125 157 255 / 0.07) 48%,
+    transparent 66%
+  );
+}
+
+/* 按钮：悬停时箭头位移 + 品牌渐变填充，动作意图更明确。 */
+.button,
+.explore {
+  position: relative;
+  overflow: hidden;
+  transition:
+    background var(--fast) var(--ease),
+    color var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    transform var(--fast) var(--ease),
+    box-shadow var(--fast) var(--ease);
+}
+.button.primary,
+.explore {
+  background-image: linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 82%, #000)
+  );
+}
+.button.primary:hover,
+.explore:hover {
+  background-image: linear-gradient(
+    135deg,
+    var(--accent-hover),
+    var(--accent)
+  );
+  box-shadow: 0 10px 24px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+  transform: translateY(-1px);
+}
+.button:hover {
+  border-color: var(--accent);
+}
+
+/* 标签悬停：轻微上浮 + 品牌色描边，形成可点击暗示。 */
+.guide-tag {
+  transition:
+    transform var(--fast) var(--ease),
+    border-color var(--fast) var(--ease),
+    color var(--fast) var(--ease);
+}
+.guide-tag:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- 流动 ---------- */
+/* 顶部阅读进度：一条渐变细线随滚动推进，给长页面一个方向感。 */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  z-index: 60;
+  pointer-events: none;
+  transform-origin: left center;
+  transform: scaleX(0);
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 45%, transparent)
+  );
+  opacity: 0;
+  transition: opacity var(--medium) var(--ease);
+}
+.scroll-progress.is-active {
+  opacity: 1;
+}
+
+/* 标题下划线：从左向右流动的渐变，而不是一根死板的实色线。 */
+.hero h1 span::after {
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 30%, transparent)
+  );
+}
+
+/* ---------- 设计感 ---------- */
+/* 极细颗粒：给纯色版面一点印刷质感，避免大面积平涂过于数码。 */
+.ambient-grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card::after {
+    display: none;
+  }
+  /* 减弱动效下光晕保持静止，只保留静态渐变。 */
+  .hero::before,
+  .guide-intro::before,
+  .tool-aside-head::before {
+    animation: none;
+  }
+  .button.primary:hover,
+  .explore:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .guide-tag:hover {
+    transform: none;
+  }
+  .scroll-progress {
+    display: none;
+  }
+}

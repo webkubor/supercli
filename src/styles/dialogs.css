@@ -2,7 +2,7 @@ dialog {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   padding: 40px;
-  max-width: 580px;
+  max-width: 640px;
   width: calc(100% - 32px);
   max-height: 90vh;
   color: var(--ink);
@@ -33,12 +33,68 @@ dialog p {
 dialog h3 {
   font-size: 14px;
 }
+/* 详情头部：图标衬底 + 身份信息，与工具页左栏同一套语言。 */
+.detail-head {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.detail-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex: 0 0 64px;
+  padding: 11px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.detail-identity {
+  min-width: 0;
+}
+.detail-identity .eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+.detail-identity h2 {
+  margin-bottom: 12px;
+}
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.detail-tag {
+  padding: 4px 11px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--surface);
+}
+.detail-tag-metric {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--brand-tint);
+}
+.detail-desc {
+  font-size: 14px !important;
+  line-height: 1.85;
+}
+.detail-section-title {
+  margin-bottom: 4px;
+}
 .detail-icon {
-  height: 50px;
-  width: 50px;
+  height: 100%;
+  width: 100%;
   object-fit: contain;
   border-radius: var(--radius);
-  margin-bottom: 20px;
 }
 .detail-stats {
   display: flex;
@@ -51,20 +107,22 @@ dialog h3 {
   margin-top: 8px;
   font-size: 11px !important;
 }
-.install {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  background: var(--surface);
-  padding: 12px;
-  border-radius: var(--radius);
+/* 安装命令用终端窗口，与工具页安装方式完全一致。 */
+.detail-terminal {
   margin-block: 10px 24px;
 }
-.install code {
-  min-width: 0;
-  flex: 1;
-  overflow-wrap: anywhere;
-  font-size: 12px;
+.detail-terminal .terminal-body {
+  padding: 14px 16px;
+}
+.detail-copy {
+  flex: 0 0 auto;
+  min-height: 32px;
+  color: var(--terminal-text);
+  background: var(--terminal-line);
+  border-color: var(--terminal-line);
+}
+.detail-copy:focus-visible {
+  outline-color: var(--terminal-text);
 }
 .detail-links {
   display: flex;

@@ -23,4 +23,7 @@
 
 @import "./styles/languages.css";
 @import "./styles/hierarchy.css";
+@import "./styles/ambient.css";
+@import "./styles/terminal.css";
+@import "./styles/atmosphere.css";
 @import "./styles/theme.css";

@@ -234,6 +234,16 @@ html:has(dialog[open]) {
     min-height: 44px;
     min-width: 84px;
   }
+  /* 终端窗口在窄屏下命令与按钮上下排列。 */
+  .detail-terminal .terminal-body {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .detail-copy {
+    align-self: flex-start;
+    min-height: 44px;
+    min-width: 84px;
+  }
   .card .copy {
     min-height: 44px;
   }

@@ -1,17 +1,228 @@
 /* 场景指南：沿用目录令牌，正文、对比表和出处保持独立阅读层次。 */
+/* 工具页：双栏编辑式布局。
+   左栏是工具身份（图标 + 名称 + 事实 + 操作），随滚动跟随；
+   右栏是主内容（安装 / FAQ / 核验）。
+   此前整页单栏纵排，图标孤零零贴在左上角，右侧 144px 全是空白。 */
+.tool-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 56px;
+  align-items: start;
+}
+.tool-aside {
+  position: sticky;
+  top: 28px;
+  padding-bottom: 28px;
+}
+.tool-aside-head {
+  position: relative;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line);
+}
+/* 网格底纹延伸到左栏之外，覆盖整个工具页顶部，避免形成方形贴纸边界。
+   窄屏下回落为容器宽度，不允许撑出视口。 */
+.tool-aside .ambient-grid {
+  width: 520px;
+  max-width: 100%;
+  right: auto;
+  mask-image: none;
+}
+.tool-aside .ambient-grid::before {
+  mask-image: radial-gradient(
+    ellipse 70% 65% at 22% 35%,
+    #000 15%,
+    transparent 78%
+  );
+}
+/* 主视觉图标：放大到标题级尺寸并加衬底，与品牌标记同规格。 */
+.tool-aside-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.tool-aside-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.tool-aside-icon .icon-initial {
+  font-size: 30px;
+  font-weight: 600;
+}
+.tool-aside h1 {
+  font-size: clamp(30px, 3.2vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -1.4px;
+  margin: 0;
+}
+.tool-aside .eyebrow {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  color: var(--muted);
+}
+.tool-aside .intro {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+}
+/* 事实表：左栏里两列并排的键值，取代原来占满整行的宽表格。 */
+.tool-facts {
+  margin: 22px 0 0;
+}
+.tool-facts > div {
+  display: grid;
+  grid-template-columns: 88px minmax(0, 1fr);
+  gap: 12px;
+  padding: 9px 0;
+  align-items: baseline;
+}
+.tool-facts dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+.tool-facts dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.tool-aside-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+.tool-aside-actions .button {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+/* 返回目录：左栏底部留白里的次级出口。 */
+.tool-aside-back {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--muted);
+  transition:
+    color var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+.tool-aside-back:hover {
+  color: var(--accent);
+  transform: translateX(-2px);
+}
+/* 主栏：与左栏身份区顶端对齐，第一个区块不留多余空隙。 */
+.tool-main {
+  padding-top: 4px;
+}
+.tool-main > .guide-section:first-child {
+  margin-top: 0;
+}
+.tool-main > .guide-checklist:first-child {
+  margin-top: 0;
+}
+/* 窄屏：双栏回落为单栏，身份区在上、内容在下。 */
+@media (max-width: 900px) {
+  .tool-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+  .tool-aside {
+    position: static;
+  }
+  .tool-aside h1 {
+    font-size: 34px;
+    letter-spacing: -1px;
+  }
+  .tool-aside-actions .button {
+    flex: 0 0 auto;
+  }
+}
+
 .guide-page {
   max-width: 1120px;
   padding-bottom: 56px;
 }
-.tool-install pre {
-  padding: 16px;
-  margin: 20px 0 0;
-  background: var(--terminal);
-  color: var(--terminal-text);
-  border-radius: var(--radius);
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
+/* 内容页错峰进场：面包屑 → 标题 → 各区块依次浮现，延迟最多 240ms。 */
+.guide-breadcrumb,
+.guide-intro,
+.guide-page > section,
+.guide-page > .guide-actions,
+.tool-aside,
+.tool-main > * {
+  animation: guide-in var(--slow) var(--ease) both;
 }
+.guide-breadcrumb {
+  animation-delay: 0ms;
+}
+.guide-intro {
+  animation-delay: 60ms;
+}
+/* 工具页双栏：身份栏与主栏各自错峰，两栏不同时出现。 */
+.tool-aside {
+  animation-delay: 60ms;
+}
+.tool-main > *:nth-child(1) {
+  animation-delay: 140ms;
+}
+.tool-main > *:nth-child(2) {
+  animation-delay: 200ms;
+}
+.tool-main > *:nth-child(3) {
+  animation-delay: 260ms;
+}
+.tool-main > *:nth-child(4) {
+  animation-delay: 320ms;
+}
+.guide-page > section:nth-of-type(1) {
+  animation-delay: 120ms;
+}
+.guide-page > section:nth-of-type(2) {
+  animation-delay: 180ms;
+}
+.guide-page > section:nth-of-type(3) {
+  animation-delay: 240ms;
+}
+.guide-page > section:nth-of-type(4) {
+  animation-delay: 300ms;
+}
+.guide-page > .guide-actions {
+  animation-delay: 360ms;
+}
+@keyframes guide-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 安装方式独立成节：终端窗口本身就是主体，不再套一层浅色卡片。 */
+.tool-install {
+  margin-top: 48px;
+}
+.tool-install h2 {
+  font-size: 24px;
+  letter-spacing: -0.6px;
+  margin-bottom: 20px;
+}
+.tool-install-note {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
 .tool-evidence a {
   color: var(--accent);
   overflow-wrap: anywhere;
@@ -37,6 +248,25 @@
 .guide-intro {
   padding: 48px 0 32px;
   max-width: 900px;
+}
+.guide-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+}
+.guide-tag {
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 12px;
+  color: var(--ink);
+  background: var(--surface);
+}
+.guide-tag-metric {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--brand-tint);
 }
 .guide-intro h1 {
   font-size: clamp(34px, 4.3vw, 56px);
@@ -125,6 +355,10 @@
 .guide-tool-heading h3 {
   font-size: 21px;
 }
+.guide-tool-heading h2 {
+  font-size: 24px;
+  letter-spacing: -0.6px;
+}
 .guide-tool-heading a {
   margin-left: auto;
   font-size: 13px;
@@ -181,6 +415,23 @@
   color: var(--muted);
   font-size: 13px;
 }
+/* FAQ 答案是正文不是免责声明，覆盖 .guide-checklist > p 的灰色小字。 */
+.tool-faq > p {
+  margin: 6px 0 0;
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+.tool-faq h3 {
+  margin: 26px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+}
+.tool-faq h3:first-of-type {
+  margin-top: 18px;
+}
 .guide-actions,
 .guide-related > div {
   display: flex;
@@ -226,5 +477,15 @@
   }
   .guide-page h2 {
     font-size: 22px;
+  }
+  /* 窄屏下命令与复制按钮改为上下排列，命令不被压缩到不可读。 */
+  .terminal-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+  }
+  .terminal-copy {
+    align-self: flex-start;
   }
 }

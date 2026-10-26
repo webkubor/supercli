@@ -39,10 +39,12 @@ test("static pages have reciprocal language links, self canonicals, and crawlabl
       );
       assert.equal((html.match(/rel="canonical"/g) ?? []).length, 1);
       assert.match(html, /application\/ld\+json/);
-      // 分享卡按语言区分，社交平台只支持 PNG。
+      // 分享卡：工具页用本工具独立卡，其余页面按语言用站点通用卡；社交平台只支持 PNG。
       assert(
         html.includes(
-          `https://supercli.site/${lang === "en" ? "social-card.png" : "social-card-zh.png"}`,
+          path.includes("/tools/")
+            ? `https://supercli.site/og/tools/wrangler.png`
+            : `https://supercli.site/${lang === "en" ? "social-card.png" : "social-card-zh.png"}`,
         ),
       );
       if (path === "/")

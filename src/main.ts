@@ -62,6 +62,7 @@ import { setupFilterPicker } from "./filter-picker";
 import { cardMarkup } from "./card";
 import "./style.css";
 import { setupDiscovery, setupDetailLinks } from "./discovery";
+import { setupScrollProgress } from "./scroll-progress";
 const root = document.querySelector<HTMLElement>("#catalog")!;
 const search = document.querySelector<HTMLInputElement>("#search")!;
 const vendor = document.querySelector<HTMLSelectElement>("#vendor")!;
@@ -397,5 +398,6 @@ iconify();
 
 setupTheme();
 setupLanguage();
+setupScrollProgress();
 
 setupSharing();

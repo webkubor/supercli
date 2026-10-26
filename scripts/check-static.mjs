@@ -26,13 +26,21 @@ for (const url of paths) {
   assert(html.includes(`<link rel="canonical" href="${url.href}">`), file);
   assert.match(html, /hreflang="en"/);
   assert.match(html, /hreflang="zh-CN"/);
-  // 分享卡按语言区分：英文站用英文卡，中文站用中文卡。
-  const card = lang === "en" ? "social-card.png" : "social-card-zh.png";
-  assert.match(
-    html,
-    new RegExp(
-      `name="twitter:image" content="https:\\/\\/supercli.site\\/${card}"`,
+  // 分享卡按页面区分：工具页用本工具独立卡，其余页面英文站英文卡、中文站中文卡。
+  const tool = url.pathname.match(/\/tools\/([^/]+)\/$/);
+  const card = tool
+    ? `og/tools/${tool[1]}.png`
+    : lang === "en"
+      ? "social-card.png"
+      : "social-card-zh.png";
+  assert(
+    html.includes(
+      `name="twitter:image" content="https://supercli.site/${card}"`,
     ),
+    file,
+  );
+  assert(
+    html.includes(`property="og:image" content="https://supercli.site/${card}"`),
     file,
   );
   for (const script of html.matchAll(
@@ -48,12 +56,20 @@ for (const url of paths) {
 assert.match(read("llms.txt"), /Machine-readable catalog/);
 assert(!JSON.stringify(snapshot).includes("locallyInstalled"));
 // 两种语言的分享卡都必须是真实 PNG，社交平台不支持 SVG。
+const pngHeader = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]);
 for (const card of ["social-card.png", "social-card-zh.png"]) {
   assert(
-    readFileSync(resolve("dist", card))
-      .subarray(0, 8)
-      .equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])),
+    readFileSync(resolve("dist", card)).subarray(0, 8).equals(pngHeader),
     card,
+  );
+}
+// 每个收录工具的独立分享卡都必须随构建产出且为真实 PNG。
+for (const tool of snapshot.tools) {
+  assert(
+    readFileSync(resolve("dist", `og/tools/${tool.id}.png`))
+      .subarray(0, 8)
+      .equals(pngHeader),
+    `og/tools/${tool.id}.png`,
   );
 }
 console.log(

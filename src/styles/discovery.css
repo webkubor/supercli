@@ -108,11 +108,18 @@
   font-size: 11px;
   flex-basis: 100%;
 }
+/* 光标是 span 但不属于标题行，单独还原颜色与尺寸。 */
+.stage-command > span.terminal-caret {
+  color: inherit;
+  font-size: inherit;
+  flex-basis: auto;
+}
 .stage-command code {
   flex: 1;
   min-width: 0;
   overflow-wrap: anywhere;
   font-size: 12px;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
 }
 .stage-command .copy {
   color: var(--terminal-text);

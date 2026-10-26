@@ -1,0 +1,138 @@
+/* 氛围层：Swiss 网格底纹与逐点跃动。
+   灵感来自 Linear 的网格点背景——网格本来就是本项目的视觉语言，
+   但此前只作为「细线」出现在分隔处，从未成为可呼吸的底纹。 */
+
+/* 网格底纹：只在首屏与工具页首段出现，滚动到正文后不再干扰阅读。
+   绝对定位且不参与父级 grid 布局，否则会挤占内容列。 */
+.ambient-grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.ambient-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at center, var(--grid-dot) 1px, transparent 1px);
+  background-size: 26px 26px;
+  /* 四周淡出，避免网格硬边与页面边界冲突。 */
+  mask-image: radial-gradient(
+    ellipse 85% 75% at 50% 32%,
+    #000 25%,
+    transparent 85%
+  );
+}
+/* 逐点跃动：每个点有独立延迟，形成缓慢横向流动的波。
+   只改 opacity 与 transform，符合动效契约。 */
+.ambient-grid i {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  animation: grid-pulse 3.2s var(--ease) infinite;
+}
+@keyframes grid-pulse {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  18% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  42% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* 首屏：网格位于内容之下，品牌蓝点做少量点缀。 */
+.hero,
+.guide-intro {
+  position: relative;
+}
+/* 网格层绝对定位后不占布局位；内容列需要显式抬到网格之上。 */
+.hero > *:not(.ambient-grid),
+.guide-intro > *:not(.ambient-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+/* 终端窗口获得焦点感：轻微抬升，暗示这是可操作区域。 */
+.terminal-window {
+  transition:
+    transform var(--medium) var(--ease),
+    box-shadow var(--medium) var(--ease);
+}
+.terminal-window:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 56px -26px rgb(0 0 0 / 0.6);
+}
+.terminal-window:focus-within {
+  transform: translateY(-2px);
+  box-shadow:
+    0 0 0 1px var(--accent),
+    0 24px 56px -26px rgb(0 0 0 / 0.6);
+}
+
+/* 复制成功：按钮做一次短促的确认跳动，不改变布局尺寸。 */
+.terminal-copy.copy-success {
+  animation: copy-pop 320ms var(--ease);
+}
+@keyframes copy-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* 命令逐词点亮：命令内容一次给出，只是逐词浮现。
+   不是打字机——文字本身不增删，只是节奏上从左到右点亮。 */
+.terminal-line .term-command,
+.terminal-line .term-flag,
+.terminal-line .term-value {
+  display: inline-block;
+  animation: term-in 320ms var(--ease) both;
+  animation-delay: calc(var(--i, 0) * 55ms + 120ms);
+}
+@keyframes term-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 目录卡片：顶部蓝线在悬停时扫出，替代原来整块背景变化。 */
+.card::before {
+  transition: transform var(--medium) var(--ease);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-grid i {
+    animation: none;
+  }
+  /* 减弱动效下保留静态网格点，不做跃动。 */
+  .ambient-grid i {
+    opacity: 0.25;
+    transform: none;
+  }
+  .terminal-window:hover,
+  .terminal-window:focus-within {
+    transform: none;
+  }
+}
