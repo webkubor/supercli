@@ -9,26 +9,21 @@
     />
     <meta
       name="theme-color"
-      content="#059669"
+      content="#002fa7"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#090c10"
+      content="#0b0d12"
       media="(prefers-color-scheme: dark)"
     />
     <script>
-      // 在首次绘制前落定主题与极客配色，避免浅色与默认色彩闪烁。
+      // 在首次绘制前落定主题，避免浅色闪一下再变深。
       (() => {
         try {
-          const savedTheme = localStorage.getItem("supercli-theme");
-          if (savedTheme === "light" || savedTheme === "dark")
-            document.documentElement.dataset.theme = savedTheme;
-          const savedAccent = localStorage.getItem("supercli-accent");
-          if (savedAccent === "pink" || savedAccent === "green")
-            document.documentElement.dataset.accent = savedAccent;
-          else
-            document.documentElement.dataset.accent = "green";
+          const saved = localStorage.getItem("supercli-theme");
+          if (saved === "light" || saved === "dark")
+            document.documentElement.dataset.theme = saved;
         } catch {}
       })();
     </script>
@@ -93,8 +88,7 @@
     </header>
     <main class="wrap">
       <section class="hero">
-        <div class="ambient-grid" aria-hidden="true"><i style="left:8%;top:30%;animation-delay:0ms"></i><i style="left:19%;top:58%;animation-delay:260ms"></i><i style="left:31%;top:22%;animation-delay:520ms"></i><i style="left:43%;top:66%;animation-delay:780ms"></i><i style="left:55%;top:38%;animation-delay:1040ms"></i><i style="left:66%;top:74%;animation-delay:1300ms"></i><i style="left:77%;top:18%;animation-delay:1560ms"></i><i style="left:88%;top:52%;animation-delay:1820ms"></i><i style="left:94%;top:84%;animation-delay:2080ms"></i><i style="left:12%;top:88%;animation-delay:2340ms"></i><i style="left:38%;top:8%;animation-delay:2600ms"></i><i style="left:72%;top:92%;animation-delay:2860ms"></i></div>
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">发现工具 · 少走弯路</p>
           <h1>下一条命令，<br />更多<span>可能。</span></h1>
           <p class="intro">
@@ -103,68 +97,39 @@
           <p class="lead">
             人工收录，<span>按收录日期排序</span> —— 和工具的版本发布时间不同。
           </p>
-          <div class="community-pulse-bar" aria-label="开源社区活人核验">
-            <div class="facepile-avatars">
-              <a class="facepile-item" href="https://github.com/webkubor" target="_blank" rel="noopener noreferrer" title="核心维护者 @webkubor">
-                <img src="https://github.com/webkubor.png?size=64" alt="webkubor" width="32" height="32" loading="lazy" />
-              </a>
-              <a class="facepile-item" href="https://github.com/renjiegod" target="_blank" rel="noopener noreferrer" title="核心维护者 @renjiegod">
-                <img src="https://github.com/renjiegod.png?size=64" alt="renjiegod" width="32" height="32" loading="lazy" />
-              </a>
-            </div>
-            <div class="pulse-meta">
-              <span class="pulse-live-title"><i class="live-beacon"></i>真实开发者人工核验 · 持续收录</span>
-              <span class="pulse-desc">拒绝自动化爬虫脏数据 · 每一条命令经真机实测验证</span>
-            </div>
+          <div class="hero-actions">
+            <a class="explore" href="#directory"
+              >探索全部工具 <i data-lucide="arrow-down-right"></i
+            ></a>
+            <a class="text-button" href="#use-cases"
+              >按场景选<i data-lucide="arrow-up-right"></i
+            ></a>
           </div>
-          <a class="explore" href="#directory"
-            >探索全部工具 <i data-lucide="arrow-down-right"></i
-          ></a>
         </div>
-        <div class="tool-stage" aria-label="从真实目录选择工具">
-          <div class="stage-heading">
-            <img
-              src="/brand/supercli-symbol-mono.svg"
-              alt=""
-              width="28"
-              height="28"
-            /><span>从一个好工具开始</span>
+        <div class="console">
+          <div class="console-bar">
+            <span class="console-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="console-title">命令台</span>
+            <span class="console-count" id="console-count"></span>
           </div>
-          <div class="stage-tools" id="stage-tools"></div>
-          <div class="stage-command">
-            <span id="stage-command-label">Wrangler 安装命令</span
-            ><code id="stage-command"></code
-            ><button
-              id="stage-copy"
-              class="copy terminal-copy"
-              aria-label="复制展示工具的安装命令"
-            >
-              <span class="terminal-copy-icon" aria-hidden="true"
-                ><i data-lucide="copy"></i
-                ><svg
-                  class="terminal-copy-check"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <path d="M20 6 9 17l-5-5" />
-                </svg></span
-              ><span class="terminal-copy-label">复制</span>
+          <div class="console-input">
+            <span class="console-prompt" aria-hidden="true">$</span>
+            <input
+              id="console-input"
+              type="search"
+              placeholder="输入工具名、厂商或用途…"
+              aria-label="在 CLI 目录中搜索"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+          <div class="console-results" id="console-results"></div>
+          <div class="console-foot">
+            <span>命令直接来自目录收录条目</span>
+            <button class="text-button" id="console-all" type="button">
+              打开完整目录<i data-lucide="arrow-up-right"></i>
             </button>
           </div>
-          <p class="stage-caption" id="stage-caption">
-            聚焦工具预览命令 · 点击查看详情
-          </p>
-          <img
-            class="stage-watermark"
-            src="/brand/supercli-symbol-mono.svg"
-            alt=""
-            width="160"
-            height="160"
-          />
         </div>
       </section>
       <section class="overview" aria-label="目录概况">
@@ -174,18 +139,6 @@
           <i data-lucide="git-pull-request"></i><span>通过 PR 共同维护</span>
         </div>
         <p>每个好用的命令，<br />都值得被更多人发现。</p>
-      </section>
-      <section class="recommenders-spotlight" aria-label="社区推荐官推荐墙">
-        <div class="spotlight-header">
-          <div class="spotlight-title-wrap">
-            <span class="spotlight-badge"><i class="live-beacon"></i>真实推荐</span>
-            <h3>推荐官说 · 终端利器推荐墙</h3>
-          </div>
-          <p class="spotlight-note">真人极客上手评语 · 悬停暂停 · 点击查看详情</p>
-        </div>
-        <div class="marquee-viewport">
-          <div class="marquee-track" id="recommender-marquee"></div>
-        </div>
       </section>
       <section
         id="use-cases"

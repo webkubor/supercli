@@ -1,0 +1,216 @@
+/**
+ * 首屏命令台：把「搜索 + 安装命令 + 复制」做成一屏内可完成的事。
+ * 深色面板沿用终端令牌，与工具页同一套视觉语言。
+ */
+.console {
+  background: var(--terminal);
+  border: 1px solid var(--terminal-line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.console-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--terminal-line);
+}
+/* 三枚窗口点只是结构提示，不参与动效。 */
+.console-dots {
+  display: flex;
+  gap: 6px;
+}
+.console-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--terminal-line);
+}
+.console-title {
+  color: var(--terminal-text);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+}
+.console-count {
+  margin-left: auto;
+  color: var(--terminal-muted);
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+}
+.console-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px;
+  border-bottom: 1px solid var(--terminal-line);
+}
+.console-prompt {
+  color: var(--success);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+.console-input input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: var(--terminal-text);
+  font-size: var(--fs-body);
+}
+.console-input input::placeholder {
+  color: var(--terminal-muted);
+}
+.console-input input:focus-visible {
+  outline: none;
+}
+.console-results {
+  max-height: 372px;
+  overflow-y: auto;
+}
+/* 命中条目：一行读懂工具、来源与安装命令。 */
+.console-hit {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--terminal-line);
+}
+.console-hit:last-child {
+  border-bottom: 0;
+}
+.console-hit:hover {
+  background: rgb(255 255 255 / 0.04);
+}
+.console-hit-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
+  border-radius: var(--radius);
+  background: rgb(255 255 255 / 0.06);
+  overflow: hidden;
+}
+.console-hit-icon .console-icon,
+.console-hit-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+/* 字母块在深色面板上用中性反色，与浅色底上的同款图标区分。 */
+.console-hit-icon .console-initial {
+  width: 28px;
+  height: 28px;
+  flex-basis: 28px;
+  font-size: 13px;
+  border-color: var(--terminal-line);
+  background: rgb(255 255 255 / 0.06);
+  color: var(--terminal-muted);
+}
+.console-hit-body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.console-hit-name {
+  color: var(--terminal-text);
+  font-weight: 600;
+  font-size: var(--fs-small);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.console-hit-name:hover {
+  color: var(--success);
+}
+.console-hit-meta {
+  color: var(--terminal-muted);
+  font-size: var(--fs-micro);
+}
+.console-hit-command {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 2px;
+  padding: 5px 8px;
+  border-radius: var(--radius);
+  background: rgb(0 0 0 / 0.35);
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  font-size: var(--fs-micro);
+  color: var(--terminal-text);
+  overflow: hidden;
+}
+.console-hit-command code {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* 复制按钮：与工具页同一套图标翻转反馈。 */
+.console-hit-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border: 1px solid var(--terminal-line);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--terminal-muted);
+  font-size: var(--fs-micro);
+  min-height: 32px;
+}
+.console-hit-copy:hover {
+  color: var(--terminal-text);
+  border-color: var(--terminal-muted);
+}
+.console-hit-copy svg {
+  width: 14px;
+  height: 14px;
+}
+.terminal-copy-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.terminal-copy-icon > * {
+  grid-area: 1 / 1;
+}
+.terminal-copy-check {
+  opacity: 0;
+  color: var(--success);
+}
+.console-hit-copy.is-copied .terminal-copy-icon > svg:first-child,
+.console-hit-copy.is-copied .terminal-copy-icon > i {
+  opacity: 0;
+}
+.console-hit-copy.is-copied .terminal-copy-check {
+  opacity: 1;
+}
+.console-empty {
+  padding: 28px 16px;
+  color: var(--terminal-muted);
+  font-size: var(--fs-small);
+  text-align: center;
+}
+.console-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 1px solid var(--terminal-line);
+  color: var(--terminal-muted);
+  font-size: var(--fs-micro);
+}
+.console-foot .text-button {
+  color: var(--success);
+}
+.console-foot .text-button:hover {
+  color: var(--terminal-text);
+}

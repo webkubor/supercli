@@ -7,6 +7,8 @@ import metrics from "../data/metrics.json" with { type: "json" };
 import english from "../data/catalog.en.json" with { type: "json" };
 import { translate, type Language } from "../src/translations.ts";
 import { escapeHtml as escape } from "../src/escape.ts";
+import { staticCardMarkup } from "../src/static-card.ts";
+import categories from "../data/categories.json" with { type: "json" };
 const origin = "https://supercli.site";
 const descriptions: Readonly<Record<string, string>> = english;
 const repositories: Readonly<
@@ -50,11 +52,22 @@ function toolDescription(
   return language === "en" ? descriptions[item.id] : item.description;
 }
 function staticCatalog(language: Language, path: string): string {
-  return rankedCatalog
-    .filter((item) => path === "/" || path === `/tools/${item.id}/`)
-    .map(
-      (item) =>
-        `<article class="card"><h2><a class="card-title" href="${localizedPath(`/tools/${item.id}/`, language)}">${escape(translate(item.name, language))}</a></h2><p class="vendor-name">${escape(translate(item.vendor, language))}</p><p class="description">${escape(toolDescription(item, language))}</p><a href="${escape(item.docs)}">${language === "en" ? "Official docs" : "官方文档"}</a></article>`,
+  // 静态行与运行时行共用 directory-row 的单一实现，
+  // 不再各自手写一份卡片标记。
+  const rows = rankedCatalog.filter(
+    (item) => path === "/" || path === `/tools/${item.id}/`,
+  );
+  return rows
+    .map((item, index) =>
+      staticCardMarkup(item, localizedPath(`/tools/${item.id}/`, language), String(index + 1).padStart(2, "0"), {
+        name: translate(item.name, language),
+        vendor: translate(item.vendor, language),
+        description: toolDescription(item, language),
+        maintainerLabel: translate(
+          item.maintainerType === "vendor" ? "厂商官方" : "社区项目",
+          language,
+        ),
+      }),
     )
     .join("");
 }

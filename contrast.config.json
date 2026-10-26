@@ -1,406 +1,152 @@
 {
   "files": [
-    "src/styles/base.css"
+    "src/styles/tokens.css",
+    "src/styles/tokens-dark.css"
   ],
   "pairs": [
     {
       "fg": "ink",
       "bg": "bg",
       "min": 4.5,
-      "label": "正文 / bg",
-      "theme": "light"
+      "label": "ink on bg"
     },
     {
       "fg": "ink",
       "bg": "surface",
       "min": 4.5,
-      "label": "正文 / surface",
-      "theme": "light"
+      "label": "ink on surface"
     },
     {
       "fg": "ink",
       "bg": "surface-hover",
       "min": 4.5,
-      "label": "正文 / surface-hover",
-      "theme": "light"
+      "label": "ink on surface-hover"
+    },
+    {
+      "fg": "ink",
+      "bg": "brand-tint",
+      "min": 4.5,
+      "label": "ink on brand-tint"
     },
     {
       "fg": "muted",
       "bg": "bg",
       "min": 4.5,
-      "label": "次要文字 / bg",
-      "theme": "light"
+      "label": "muted on bg"
     },
     {
       "fg": "muted",
       "bg": "surface",
       "min": 4.5,
-      "label": "次要文字 / surface",
-      "theme": "light"
+      "label": "muted on surface"
     },
     {
       "fg": "muted",
       "bg": "surface-hover",
       "min": 4.5,
-      "label": "次要文字 / surface-hover",
-      "theme": "light"
+      "label": "muted on surface-hover"
+    },
+    {
+      "fg": "muted",
+      "bg": "brand-tint",
+      "min": 4.5,
+      "label": "muted on brand-tint"
     },
     {
       "fg": "faint",
       "bg": "bg",
       "min": 4.5,
-      "label": "弱文字 / bg",
-      "theme": "light"
+      "label": "faint on bg"
     },
     {
       "fg": "faint",
       "bg": "surface",
       "min": 4.5,
-      "label": "弱文字 / surface",
-      "theme": "light"
+      "label": "faint on surface"
     },
     {
       "fg": "faint",
       "bg": "surface-hover",
       "min": 4.5,
-      "label": "弱文字 / surface-hover",
-      "theme": "light"
+      "label": "faint on surface-hover"
     },
     {
-      "fg": "on-accent",
-      "bg": "accent",
+      "fg": "faint",
+      "bg": "brand-tint",
       "min": 4.5,
-      "label": "主按钮 / accent",
-      "theme": "light"
+      "label": "faint on brand-tint"
     },
     {
-      "fg": "on-accent",
-      "bg": "accent-hover",
+      "fg": "accent",
+      "bg": "bg",
       "min": 4.5,
-      "label": "主按钮 / accent-hover",
-      "theme": "light"
+      "label": "accent on bg"
+    },
+    {
+      "fg": "accent",
+      "bg": "surface",
+      "min": 4.5,
+      "label": "accent on surface"
+    },
+    {
+      "fg": "accent",
+      "bg": "surface-hover",
+      "min": 4.5,
+      "label": "accent on surface-hover"
+    },
+    {
+      "fg": "accent",
+      "bg": "brand-tint",
+      "min": 4.5,
+      "label": "accent on brand-tint"
     },
     {
       "fg": "terminal-text",
       "bg": "terminal",
       "min": 4.5,
-      "label": "终端正文",
-      "theme": "light"
+      "label": "terminal-text on terminal"
+    },
+    {
+      "fg": "terminal-text",
+      "bg": "terminal-line",
+      "min": 4.5,
+      "label": "terminal-text on terminal-line"
     },
     {
       "fg": "terminal-muted",
       "bg": "terminal",
       "min": 4.5,
-      "label": "终端次要文字",
-      "theme": "light"
+      "label": "terminal-muted on terminal"
+    },
+    {
+      "fg": "terminal-muted",
+      "bg": "terminal-line",
+      "min": 4.5,
+      "label": "terminal-muted on terminal-line"
     },
     {
       "fg": "success",
       "bg": "terminal",
       "min": 4.5,
-      "label": "终端成功状态",
-      "theme": "light"
-    },
-    {
-      "fg": "accent",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "链接 / bg",
-      "theme": "light"
-    },
-    {
-      "fg": "accent",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "链接 / surface",
-      "theme": "light"
-    },
-    {
-      "fg": "accent",
-      "bg": "surface-hover",
-      "min": 4.5,
-      "label": "链接 / surface-hover",
-      "theme": "light"
-    },
-    {
-      "fg": "ink",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "ink / 用途入口悬停",
-      "theme": "light"
-    },
-    {
-      "fg": "muted",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "muted / 用途入口悬停",
-      "theme": "light"
-    },
-    {
-      "fg": "accent",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "accent / 用途入口悬停",
-      "theme": "light"
-    },
-    {
-      "fg": "terminal-text",
-      "bg": "terminal-line",
-      "min": 4.5,
-      "label": "安装复制按钮",
-      "theme": "light"
-    },
-    {
-      "fg": "faint",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "工具预览辅助文字",
-      "theme": "light"
+      "label": "success on terminal"
     },
     {
       "fg": "success",
       "bg": "terminal-line",
       "min": 4.5,
-      "label": "安装复制成功反馈",
-      "theme": "light"
-    },
-    {
-      "fg": "muted",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "字母块图标 / surface",
-      "theme": "light"
-    },
-    {
-      "fg": "accent",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "榜单计数裸蓝数字 / bg",
-      "theme": "light"
-    },
-    {
-      "fg": "faint",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "收录日期 / bg",
-      "theme": "light"
-    },
-    {
-      "fg": "faint",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "收录日期 / surface",
-      "theme": "light"
-    },
-    {
-      "fg": "ink",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "正文 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "ink",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "正文 / surface",
-      "theme": "dark"
-    },
-    {
-      "fg": "ink",
-      "bg": "surface-hover",
-      "min": 4.5,
-      "label": "正文 / surface-hover",
-      "theme": "dark"
-    },
-    {
-      "fg": "muted",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "次要文字 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "muted",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "次要文字 / surface",
-      "theme": "dark"
-    },
-    {
-      "fg": "muted",
-      "bg": "surface-hover",
-      "min": 4.5,
-      "label": "次要文字 / surface-hover",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "弱文字 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "弱文字 / surface",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "surface-hover",
-      "min": 4.5,
-      "label": "弱文字 / surface-hover",
-      "theme": "dark"
+      "label": "success on terminal-line"
     },
     {
       "fg": "on-accent",
       "bg": "accent",
       "min": 4.5,
-      "label": "主按钮 / accent",
-      "theme": "dark"
+      "label": "on-accent on accent"
     },
     {
       "fg": "on-accent",
       "bg": "accent-hover",
       "min": 4.5,
-      "label": "主按钮 / accent-hover",
-      "theme": "dark"
-    },
-    {
-      "fg": "terminal-text",
-      "bg": "terminal",
-      "min": 4.5,
-      "label": "终端正文",
-      "theme": "dark"
-    },
-    {
-      "fg": "terminal-muted",
-      "bg": "terminal",
-      "min": 4.5,
-      "label": "终端次要文字",
-      "theme": "dark"
-    },
-    {
-      "fg": "success",
-      "bg": "terminal",
-      "min": 4.5,
-      "label": "终端成功状态",
-      "theme": "dark"
-    },
-    {
-      "fg": "accent",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "链接 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "accent",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "链接 / surface",
-      "theme": "dark"
-    },
-    {
-      "fg": "accent",
-      "bg": "surface-hover",
-      "min": 4.5,
-      "label": "链接 / surface-hover",
-      "theme": "dark"
-    },
-    {
-      "fg": "ink",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "ink / 用途入口悬停",
-      "theme": "dark"
-    },
-    {
-      "fg": "muted",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "muted / 用途入口悬停",
-      "theme": "dark"
-    },
-    {
-      "fg": "accent",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "accent / 用途入口悬停",
-      "theme": "dark"
-    },
-    {
-      "fg": "terminal-text",
-      "bg": "terminal-line",
-      "min": 4.5,
-      "label": "安装复制按钮",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "brand-tint",
-      "min": 4.5,
-      "label": "工具预览辅助文字",
-      "theme": "dark"
-    },
-    {
-      "fg": "success",
-      "bg": "terminal-line",
-      "min": 4.5,
-      "label": "安装复制成功反馈",
-      "theme": "dark"
-    },
-    {
-      "fg": "muted",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "字母块图标 / surface",
-      "theme": "dark"
-    },
-    {
-      "fg": "accent",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "榜单计数裸蓝数字 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "bg",
-      "min": 4.5,
-      "label": "收录日期 / bg",
-      "theme": "dark"
-    },
-    {
-      "fg": "faint",
-      "bg": "surface",
-      "min": 4.5,
-      "label": "收录日期 / surface",
-      "theme": "dark"
+      "label": "on-accent on accent-hover"
     }
-  ],
-  "palettes": {
-    "light": {},
-    "dark": {
-      "ink": "#eef1f7",
-      "muted": "#a3aab8",
-      "faint": "#8d94a3",
-      "line": "#252a34",
-      "bg": "#0b0d12",
-      "surface": "#14171e",
-      "surface-hover": "#1c2028",
-      "accent": "#7d9dff",
-      "accent-hover": "#9ab3ff",
-      "on-accent": "#0b0d12",
-      "terminal": "#05070a",
-      "terminal-line": "#2a3040",
-      "terminal-text": "#eef1f7",
-      "terminal-muted": "#a3aab8",
-      "success": "#7fd39a",
-      "brand-tint": "#141b2e"
-    }
-  }
+  ]
 }

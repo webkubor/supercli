@@ -1,29 +1,21 @@
+/* 层次化样式入口：从令牌到组件，后层可覆盖前层。
+   每个选择器只有一个文件拥有它；断点写在组件文件内，不再集中覆盖。 */
+@import "./styles/tokens.css";
+@import "./styles/tokens-dark.css";
 @import "./styles/base.css";
 @import "./styles/hero.css";
+@import "./styles/console.css";
 @import "./styles/directory.css";
+@import "./styles/filters.css";
+@import "./styles/tool-metrics.css";
+@import "./styles/review-records.css";
 @import "./styles/community.css";
 @import "./styles/dialogs.css";
-@import "./styles/responsive.css";
-
-@import "./styles/discovery.css";
-@import "./styles/motion.css";
-
-@import "./styles/tool-metrics.css";
-
-@import "./styles/filter-picker.css";
-@import "./styles/filters.css";
-
-@import "./styles/community-feed.css";
-
-@import "./styles/polish-dialog.css";
-@import "./styles/polish.css";
-
-@import "./styles/review-records.css";
-@import "./styles/standards.css";
-
-@import "./styles/languages.css";
-@import "./styles/hierarchy.css";
-@import "./styles/ambient.css";
 @import "./styles/terminal.css";
-@import "./styles/atmosphere.css";
-@import "./styles/theme.css";
+@import "./styles/filter-picker.css";
+@import "./styles/languages.css";
+@import "./styles/motion.css";
+@import "./styles/guides.css";
+@import "./styles/standards.css";
+@import "./styles/brand.css";
+@import "./styles/brand-responsive.css";

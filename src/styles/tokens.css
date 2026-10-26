@@ -1,0 +1,71 @@
+/**
+ * 浅色主题令牌：全站唯一的颜色与尺寸来源。
+ * 颜色一律走语义令牌，不在组件里硬编码 hex；
+ * 前景色与背景色令牌不可交叉使用（暗色下前景色近白，混出浅底会撞色）。
+ * 深色主题见 tokens-dark.css，两套令牌同名，由对比度门禁分别校验。
+ */
+:root {
+  /* 背景层级：浅色下越深越靠前 */
+  --bg: #fff;
+  --surface: #f7f7f8;
+  --surface-hover: #ededf0;
+  --brand-tint: #edf1fb;
+
+  /* 前景层级：正文 / 次要 / 弱化 */
+  --ink: #19191d;
+  --muted: #62626c;
+  --faint: #6b6b73;
+  --line: #e3e3e8;
+
+  /* 品牌色：Klein Blue，浅底上对比 10.69:1 */
+  --accent: #002fa7;
+  --accent-hover: #00247e;
+  --on-accent: #fff;
+
+  /* 终端内配色：提示符用成功绿，品牌蓝在深色终端底上只有 1.64:1 */
+  --terminal: #17191f;
+  --terminal-line: #32353e;
+  --terminal-text: #f0f2f7;
+  --terminal-muted: #a7adba;
+  --success: #a4d7b1;
+
+  /* 排版阶：每级一个令牌，禁止在组件里裸写字号 */
+  --fs-display: clamp(40px, 4.6vw, 64px);
+  --fs-h2: 26px;
+  --fs-h3: 19px;
+  --fs-body: 14px;
+  --fs-small: 13px;
+  --fs-meta: 12px;
+  --fs-micro: 11px;
+  --lh-tight: 1.2;
+  --lh-normal: 1.65;
+
+  /* 形状 */
+  --radius: 8px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* 动效契约：仅 transform / opacity，150ms 反馈 / 240ms 卡片 / 360ms 首屏 */
+  --fast: 150ms;
+  --medium: 240ms;
+  --slow: 360ms;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* 层次：阴影、光晕与底纹 */
+  --shadow: 0 16px 48px rgb(25 25 29 / 0.06);
+  --shadow-sm: 0 4px 16px rgb(25 25 29 / 0.04);
+  --backdrop: rgb(15 20 35 / 0.5);
+  --grid-dot: rgb(0 47 167 / 0.16);
+  --scrim: rgb(25 25 29 / 0.04);
+
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  font-synthesis: none;
+  line-height: var(--lh-normal);
+  font-size: var(--fs-body);
+  scroll-behavior: smooth;
+  scroll-padding-top: 24px;
+}

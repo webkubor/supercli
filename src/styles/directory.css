@@ -1,33 +1,38 @@
+/**
+ * 目录：从 3 列等宽卡片改为密集排行索引。
+ * 一屏可比的工具数量翻倍；每行一条工具，行内左名次、中身份、右指标。
+ */
 .directory {
-  padding-top: 64px;
+  padding-top: 72px;
 }
 .section-heading {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 28px;
-}
-.section-heading .eyebrow {
-  margin-bottom: 6px;
-  letter-spacing: 0;
+  margin-bottom: 24px;
 }
 .section-heading h2 {
-  font-size: 28px;
-  letter-spacing: -1px;
+  font-size: var(--fs-h2);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.5px;
+}
+.section-heading .eyebrow {
+  margin-bottom: 10px;
 }
 .count {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--muted);
-  margin-left: 14px;
-  letter-spacing: 0;
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--accent);
+  margin-left: 10px;
+  vertical-align: middle;
 }
 .updated {
-  font-size: 11px;
+  font-size: var(--fs-micro);
   color: var(--faint);
   text-align: right;
 }
+/* 筛选控件基础层：搜索框、下拉与分类按钮的唯一主人。 */
 .controls {
   display: flex;
   gap: 12px;
@@ -54,7 +59,7 @@
   min-width: 0;
   background: transparent;
   border: 0;
-  font-size: 13px;
+  font-size: var(--fs-small);
 }
 .search input:focus-visible {
   outline: none;
@@ -70,7 +75,9 @@
   cursor: pointer;
   border-radius: var(--radius);
   flex-shrink: 0;
-  transition: color var(--fast) var(--ease), background var(--fast) var(--ease);
+  transition:
+    color var(--fast) var(--ease),
+    background var(--fast) var(--ease);
 }
 .search-clear:hover {
   color: var(--accent);
@@ -81,7 +88,7 @@
   height: 14px;
 }
 .search kbd {
-  font-size: 12px;
+  font-size: var(--fs-meta);
   background: var(--bg);
   border: 1px solid var(--line);
   padding: 0 6px;
@@ -94,7 +101,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg);
-  font-size: 12px;
+  font-size: var(--fs-meta);
   max-width: 180px;
 }
 .categories {
@@ -108,14 +115,14 @@
   border: 1px solid transparent;
   border-radius: var(--radius);
   padding: 8px 12px;
-  font-size: 12px;
+  font-size: var(--fs-meta);
   color: var(--muted);
   display: flex;
   gap: 10px;
   align-items: center;
 }
 .categories button span {
-  font-size: 11px;
+  font-size: var(--fs-micro);
   color: var(--faint);
 }
 .categories button:hover {
@@ -128,189 +135,297 @@
 .categories button[aria-pressed="true"] span {
   color: var(--line);
 }
-.ranking-note {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 11px;
-  color: var(--muted);
-  margin-bottom: 22px;
-  line-height: 1.7;
-}
-.ranking-note svg {
-  width: 14px;
-  height: 14px;
-}
-.text-button {
-  background: transparent;
-  color: var(--accent);
-  font-size: 11px;
-  padding: 0 4px;
-  white-space: nowrap;
-}
-.text-button:hover {
-  text-decoration: underline;
-}
+/* 行式索引：底线切行，不再用卡片网格。 */
 .catalog {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--line);
 }
 .card {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: 22px;
-  min-width: 0;
-  background: var(--bg);
-  transition:
-    border-color var(--medium) var(--ease),
-    background var(--medium) var(--ease);
+  display: grid;
+  grid-template-columns: 44px auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 16px 8px;
+  border-bottom: 1px solid var(--line);
+  transition: background var(--fast) var(--ease);
 }
 .card:hover {
-  border-color: var(--accent);
   background: var(--surface);
-}
-.card-top {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
 }
 .rank {
-  font-size: 12px;
-  color: var(--faint);
+  font-size: var(--fs-h3);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
-  min-width: 17px;
+  color: var(--faint);
+  text-align: center;
+  letter-spacing: -1px;
 }
-.vendor-icon {
-  width: 34px;
-  height: 34px;
-  object-fit: contain;
-  border-radius: 6px;
-  background: var(--bg);
-}
-.tag {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--muted);
-  background: var(--surface);
-  padding: 3px 8px;
-  border-radius: 4px;
-  white-space: nowrap;
-}
-.card-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  background: transparent;
-  text-align: left;
-  padding: 0;
-  width: 100%;
-  font-weight: 650;
-  font-size: 18px;
-  letter-spacing: -0.4px;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
-}
-.card-title:hover {
+/* 前三名名次给品牌蓝，榜单头部一眼可辨。 */
+.card:nth-child(1) .rank,
+.card:nth-child(2) .rank,
+.card:nth-child(3) .rank {
   color: var(--accent);
 }
-.card-title svg {
-  color: var(--faint);
-  width: 15px;
-  height: 15px;
-}
-.vendor-name {
-  font-size: 11px;
-  color: var(--faint);
-  margin-top: 4px;
-}
-.description {
-  font-size: 12px;
-  line-height: 1.9;
-  color: var(--muted);
-  margin-top: 16px;
-  min-height: 46px;
-}
-.card-bottom {
+.card-icon {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding-top: 18px;
-  margin-top: 18px;
-  border-top: 1px solid var(--line);
-  font-size: 12px;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex: 0 0 44px;
 }
-.card-bottom a {
+.card-icon .vendor-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+.card-icon .card-initial {
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+  font-size: 16px;
+}
+.card-main {
+  min-width: 0;
   display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+.card-main h3 {
+  font-size: var(--fs-h3);
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0;
+}
+.card-title {
+  color: var(--ink);
+  display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-variant-numeric: tabular-nums;
-  font-weight: 600;
 }
-.card-bottom a span {
-  font-size: 10px;
+.card-title svg {
+  width: 15px;
+  height: 15px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translate(-2px, 2px);
+  transition:
+    opacity var(--fast) var(--ease),
+    transform var(--fast) var(--ease);
+}
+.card:hover .card-title svg {
+  opacity: 1;
+  transform: none;
+}
+.card-identity {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-micro);
+}
+.vendor-name {
+  color: var(--muted);
+}
+.description {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: var(--fs-small);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* 指标与操作右置：下载、更新时间、Stars、复制按钮一行排开。 */
+.card-side {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  justify-self: end;
+}
+/* 行内指标：横向单行。基座 .tool-metrics 归 tool-metrics.css（详情弹窗用两列网格）。 */
+.card .tool-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: var(--fs-micro);
+  color: var(--muted);
+}
+.card .tool-metrics > div {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+.card .tool-metrics dt {
   color: var(--faint);
   font-weight: 400;
 }
-.card-bottom svg {
+.card .tool-metrics dd {
+  margin: 0;
+  font-size: var(--fs-micro);
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  padding: 6px 10px;
+  border-radius: var(--radius);
+}
+.card-stars svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+}
+.card-stars:hover {
+  background: var(--surface-hover);
+}
+.copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: var(--fs-meta);
+  font-weight: 500;
+  color: var(--ink);
+  min-height: 36px;
+  white-space: nowrap;
+}
+.copy:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.copy svg {
   width: 14px;
   height: 14px;
 }
-.copy {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 5px 9px;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  border-radius: 5px;
-  font-size: 11px;
-  color: var(--muted);
+/* 翻页追加动画只在 runtime 生效；静态行不播。 */
+.card-new {
+  animation: card-append 320ms var(--ease) backwards;
 }
-.copy:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+@keyframes card-append {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
 }
-.empty {
-  text-align: center;
-  padding: 64px 20px;
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-}
-.empty > svg {
-  width: 30px;
-  height: 30px;
-  color: var(--muted);
-  margin-bottom: 16px;
-}
-.empty h3 {
-  font-size: 18px;
-}
-.empty p {
-  margin-block: 12px 20px;
-  color: var(--muted);
-}
-[hidden] {
-  display: none !important;
-}
-
-/* 目录分页：首屏只给一屏量，其余按需追加，避免手机上滚过上百张卡片。 */
 .catalog-more {
   display: flex;
   justify-content: center;
-  padding-top: 28px;
+  padding: 24px 0 8px;
 }
 .load-more {
-  gap: 10px;
   min-height: 44px;
-  padding-inline: 22px;
-  font-size: 13px;
 }
 .load-more-count {
-  color: var(--faint);
+  color: var(--muted);
   font-weight: 400;
-  font-variant-numeric: tabular-nums;
+  font-size: var(--fs-micro);
+  margin-left: 8px;
+}
+.empty {
+  text-align: center;
+  padding: 56px 0;
+  color: var(--muted);
+}
+.empty svg {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto 12px;
+  color: var(--faint);
+}
+.empty h3 {
+  font-size: var(--fs-h3);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.empty p {
+  font-size: var(--fs-small);
+  margin-bottom: 18px;
+}
+.results-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 14px;
+  font-size: var(--fs-micro);
+  color: var(--faint);
+}
+.results-bar span {
+  white-space: nowrap;
+}
+@media (max-width: 1080px) {
+  .card {
+    grid-template-columns: 36px auto minmax(0, 1fr);
+  }
+  /* 指标列放不下时整体下移一行，保持可比性。 */
+  .card-side {
+    grid-column: 3;
+    grid-row: 2;
+    justify-self: start;
+    padding-top: 10px;
+    margin-top: 4px;
+    border-top: 1px dashed var(--line);
+  }
+  .description {
+    -webkit-line-clamp: 2;
+  }
+}
+@media (max-width: 640px) {
+  .directory {
+    padding-top: 48px;
+  }
+  .section-heading {
+    display: block;
+  }
+  .updated {
+    text-align: left;
+    margin-top: 8px;
+  }
+  .card {
+    grid-template-columns: 28px auto minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px 4px;
+  }
+  .rank {
+    font-size: var(--fs-body);
+  }
+  .card-icon {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+  .card-icon .vendor-icon,
+  .card-icon .card-initial {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+  .card-main h3 {
+    font-size: 16px;
+  }
+  .tool-metrics {
+    gap: 12px;
+  }
 }

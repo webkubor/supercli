@@ -165,12 +165,6 @@
   background: var(--success);
   animation: caret-blink 1.4s steps(1, end) infinite;
 }
-.stage-command .terminal-caret {
-  width: 6px;
-  height: 12px;
-  margin-left: 2px;
-  vertical-align: -1px;
-}
 @keyframes terminal-in {
   from {
     opacity: 0;

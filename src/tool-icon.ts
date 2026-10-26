@@ -64,13 +64,13 @@ export function cardIconMarkup(item: IconSubject, alt: string): string {
 }
 
 /**
- * 工具预览图标：品牌 logo 用图，头像色块保持与预览同尺寸。
+ * 命令台图标：品牌 logo 用图，头像色块保持与命令台同尺寸。
  */
-export function stageIconMarkup(item: IconSubject): string {
+export function consoleIconMarkup(item: IconSubject): string {
   if (isPortraitIcon(item.icon)) {
-    return `<span class="icon-initial stage-initial" aria-hidden="true">${escape(initial(item.name))}</span>`;
+    return `<span class="icon-initial console-initial" aria-hidden="true">${escape(initial(item.name))}</span>`;
   }
-  return `<img src="/icons/${escape(item.icon)}" alt="" width="36" height="36">`;
+  return `<img class="console-icon" src="/icons/${escape(item.icon)}" alt="" width="28" height="28" loading="lazy">`;
 }
 
 /**

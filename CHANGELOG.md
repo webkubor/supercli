@@ -1,5 +1,21 @@
 # Changelog
 
+# Changelog
+
+## 0.7.0
+
+### 首页结构重设计（Redesign）
+
+- **目录从 3 列卡片改为密集排行索引**：91 个工具原以 373×366 的等宽卡片 3 列排布，一屏只能并排比较 3 个工具、12 张卡片占 2129px。现改为行式索引——每行一条工具（名次 / 图标 / 名称与来源 / 一行描述 / 下载与更新指标 / Stars / 安装按钮），行高 90px，同样首屏 12 条只占 1086px，密度提升约 4 倍。名次前三用品牌蓝，悬停标题显示跳转箭头。
+- **首屏改为编辑式两栏 + 真命令台**：左侧是主张与行动（大标题、收录主张、双 CTA），右侧是可交互的命令台——在真实目录上即时检索（与目录共用 queryEntries），命中即展示工具、厂商、Stars 与分词高亮的安装命令，可就地复制或直达详情；空输入展示 Wrangler / gh / ripgrep 三个推荐位。替代原来的纯装饰预览面板。
+- **删除全部「假活跃」元素**：推荐官滚动评语墙（42s 无限循环 marquee + 8 条无数据来源的“现场评语”）、社区脉搏条（fake live-beacon 头像列）、贡献者脉冲点、氛围网格 12 点无限跃动、光晕漂移——recommendedBy 在数据里全部为 null，任何“推荐官评语”都属编造，一并移除而非改写。动效仅保留 4 组一次性进场（hero/console/dialog/card-append），prefers-reduced-motion 下全部关闭。
+- **恢复 Klein Blue 单色品牌系统**：移除 0.6.5 加入的绿/粉双色 accent 切换（localStorage supercli-accent、.accent-toggle、[data-accent="pink"]），回归 #002FA7 单一品牌色；浅色 accent 对比 10.69:1。
+- **静态预渲染与运行时卡片共用单一标记源**：原 runtime card.ts 与构建期 localized-pages.ts staticCatalog 各写一套卡片 HTML，结构漂移不可见。现抽出 static-card.ts（构建期，无 DOM 依赖）与 directory-row.ts（运行时），静态行带真实名次，结构契约一致。
+- **CSS 架构收敛为分层令牌制**：25 个样式文件收敛为 19 个按层导入（tokens / tokens-dark / base / 组件各归其主），删除 atmosphere / ambient / community-feed / discovery / polish / polish-dialog / hierarchy / theme / responsive 集中覆盖层；断点下沉到组件文件内，一个选择器只有一个文件拥有它。颜色全部走语义令牌，硬编码 hex 全部清除（含 review-method 的 #15803d/#dcfce7 改令牌）。
+- **对比度门禁修复并接入双主题**：contrast.config.json 原指向已删除的令牌名，54 组对里 12 组失配、其余静默跳过（全绿假象）。重建为 24 组真实使用对（页面色对页面底、终端色对终端底），明暗两套令牌分别校验共 48 组，全部 ≥4.5:1；深色 --faint 提亮至 #9299a8（terminal-line 上 4.58:1）。
+- **四阶视口零横向溢出**：390 / 768 / 1280 / 1600 全部无水平滚动；窄屏页头收纳为 logo + GitHub + 主行动 + 主题钮 64px 一行。
+>>>>>>> b771c5c (feat(home): 首页结构重设计——密集排行索引、真命令台、删除假活跃层)
+
 ## 0.6.6
 
 ### 社区收录
@@ -10,6 +26,20 @@
   - `claude-usage-statusline`（AI 与 Agent）：Claude Code 终端状态栏，实时监控会话开销与限额，由 @museav 推荐（#7）
 - **图标与依据**：新增 `facet.svg`、`reel-kit.svg` 与 `claude-usage-statusline.png`，在 `docs/ICONS.md` 登记来源。
 - **推荐者署名**：在 `data/community.json` 完整绑定推荐者与 Issue 依据，首页「最近收录」与「推荐者」榜单自动展现。
+=======
+## 0.7.0
+
+### 首页结构重设计（Redesign）
+
+- **目录从 3 列卡片改为密集排行索引**：91 个工具原以 373×366 的等宽卡片 3 列排布，一屏只能并排比较 3 个工具、12 张卡片占 2129px。现改为行式索引——每行一条工具（名次 / 图标 / 名称与来源 / 一行描述 / 下载与更新指标 / Stars / 安装按钮），行高 90px，同样首屏 12 条只占 1086px，密度提升约 4 倍。名次前三用品牌蓝，悬停标题显示跳转箭头。
+- **首屏改为编辑式两栏 + 真命令台**：左侧是主张与行动（大标题、收录主张、双 CTA），右侧是可交互的命令台——在真实目录上即时检索（与目录共用 queryEntries），命中即展示工具、厂商、Stars 与分词高亮的安装命令，可就地复制或直达详情；空输入展示 Wrangler / gh / ripgrep 三个推荐位。替代原来的纯装饰预览面板。
+- **删除全部「假活跃」元素**：推荐官滚动评语墙（42s 无限循环 marquee + 8 条无数据来源的“现场评语”）、社区脉搏条（fake live-beacon 头像列）、贡献者脉冲点、氛围网格 12 点无限跃动、光晕漂移——recommendedBy 在数据里全部为 null，任何“推荐官评语”都属编造，一并移除而非改写。动效仅保留 4 组一次性进场（hero/console/dialog/card-append），prefers-reduced-motion 下全部关闭。
+- **恢复 Klein Blue 单色品牌系统**：移除 0.6.5 加入的绿/粉双色 accent 切换（localStorage supercli-accent、.accent-toggle、[data-accent="pink"]），回归 #002FA7 单一品牌色；浅色 accent 对比 10.69:1。
+- **静态预渲染与运行时卡片共用单一标记源**：原 runtime card.ts 与构建期 localized-pages.ts staticCatalog 各写一套卡片 HTML，结构漂移不可见。现抽出 static-card.ts（构建期，无 DOM 依赖）与 directory-row.ts（运行时），静态行带真实名次，结构契约一致。
+- **CSS 架构收敛为分层令牌制**：25 个样式文件收敛为 19 个按层导入（tokens / tokens-dark / base / 组件各归其主），删除 atmosphere / ambient / community-feed / discovery / polish / polish-dialog / hierarchy / theme / responsive 集中覆盖层；断点下沉到组件文件内，一个选择器只有一个文件拥有它。颜色全部走语义令牌，硬编码 hex 全部清除（含 review-method 的 #15803d/#dcfce7 改令牌）。
+- **对比度门禁修复并接入双主题**：contrast.config.json 原指向已删除的令牌名，54 组对里 12 组失配、其余静默跳过（全绿假象）。重建为 24 组真实使用对（页面色对页面底、终端色对终端底），明暗两套令牌分别校验共 48 组，全部 ≥4.5:1；深色 --faint 提亮至 #9299a8（terminal-line 上 4.58:1）。
+- **四阶视口零横向溢出**：390 / 768 / 1280 / 1600 全部无水平滚动；窄屏页头收纳为 logo + GitHub + 主行动 + 主题钮 64px 一行。
+>>>>>>> b771c5c (feat(home): 首页结构重设计——密集排行索引、真命令台、删除假活跃层)
 
 ## 0.6.5
 

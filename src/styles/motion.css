@@ -1,8 +1,8 @@
-/* 动效契约：仅 transform / opacity，系统减弱动效优先。 */
-.hero > div:first-child {
+/* 动效契约：仅 transform / opacity，系统减弱动效优先；无循环动画。 */
+.hero-copy {
   animation: arrive var(--slow) var(--ease) both;
 }
-.tool-stage {
+.console {
   animation: arrive var(--slow) var(--ease) both;
 }
 dialog[open] {
@@ -32,8 +32,8 @@ dialog::backdrop {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero > div,
-  .tool-stage,
+  .hero-copy,
+  .console,
   dialog[open] {
     animation: none;
   }
@@ -50,9 +50,6 @@ dialog::backdrop {
   .card:hover,
   .card:active,
   .card:focus-within,
-  .stage-tool:hover,
-  .stage-tool:focus-visible,
-  .stage-tool:active,
   .use-case:active {
     transform: none;
   }

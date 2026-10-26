@@ -20,8 +20,6 @@ export function showCopySuccess(id: string): void {
   const buttons = [
     ...document.querySelectorAll<HTMLButtonElement>("[data-copy]"),
   ].filter((button) => button.dataset.copy === id);
-  const stage = document.querySelector<HTMLButtonElement>("#stage-copy");
-  if (stage?.dataset.preview === id) buttons.push(stage);
   for (const button of buttons) {
     const previous = resets.get(button);
     if (previous) clearTimeout(previous.timer);

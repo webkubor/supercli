@@ -1,0 +1,66 @@
+/**
+ * 深色主题令牌：只覆盖语义令牌，不改任何组件规则。
+ * 底色用带蓝的深灰而不是纯黑，避免和终端窗口一样死板；
+ * 品牌蓝在深底上不可读，提亮为 #7d9dff 承担文字与链接，
+ * 实心按钮反转为「亮蓝底 + 深色字」，保持同一色相家族。
+ * 手动选择浅色时由 data-theme="light" 覆盖系统偏好。
+ */
+:root[data-theme="dark"] {
+  /* 深色下层次靠「越亮越靠前」，与浅色相反 */
+  --bg: #0b0d12;
+  --surface: #14171e;
+  --surface-hover: #1c2028;
+  --brand-tint: #141b2e;
+
+  --ink: #eef1f7;
+  --muted: #a3aab8;
+  --faint: #9299a8;
+  --line: #252a34;
+
+  --accent: #7d9dff;
+  --accent-hover: #9ab3ff;
+  --on-accent: #0b0d12;
+
+  --terminal: #05070a;
+  --terminal-line: #2a3040;
+  --terminal-text: #eef1f7;
+  --terminal-muted: #a3aab8;
+  --success: #7fd39a;
+
+  --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+  --shadow-sm: 0 4px 16px rgb(0 0 0 / 0.4);
+  --backdrop: rgb(3 5 10 / 0.72);
+  --grid-dot: rgb(125 157 255 / 0.18);
+  --scrim: rgb(255 255 255 / 0.04);
+}
+
+/* 系统偏好深色时跟随，但手动选择浅色要能覆盖。 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0b0d12;
+    --surface: #14171e;
+    --surface-hover: #1c2028;
+    --brand-tint: #141b2e;
+
+    --ink: #eef1f7;
+    --muted: #a3aab8;
+    --faint: #9299a8;
+    --line: #252a34;
+
+    --accent: #7d9dff;
+    --accent-hover: #9ab3ff;
+    --on-accent: #0b0d12;
+
+    --terminal: #05070a;
+    --terminal-line: #2a3040;
+    --terminal-text: #eef1f7;
+    --terminal-muted: #a3aab8;
+    --success: #7fd39a;
+
+    --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
+    --shadow-sm: 0 4px 16px rgb(0 0 0 / 0.4);
+    --backdrop: rgb(3 5 10 / 0.72);
+    --grid-dot: rgb(125 157 255 / 0.18);
+    --scrim: rgb(255 255 255 / 0.04);
+  }
+}
