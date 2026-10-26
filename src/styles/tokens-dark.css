@@ -64,3 +64,106 @@
     --scrim: rgb(255 255 255 / 0.04);
   }
 }
+
+/* ── 深色资产适配（原 theme.css 拆入，仅保留与 accent 无关的活规则）── */
+
+/* 深底上深色字标会消失，换成浅色版本同一几何。 */
+:root[data-theme="dark"] .brand-lockup {
+  content: url("/brand/supercli-wordmark-dark.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .brand-lockup {
+    content: url("/brand/supercli-wordmark-dark.svg");
+  }
+}
+/* 主标记的蓝底方块在近黑背景上会糊掉，补一圈极淡描边。 */
+:root[data-theme="dark"] .brand-lockup {
+  filter: drop-shadow(0 0 0.5px rgb(255 255 255 / 0.18));
+}
+
+/* 主题钮：浅色露月亮、深色露太阳。 */
+.theme-toggle svg:last-child {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle svg:first-child {
+  display: none;
+}
+:root[data-theme="dark"] .theme-toggle svg:last-child {
+  display: block;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle svg:first-child {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-toggle svg:last-child {
+    display: block;
+  }
+}
+
+/* 品牌页单色标记换浅色版本。 */
+:root[data-theme="dark"] .logo-board img[src$="supercli-symbol-mono.svg"] {
+  content: url("/brand/supercli-symbol-mono-light.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])
+    .logo-board
+    img[src$="supercli-symbol-mono.svg"] {
+    content: url("/brand/supercli-symbol-mono-light.svg");
+  }
+}
+
+/* 纯黑/暗色厂商图标在暗底上融化：微高光衬底。 */
+:root[data-theme="dark"] .vendor-icon,
+:root[data-theme="dark"] .card-initial,
+:root[data-theme="dark"] .detail-icon,
+:root[data-theme="dark"] .detail-initial,
+:root[data-theme="dark"] .console-hit-icon img,
+:root[data-theme="dark"] .console-hit-icon .console-initial,
+:root[data-theme="dark"] .recent-tool img,
+:root[data-theme="dark"] .recent-tool .icon-initial {
+  background: var(--surface);
+  border-color: rgb(255 255 255 / 0.12);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .vendor-icon,
+  :root:not([data-theme="light"]) .card-initial,
+  :root:not([data-theme="light"]) .detail-icon,
+  :root:not([data-theme="light"]) .detail-initial,
+  :root:not([data-theme="light"]) .console-hit-icon img,
+  :root:not([data-theme="light"]) .console-hit-icon .console-initial,
+  :root:not([data-theme="light"]) .recent-tool img,
+  :root:not([data-theme="light"]) .recent-tool .icon-initial {
+    background: var(--surface);
+    border-color: rgb(255 255 255 / 0.12);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.04);
+  }
+}
+
+/* 深色弹窗：1px 微高光描边与景深。 */
+:root[data-theme="dark"] dialog {
+  border-color: rgb(255 255 255 / 0.14);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 24px 64px -8px rgb(0 0 0 / 0.75);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) dialog {
+    border-color: rgb(255 255 255 / 0.14);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.08),
+      0 24px 64px -8px rgb(0 0 0 / 0.75);
+  }
+}
+
+/* 深色质检与核验面板。 */
+:root[data-theme="dark"] .quality-panel {
+  background: var(--surface);
+  border-color: var(--line);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .quality-panel {
+    background: var(--surface);
+    border-color: var(--line);
+  }
+}

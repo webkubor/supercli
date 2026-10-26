@@ -2,8 +2,8 @@
  *  此模块不得引入 src/i18n.ts——它在模块求值期读取 location，
  *  会把语言冻结进构建脚本进程。文案与标签由调用方翻译后传入。
  */
-import { escapeHtml as escape } from "./escape";
-import { cardIconMarkup, type IconSubject } from "./tool-icon";
+import { escapeHtml as escape } from "./escape.ts";
+import { cardIconMarkup, type IconSubject } from "./tool-icon.ts";
 
 /** 静态渲染主体：结构与运行时 Entry 一致，maintainerType 由数据契约保证。 */
 export type StaticSubject = IconSubject & { readonly maintainerType: string };

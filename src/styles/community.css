@@ -399,6 +399,9 @@
   .use-case-grid {
     grid-template-columns: 1fr;
   }
+  .credit-columns {
+    grid-template-columns: 1fr;
+  }
   .contribute {
     margin-block: 40px;
     padding: 26px;
