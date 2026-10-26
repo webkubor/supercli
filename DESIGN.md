@@ -153,3 +153,11 @@ README 门面：首屏用 `public/social-card.png`（暗色主题下不突兀）
 - **色**：Klein Blue #002FA7 单色回归；绿/粉 accent 系统移除。明暗两套语义令牌由 contrast-guard 各自门禁（24 对 ×2 = 48 组全过）。
 - **CSS 架构**：tokens.css / tokens-dark.css 为唯一色源；一个选择器一个主人；断点写在组件文件内。卡片标记单一来源（static-card.ts 构建期 / directory-row.ts 运行时，类结构契约一致）。
 - **动效**：仅 4 组一次性进场（hero-copy、console、dialog、card-append 翻页追加）；零无限循环；reduced-motion 全关。
+
+## v0.7.1 社区区块：推荐官与维护者分形态
+
+- **两栏两种语言**：左「推荐官说」是消息气泡（品牌蓝浅底 + 头像 + 评语正文 + 工具名 + 原帖链接），右「收录维护者」是深色终端面板（`$` 提示符 + 等宽字体 + 关注数）。此前两栏都用同一套 contributor-card，看不出角色差异。
+- **推荐官评语有真实出处**：正文取自投稿 Issue 的「为什么推荐？」原文，`data/recommendations.json` 逐条绑定工具、推荐者与 Issue 链接；构建门禁强制评语署名与 `data/community.json` 的 `recommendedBy` 一致、出处必须是本站 Issue。原文不存在就没有评语——不再出现编造的推荐语。
+- **维护者关注数是快照不是实时值**：`data/contributors.json` 记录 GitHub 用户 API 抓取的 followers/following/publicRepos，缺失记 null（页面显示「关注数未取到」），绝不用 0 冒充。面板脚注标明来源与抓取日期。
+- **轮播用 transform 而非 scroll**：`scroll-behavior: smooth` 依赖动画帧，后台标签页与不绘制的环境里位移永远不生效；transform 位移立即生效，动画只是表现。悬停、聚焦、页面隐藏都暂停。
+- **横向溢出为零**：轨道宽度受父级约束（grid/flex 项 `min-width: 0`），气泡宽度取轨道宽而非内容宽，否则 flex 内容宽会把整列撑破。390/768/1280/1600 四阶视口均无水平滚动。

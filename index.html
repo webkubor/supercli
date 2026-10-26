@@ -342,8 +342,38 @@
         </div>
         <div class="credit-columns">
           <div class="credit-group">
-            <h3>社区推荐者</h3>
-            <ul id="recommender-credits"></ul>
+            <div class="credit-group-head">
+              <h3>推荐官说</h3>
+              <p class="credit-group-note">
+                真人投稿原话 · 悬停暂停 · 点开看工具详情
+              </p>
+            </div>
+            <div class="curator-reel">
+              <div class="curator-reel-rail">
+                <ul class="curator-reel-track" id="curator-reel"></ul>
+              </div>
+              <div class="curator-reel-foot">
+                <span class="curator-reel-status" id="curator-reel-status"></span>
+                <span class="curator-reel-nav">
+                  <button
+                    class="curator-reel-btn"
+                    id="curator-reel-prev"
+                    type="button"
+                    aria-label="上一条推荐语"
+                  >
+                    <i data-lucide="chevron-left"></i>
+                  </button>
+                  <button
+                    class="curator-reel-btn"
+                    id="curator-reel-next"
+                    type="button"
+                    aria-label="下一条推荐语"
+                  >
+                    <i data-lucide="chevron-right"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
             <p id="community-empty">
               还没有已署名的社区推荐。<a
                 href="https://github.com/webkubor/supercli/issues/new?template=cli.yml"
@@ -354,9 +384,29 @@
             </p>
           </div>
           <div class="credit-group">
-            <h3>收录维护者</h3>
-            <ul id="maintainer-credits"></ul>
-            <p>依据收录记录统计，维护和推荐分别署名。</p>
+            <div class="credit-group-head">
+              <h3>收录维护者</h3>
+              <p class="credit-group-note">依据收录记录统计 · 维护和推荐分别署名</p>
+            </div>
+            <div class="maintainer-console" id="maintainer-console">
+              <div class="maintainer-console-bar">
+                <span class="maintainer-console-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i
+                ></span>
+                <span class="maintainer-console-title">github · maintainers</span>
+              </div>
+              <ul class="maintainer-console-list" id="maintainer-console-list"></ul>
+              <p class="maintainer-console-foot" id="maintainer-console-foot"></p>
+            </div>
+            <div class="maintainer-console" id="recommender-console">
+              <div class="maintainer-console-bar">
+                <span class="maintainer-console-dots" aria-hidden="true"
+                  ><i></i><i></i><i></i
+                ></span>
+                <span class="maintainer-console-title">github · recommenders</span>
+              </div>
+              <ul class="maintainer-console-list" id="recommender-console-list"></ul>
+            </div>
           </div>
         </div>
       </section>

@@ -24,6 +24,8 @@ import {
   Users,
   FileText,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide";
 const icons = {
   GitFork,
@@ -45,6 +47,8 @@ const icons = {
   Users,
   FileText,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
 };
 import {
   catalog,

@@ -404,5 +404,15 @@
   "输入工具名、厂商或用途…": "Search tools, vendors or use cases…",
   "在 CLI 目录中搜索": "Search the CLI directory",
   "命令直接来自目录收录条目": "Commands come straight from catalog entries",
-  "打开完整目录": "Open the full directory"
+  "打开完整目录": "Open the full directory",
+  "推荐官说": "Curator picks",
+  "真人投稿原话 · 悬停暂停 · 点开看工具详情": "Real quotes from contributors · Hover to pause · Click a tool for details",
+  "依据收录记录统计 · 维护和推荐分别署名": "Counted from inclusion records · Curation and recommendations credited separately",
+  "推荐官": "Curator",
+  "查看原帖": "View original post",
+  "滚动查看更多": "Scroll for more",
+  "第 ": "Slide ",
+  " 条": " of ",
+  " 关注": " followers",
+  "关注数未取到": "followers unavailable"
 }

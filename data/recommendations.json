@@ -1,0 +1,20 @@
+[
+  {
+    "id": "facet",
+    "curator": "lunove",
+    "quote": "纯本地 Node/Playwright 渲染，零外部云服务依赖，支持单 Markdown 源多形态输出（演讲页、讲稿、长图与 PDF），是终端创作者和工程师极其实用的排版利器。",
+    "evidence": "https://github.com/webkubor/supercli/issues/5"
+  },
+  {
+    "id": "reel-kit",
+    "curator": "luminan-agent",
+    "quote": "专为无人值守的批量短视频生成设计，镜头时长由念白音频真实驱动，配音走本地 TTS 零调用成本，内置 5 套版式模板与 9 种转场，是 AI 视频流水线装配的绝佳终端利器。",
+    "evidence": "https://github.com/webkubor/supercli/issues/6"
+  },
+  {
+    "id": "claude-usage-statusline",
+    "curator": "museav",
+    "quote": "利用 Claude Code 原生 statusLine 钩子驱动，单文件 Python 实现，零外部依赖；清晰区分按量付费与订阅制模式，能精准防止在长上下文重度任务中突发超限中断。",
+    "evidence": "https://github.com/webkubor/supercli/issues/7"
+  }
+]

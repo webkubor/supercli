@@ -1,0 +1,284 @@
+/**
+ * 社区两块视觉：推荐官评语轮播（消息气泡）与维护者终端面板。
+ * 从 community.css 拆出——这两个组件自成一套语言，
+ * 混在社区通用样式里会让 community.css 继续膨胀。
+ */
+/* 推荐官：消息气泡样式的真实评语轮播，悬停暂停。 */
+.curator-reel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* 轨道宽度必须受父级约束：flex 项按内容宽度撑开会撑破整页。 */
+  min-width: 0;
+  width: 100%;
+}
+.curator-reel-rail {
+  overflow: hidden;
+  padding-bottom: 4px;
+  min-width: 0;
+  width: 100%;
+}
+.curator-reel-track {
+  display: flex;
+  gap: 16px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  /* transform 驱动：位移立即生效，动画只是表现，不依赖滚动事件时序。 */
+  transition: transform var(--medium) var(--ease);
+  will-change: transform;
+}
+.curator-reel-track.is-dragging {
+  transition: none;
+}
+.curator-slide {
+  /* 一页一张气泡：宽度取轨道宽，而不是内容宽，否则会把容器撑破。 */
+  flex: 0 0 100%;
+  min-width: 0;
+}
+.curator-bubble {
+  position: relative;
+  padding: 18px 20px 16px;
+  background: var(--brand-tint);
+  border: 1px solid var(--line);
+  /* 左下角收成小角，气泡的对话感。 */
+  border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+/* 气泡尾巴：指向推荐官头像。用伪元素画在气泡内侧，不会被轨道裁切。 */
+.curator-bubble::after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  background: var(--brand-tint);
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  transform: rotate(45deg);
+}
+.curator-bubble-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.curator-bubble-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  object-fit: cover;
+  background: var(--surface);
+}
+.curator-bubble-identity {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.curator-bubble-handle {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+.curator-bubble-handle:hover {
+  color: var(--accent);
+}
+.curator-bubble-role {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
+  color: var(--accent);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  white-space: nowrap;
+}
+.curator-bubble-quote {
+  font-size: var(--fs-body);
+  line-height: 1.85;
+  color: var(--ink);
+  margin: 0;
+}
+.curator-bubble-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+.curator-bubble-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-meta);
+  font-weight: 600;
+  color: var(--ink);
+}
+.curator-bubble-tool:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.curator-bubble-source {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-micro);
+  color: var(--muted);
+}
+.curator-bubble-source:hover {
+  color: var(--accent);
+}
+.curator-reel-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: var(--fs-micro);
+  color: var(--faint);
+}
+.curator-reel-status {
+  font-variant-numeric: tabular-nums;
+}
+.curator-reel-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.curator-reel-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--muted);
+}
+.curator-reel-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.curator-reel-btn svg {
+  width: 14px;
+  height: 14px;
+}
+/* 维护者：终端面板，直接敲命令的极客读法。 */
+.maintainer-console {
+  background: var(--terminal);
+  border: 1px solid var(--terminal-line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.maintainer-console-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--terminal-line);
+}
+.maintainer-console-dots {
+  display: inline-flex;
+  gap: 5px;
+}
+.maintainer-console-dots i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--terminal-muted);
+  opacity: 0.45;
+}
+.maintainer-console-title {
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--terminal-muted);
+}
+.maintainer-console-list {
+  padding: 10px 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  gap: 2px;
+}
+.maintainer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 12px;
+  color: var(--terminal-text);
+}
+.maintainer-row:hover {
+  background: var(--terminal-line);
+}
+.maintainer-prompt {
+  color: var(--success);
+  font-weight: 600;
+  user-select: none;
+}
+.maintainer-handle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--terminal-text);
+  font-weight: 600;
+  min-width: 0;
+}
+.maintainer-handle:hover {
+  color: var(--success);
+}
+.maintainer-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--terminal-line);
+  flex-shrink: 0;
+}
+.maintainer-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.maintainer-stats {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+  color: var(--terminal-muted);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+.maintainer-stat-followers {
+  color: var(--success);
+}
+/* 快照说明：关注数不是实时值，出处写在面板里。 */
+.maintainer-console-foot {
+  margin: 0;
+  padding: 9px 12px;
+  border-top: 1px solid var(--terminal-line);
+  font-family: Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--terminal-muted);
+}
+@media (max-width: 640px) {
+  .curator-bubble {
+    padding: 16px 18px 14px;
+  }
+  .curator-bubble-quote {
+    line-height: 1.75;
+  }
+}

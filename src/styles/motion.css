@@ -37,6 +37,10 @@ dialog::backdrop {
   dialog[open] {
     animation: none;
   }
+  /* 推荐官轮播：位移立即生效，不做补间。 */
+  .curator-reel-track {
+    transition: none;
+  }
   /* 内容页进场与终端窗口进场一并关闭，保留静态终稿。 */
   .guide-breadcrumb,
   .guide-intro,

@@ -205,13 +205,28 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
+  /* grid 项默认 min-width:auto，内容过宽会把整列撑破。 */
+  min-width: 0;
+}
+.credit-group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 16px;
 }
 .credit-group h3 {
   font-size: 15px;
   font-weight: 600;
   margin: 0;
 }
-.credit-group ul {
+.credit-group-note {
+  font-size: var(--fs-micro);
+  color: var(--muted);
+  margin: 0;
+}
+/* 只管直接子级列表：嵌套在组件内部的列表有自己的布局（轮播轨道、维护者终端行）。 */
+.credit-group > ul {
   padding: 0;
   margin: 0;
   list-style: none;
@@ -222,90 +237,6 @@
   font-size: var(--fs-micro);
   color: var(--muted);
   margin: 0;
-}
-.contributor-card {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  transition: border-color var(--fast) var(--ease);
-}
-.contributor-card:hover {
-  border-color: var(--accent);
-}
-.contributor-link {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 14px;
-  text-decoration: none;
-  color: inherit;
-}
-.contributor-avatar-wrap {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  flex-shrink: 0;
-}
-.contributor-avatar {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 2px solid var(--line);
-  object-fit: cover;
-  background: var(--surface);
-  transition: border-color var(--fast) var(--ease);
-}
-.contributor-card:hover .contributor-avatar {
-  border-color: var(--accent);
-}
-.contributor-details {
-  flex: 1;
-  min-width: 0;
-}
-.contributor-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  margin-bottom: 3px;
-}
-.contributor-handle {
-  font-size: var(--fs-body);
-  font-weight: 600;
-  color: var(--ink);
-}
-.contributor-role-tag {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: color-mix(in srgb, var(--accent) 10%, var(--surface));
-  color: var(--accent);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-}
-.contributor-meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: var(--fs-meta);
-  color: var(--muted);
-}
-.contributor-stats-count {
-  font-variant-numeric: tabular-nums;
-  font-weight: 500;
-  color: var(--accent);
-}
-.contributor-ext-icon {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: var(--fs-micro);
-  color: var(--muted);
-  opacity: 0.75;
-}
-.contributor-card:hover .contributor-ext-icon {
-  color: var(--accent);
-  opacity: 1;
 }
 /* 详情弹窗与独立页的收录署名微徽章 */
 .attribution {

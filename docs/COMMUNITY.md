@@ -4,12 +4,34 @@
 
 - `data/catalog.json`：工具信息。
 - `data/community.json`：每个工具一条收录记录，id 对应目录；构建检查覆盖完整性。
+- `data/recommendations.json`：推荐官评语，每条绑定工具、推荐者与原帖 Issue；只收录明确同意公开署名的投稿。
+- `data/contributors.json`：GitHub 用户快照（关注数等），供维护者终端面板展示。
 - `addedAt`：工具实际进入本站目录的 ISO 时间，不随上游更新或文字修正改变。
 - `curatedBy`：核验并维护该条目的 GitHub 用户名。
 - `recommendedBy`：明确同意公开署名的推荐者用户名；无推荐者或未同意则为 null。
 - `evidence`：本仓 Issue、PR 或完整 SHA 的 commit 链接。推荐者必须有 Issue/PR 依据。
 
 历史 90 个条目按首次提交 3c4e05a 的时间恢复，curatedBy=webkubor、recommendedBy=null。最近收录按 addedAt 倒序，同批按 id 稳定排列；维护者和推荐者分别统计。修正旧条目不能刷新收录时间或抢占原推荐者署名。
+
+## 推荐官评语
+
+评语正文照抄投稿 Issue 里的「为什么推荐？」原文，不做润色、不代写。`data/recommendations.json` 的每条记录必须满足：
+
+- `id` 指向目录内的工具；
+- `curator` 与 `data/community.json` 里该工具的 `recommendedBy` 完全一致；
+- `evidence` 是该工具的收录依据，且必须是本站 Issue 链接。
+
+这三条由构建门禁（`scripts/community-people-validation.mjs`）机器校验：署名对不上、出处不是本站 Issue、工具不在目录内，都会让 `pnpm build` 失败。英文版评语放在 `data/recommendations.en.json`，同样要求逐条覆盖且不夹带中文。
+
+没有推荐语的工具就不出现在评语轮播里——不写通用评语、不复用他人评价。
+
+## 维护者关注数
+
+`data/contributors.json` 是 GitHub 用户 API（`/users/{login}`）的抓取快照，记录 followers、following、publicRepos。刷新命令：`node scripts/sync-contributors.mjs --gh`（需本机已登录 gh）。
+
+- 快照必须覆盖 `data/community.json` 里出现的全部署名者（维护者与推荐者），缺一个就构建失败。
+- 抓取失败的单个用户记为 `null`，页面显示「关注数未取到」，不用 0 冒充查询结果。
+- 关注数不是实时值，面板脚注标明来源与抓取日期。
 
 ## 人工操作顺序
 

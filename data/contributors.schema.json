@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["fetchedAt", "source", "users"],
+  "properties": {
+    "fetchedAt": {
+      "type": "string",
+      "format": "timestamp"
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1
+    },
+    "users": {
+      "type": "object",
+      "additionalProperties": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["login", "followers", "following", "publicRepos"],
+            "properties": {
+              "login": {
+                "type": "string",
+                "pattern": "^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$"
+              },
+              "followers": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "following": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "publicRepos": {
+                "type": "integer",
+                "minimum": 0
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

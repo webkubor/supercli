@@ -1,0 +1,5 @@
+{
+  "facet": "Purely local Node/Playwright rendering with zero cloud dependency: one Markdown source becomes slides, a script, long images, and PDF.",
+  "reel-kit": "Built for unattended batch short-video generation: shot length is driven by the real narration audio, voiceover runs on local TTS at zero API cost, with five layouts and nine transitions built in.",
+  "claude-usage-statusline": "Driven by Claude Code's native statusLine hook, a single-file Python tool with no dependencies that separates pay-as-you-go from subscription limits, so long-context sessions do not get cut off unexpectedly."
+}
