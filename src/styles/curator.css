@@ -20,19 +20,18 @@
 }
 .curator-reel-track {
   display: flex;
-  gap: 16px;
+  /* 不设 gap：气泡宽度已按轨道宽收窄，位移步长与排版严格一致。 */
   padding: 0;
   margin: 0;
   list-style: none;
   /* transform 驱动：位移立即生效，动画只是表现，不依赖滚动事件时序。 */
   transition: transform var(--medium) var(--ease);
-  will-change: transform;
 }
 .curator-reel-track.is-dragging {
   transition: none;
 }
 .curator-slide {
-  /* 一页一张气泡：宽度取轨道宽，而不是内容宽，否则会把容器撑破。 */
+  /* 一页一张气泡：宽度取轨道全宽，保证气泡完整可见不被裁切。 */
   flex: 0 0 100%;
   min-width: 0;
 }

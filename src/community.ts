@@ -156,12 +156,12 @@ export function setupCuratorReel(): void {
   const rail = track.parentElement!;
   const slidesNode = [...track.children] as HTMLElement[];
   // 位移按固定步长算：offsetLeft 受祖先 transform 影响会自相矛盾，
-  // 用「一张气泡的宽度 + 间距」推位移，与实际排版必然一致。
+  // 用一张气泡的排版宽度推位移，与实际排版必然一致。
   const step = () => {
     const slide = slidesNode[1] ?? slidesNode[0];
     if (!slide) return 0;
     const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
-    return slide.getBoundingClientRect().width + gap;
+    return slide.offsetWidth + gap;
   };
   let index = 0;
   const update = () => {
