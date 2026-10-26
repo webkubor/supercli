@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "check": "pnpm typecheck && node scripts/validate.mjs && pnpm test",
-    "build": "pnpm check && vite build && node scripts/check-static.mjs",
+    "build": "pnpm check && vite build && node scripts/check-static.mjs && pnpm exec tsx scripts/check-hygiene.ts",
     "sync": "node scripts/sync.mjs",
     "og": "tsx scripts/generate-tool-cards.ts",
     "preview": "vite preview --host 127.0.0.1",
