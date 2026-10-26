@@ -1,51 +1,81 @@
-/* 深色主题：只覆盖语义令牌，不改任何组件规则。
-   底色用带蓝的深灰而不是纯黑，避免和终端窗口一样死板；
-   品牌蓝在深底上不可读，因此提亮为 #7d9dff 承担文字与链接，
-   实心按钮反转为「亮蓝底 + 深色字」，保持同一色相家族。 */
+/* 深色主题：覆盖语义令牌与暗夜极客质感。
+   深色底色采用极客终端暗黑 #090c10；
+   默认采用极客荧光绿 #00f57a，高亮通透、充满终端原力；
+   实心按钮反转为「极客荧光绿底 + 深色字」。 */
 :root[data-theme="dark"] {
-  --bg: #0b0d12;
-  --surface: #14171e;
-  --surface-hover: #1c2028;
-  --ink: #eef1f7;
-  --muted: #a3aab8;
-  --faint: #8d94a3;
-  --line: #252a34;
-  --accent: #7d9dff;
-  --accent-hover: #9ab3ff;
-  --on-accent: #0b0d12;
-  --terminal: #05070a;
-  --terminal-line: #2a3040;
-  --terminal-text: #eef1f7;
-  --terminal-muted: #a3aab8;
-  --success: #7fd39a;
-  --brand-tint: #141b2e;
-  --grid-dot: rgb(125 157 255 / 0.18);
-  --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
-  --backdrop: rgb(3 5 10 / 0.72);
+  --bg: #090c10;
+  --surface: #10151e;
+  --surface-hover: #171f2c;
+  --ink: #f0f6fc;
+  --muted: #8b949e;
+  --faint: #6e7681;
+  --line: #212836;
+  --accent: #00f57a;
+  --accent-hover: #38ff98;
+  --accent-glow: 0 0 24px rgb(0 245 122 / 0.45);
+  --on-accent: #051b0f;
+  --terminal: #070a0e;
+  --terminal-line: #1c2633;
+  --terminal-text: #e6edf3;
+  --terminal-muted: #8b949e;
+  --success: #00f57a;
+  --brand-tint: #072115;
+  --grid-dot: rgb(0 245 122 / 0.22);
+  --shadow: 0 16px 48px rgb(0 0 0 / 0.65);
+  --backdrop: rgb(3 6 10 / 0.75);
 }
 
 /* 系统偏好深色时跟随，但手动选择浅色要能覆盖。 */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0b0d12;
-    --surface: #14171e;
-    --surface-hover: #1c2028;
-    --ink: #eef1f7;
-    --muted: #a3aab8;
-    --faint: #8d94a3;
-    --line: #252a34;
-    --accent: #7d9dff;
-    --accent-hover: #9ab3ff;
-    --on-accent: #0b0d12;
-    --terminal: #05070a;
-    --terminal-line: #2a3040;
-    --terminal-text: #eef1f7;
-    --terminal-muted: #a3aab8;
-    --success: #7fd39a;
-    --brand-tint: #141b2e;
-  --grid-dot: rgb(125 157 255 / 0.18);
-    --shadow: 0 16px 48px rgb(0 0 0 / 0.55);
-    --backdrop: rgb(3 5 10 / 0.72);
+    --bg: #090c10;
+    --surface: #10151e;
+    --surface-hover: #171f2c;
+    --ink: #f0f6fc;
+    --muted: #8b949e;
+    --faint: #6e7681;
+    --line: #212836;
+    --accent: #00f57a;
+    --accent-hover: #38ff98;
+    --accent-glow: 0 0 24px rgb(0 245 122 / 0.45);
+    --on-accent: #051b0f;
+    --terminal: #070a0e;
+    --terminal-line: #1c2633;
+    --terminal-text: #e6edf3;
+    --terminal-muted: #8b949e;
+    --success: #00f57a;
+    --brand-tint: #072115;
+    --grid-dot: rgb(0 245 122 / 0.22);
+    --shadow: 0 16px 48px rgb(0 0 0 / 0.65);
+    --backdrop: rgb(3 6 10 / 0.75);
+  }
+}
+
+/* 极客赛博粉（Cyberpunk Pink）色彩模式：潮酷先锋、极富动感 */
+:root[data-accent="pink"] {
+  --accent: #d91b6c;
+  --accent-hover: #b81057;
+  --accent-glow: 0 0 24px rgb(217 27 108 / 0.35);
+  --brand-tint: #fdf2f7;
+  --grid-dot: rgb(217 27 108 / 0.18);
+  --on-accent: #fff;
+}
+:root[data-theme="dark"][data-accent="pink"] {
+  --accent: #ff2a85;
+  --accent-hover: #ff5c9f;
+  --accent-glow: 0 0 28px rgb(255 42 133 / 0.5);
+  --brand-tint: #260817;
+  --grid-dot: rgb(255 42 133 / 0.22);
+  --on-accent: #1f0310;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"])[data-accent="pink"] {
+    --accent: #ff2a85;
+    --accent-hover: #ff5c9f;
+    --accent-glow: 0 0 28px rgb(255 42 133 / 0.5);
+    --brand-tint: #260817;
+    --grid-dot: rgb(255 42 133 / 0.22);
+    --on-accent: #1f0310;
   }
 }
 
@@ -83,6 +113,42 @@
     box-shadow: none;
     border-color: var(--line);
   }
+}
+
+/* 极客调色切换开关：绿/粉切换胶囊 */
+.accent-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--muted);
+  transition: all var(--fast) var(--ease);
+}
+.accent-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: var(--accent-glow);
+}
+.accent-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+.accent-pip {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 5px var(--accent);
+  transition: background var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 
 /* 主题切换按钮：与导航同高，图标随当前主题切换。 */

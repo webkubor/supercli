@@ -34,8 +34,10 @@ export function inclusionMarkup(
 ): string {
   const record = records.find((row) => row.id === item.id);
   if (!record) return "";
+  const avatarUrl = (name: string, size = 48) =>
+    `https://github.com/${encodeURIComponent(name)}.png?size=${size}`;
   const profile = (name: string): string =>
-    `<a href="https://github.com/${encodeURIComponent(name)}">@${escape(name)}</a>`;
+    `<a class="curator-chip" href="https://github.com/${encodeURIComponent(name)}"><img class="curator-avatar" src="${avatarUrl(name, 48)}" alt="${escape(name)}" width="18" height="18" loading="lazy" /><span>@${escape(name)}</span></a>`;
   const date = new Date(record.addedAt).toLocaleDateString(
     language === "en" ? "en-US" : "zh-CN",
     { timeZone: "Asia/Taipei" },

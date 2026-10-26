@@ -9,21 +9,26 @@
     />
     <meta
       name="theme-color"
-      content="#002fa7"
+      content="#059669"
       media="(prefers-color-scheme: light)"
     />
     <meta
       name="theme-color"
-      content="#0b0d12"
+      content="#090c10"
       media="(prefers-color-scheme: dark)"
     />
     <script>
-      // 在首次绘制前落定主题，避免浅色闪一下再变深。
+      // 在首次绘制前落定主题与极客配色，避免浅色与默认色彩闪烁。
       (() => {
         try {
-          const saved = localStorage.getItem("supercli-theme");
-          if (saved === "light" || saved === "dark")
-            document.documentElement.dataset.theme = saved;
+          const savedTheme = localStorage.getItem("supercli-theme");
+          if (savedTheme === "light" || savedTheme === "dark")
+            document.documentElement.dataset.theme = savedTheme;
+          const savedAccent = localStorage.getItem("supercli-accent");
+          if (savedAccent === "pink" || savedAccent === "green")
+            document.documentElement.dataset.accent = savedAccent;
+          else
+            document.documentElement.dataset.accent = "green";
         } catch {}
       })();
     </script>
@@ -97,7 +102,22 @@
           </p>
           <p class="lead">
             人工收录，<span>按收录日期排序</span> —— 和工具的版本发布时间不同。
-          </p>          <a class="explore" href="#directory"
+          </p>
+          <div class="community-pulse-bar" aria-label="开源社区活人核验">
+            <div class="facepile-avatars">
+              <a class="facepile-item" href="https://github.com/webkubor" target="_blank" rel="noopener noreferrer" title="核心维护者 @webkubor">
+                <img src="https://github.com/webkubor.png?size=64" alt="webkubor" width="32" height="32" loading="lazy" />
+              </a>
+              <a class="facepile-item" href="https://github.com/renjiegod" target="_blank" rel="noopener noreferrer" title="核心维护者 @renjiegod">
+                <img src="https://github.com/renjiegod.png?size=64" alt="renjiegod" width="32" height="32" loading="lazy" />
+              </a>
+            </div>
+            <div class="pulse-meta">
+              <span class="pulse-live-title"><i class="live-beacon"></i>真实开发者人工核验 · 持续收录</span>
+              <span class="pulse-desc">拒绝自动化爬虫脏数据 · 每一条命令经真机实测验证</span>
+            </div>
+          </div>
+          <a class="explore" href="#directory"
             >探索全部工具 <i data-lucide="arrow-down-right"></i
           ></a>
         </div>
@@ -154,6 +174,18 @@
           <i data-lucide="git-pull-request"></i><span>通过 PR 共同维护</span>
         </div>
         <p>每个好用的命令，<br />都值得被更多人发现。</p>
+      </section>
+      <section class="recommenders-spotlight" aria-label="社区推荐官推荐墙">
+        <div class="spotlight-header">
+          <div class="spotlight-title-wrap">
+            <span class="spotlight-badge"><i class="live-beacon"></i>真实推荐</span>
+            <h3>推荐官说 · 终端利器推荐墙</h3>
+          </div>
+          <p class="spotlight-note">真人极客上手评语 · 悬停暂停 · 点击查看详情</p>
+        </div>
+        <div class="marquee-viewport">
+          <div class="marquee-track" id="recommender-marquee"></div>
+        </div>
       </section>
       <section
         id="use-cases"

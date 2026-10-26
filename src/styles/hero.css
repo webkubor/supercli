@@ -48,6 +48,97 @@ h1 span {
 .explore:hover {
   color: var(--accent);
 }
+
+/* 社区活人感脉搏中枢：Hero 核心活力入口 */
+.community-pulse-bar {
+  margin-top: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 18px 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.04);
+  transition: all var(--fast) var(--ease);
+}
+.community-pulse-bar:hover {
+  border-color: var(--accent);
+  box-shadow: var(--accent-glow);
+  transform: translateY(-1px);
+}
+.facepile-avatars {
+  display: flex;
+  align-items: center;
+}
+.facepile-item {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-left: -8px;
+  border-radius: 50%;
+  border: 2px solid var(--surface);
+  overflow: hidden;
+  transition: transform var(--fast) var(--ease), border-color var(--fast) var(--ease);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.facepile-item:first-child {
+  margin-left: 0;
+}
+.facepile-item:hover {
+  transform: scale(1.18) translateY(-2px);
+  z-index: 2;
+  border-color: var(--accent);
+}
+.facepile-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.pulse-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.pulse-live-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.live-beacon {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #00f57a;
+  box-shadow: 0 0 8px #00f57a;
+  flex-shrink: 0;
+}
+.live-beacon::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #00f57a;
+  animation: beacon-wave 2s infinite ease-out;
+}
+@keyframes beacon-wave {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+.pulse-desc {
+  font-size: 11px;
+  color: var(--muted);
+}
+
 .overview {
   display: grid;
   grid-template-columns: 1fr 1fr 1.5fr 1.5fr;

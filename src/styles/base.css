@@ -1,8 +1,8 @@
 :root {
   --slow: 360ms;
-  --brand-tint: #edf1fb;
-  /* 氛围网格点：底纹要淡到几乎看不见，只在余光里提示网格存在。 */
-  --grid-dot: rgb(0 47 167 / 0.16);
+  --brand-tint: #ecfdf5;
+  /* 氛围网格点：极客能量微光，在余光里提示终端网格存在。 */
+  --grid-dot: rgb(5 150 105 / 0.18);
   --shadow: 0 16px 48px rgb(25 25 29 / 0.06);
   --backdrop: rgb(15 20 35 / 0.5);
 
@@ -13,14 +13,16 @@
   --muted: #62626c;
   --faint: #6b6b73;
   --line: #e3e3e8;
-  --accent: #002fa7;
-  --accent-hover: #00247e;
+  /* 默认极客绿（Geek Matrix Green）：活力先锋、对比鲜明 */
+  --accent: #059669;
+  --accent-hover: #047857;
+  --accent-glow: 0 0 24px rgb(5 150 105 / 0.35);
   --on-accent: #fff;
-  --terminal: #17191f;
-  --terminal-line: #32353e;
-  --terminal-text: #f0f2f7;
-  --terminal-muted: #a7adba;
-  --success: #a4d7b1;
+  --terminal: #111418;
+  --terminal-line: #222933;
+  --terminal-text: #f0fdf4;
+  --terminal-muted: #8696a0;
+  --success: #10b981;
   --radius: 8px;
   --radius-lg: 14px;
   --space: 8px;

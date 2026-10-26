@@ -57,7 +57,7 @@ import {
 } from "./catalog";
 import { escapeHtml as escape, detailMarkup } from "./html";
 import { showCopySuccess, setupDialogDismiss } from "./interaction-feedback";
-import { setupCommunity } from "./community";
+import { setupCommunity, setupRecommenderMarquee } from "./community";
 import { setupFilterPicker } from "./filter-picker";
 import { cardMarkup } from "./card";
 import "./style.css";
@@ -392,6 +392,7 @@ render();
 
 setupDiscovery(showDetail, copyCommand);
 setupCommunity();
+setupRecommenderMarquee(showDetail);
 setupDetailLinks(showDetail, notify);
 setupDialogDismiss();
 iconify();
