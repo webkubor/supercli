@@ -85,6 +85,9 @@
 | gnu.svg | [来源](https://github.com/simple-icons/simple-icons/blob/develop/icons/gnu.svg) |
 | locateme.svg | [来源](https://github.com/simple-icons/simple-icons/blob/develop/icons/locateme.svg) |
 | renjiegod.png | [来源](https://github.com/renjiegod) |
+| facet.svg | [来源](https://github.com/webkubor/facet/blob/main/docs/brand/icon.svg) |
+| reel-kit.svg | [来源](https://github.com/webkubor/reel-kit/blob/main/docs/logo.svg) |
+| claude-usage-statusline.png | [来源](https://github.com/webkubor/claude-usage-statusline/blob/main/assets/logo.png) |
 
 GitHub 图标来自上述官方项目组织或维护者的 owner.avatar_url。GNU 使用 Simple Icons 的 GNU 商标 SVG；LocateMe 无独立品牌资产，使用其官方托管平台 SourceForge 标识，不代表 LocateMe 专属 logo。
 

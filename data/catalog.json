@@ -1180,5 +1180,41 @@
     "docs": "https://github.com/renjiegod/dyt-ashare-cli#readme",
     "icon": "renjiegod.png",
     "maintainerType": "community"
+  },
+  {
+    "id": "facet",
+    "name": "Facet",
+    "vendor": "webkubor",
+    "category": "dev",
+    "repo": "webkubor/facet",
+    "description": "Markdown 排版 CLI，将教程与项目简历生成排版考究的 PDF、长图和演讲页。",
+    "install": "npm install -g @webkubor/facet",
+    "docs": "https://github.com/webkubor/facet#readme",
+    "icon": "facet.svg",
+    "maintainerType": "community"
+  },
+  {
+    "id": "reel-kit",
+    "name": "reel-kit",
+    "vendor": "webkubor",
+    "category": "media",
+    "repo": "webkubor/reel-kit",
+    "description": "短视频合成 CLI，素材与逐句文案套 HTML/CSS 模板生成 MP4，支持本地 TTS 配音。",
+    "install": "npm install -g @kubor/reel-kit",
+    "docs": "https://github.com/webkubor/reel-kit#readme",
+    "icon": "reel-kit.svg",
+    "maintainerType": "community"
+  },
+  {
+    "id": "claude-usage-statusline",
+    "name": "claude-usage-statusline",
+    "vendor": "webkubor",
+    "category": "ai",
+    "repo": "webkubor/claude-usage-statusline",
+    "description": "Claude Code 终端状态栏，实时监控会话花费、上下文 Token 占用与限额预警。",
+    "install": "git clone https://github.com/webkubor/claude-usage-statusline ~/.claude/skills/claude-usage-statusline",
+    "docs": "https://github.com/webkubor/claude-usage-statusline#readme",
+    "icon": "claude-usage-statusline.png",
+    "maintainerType": "community"
   }
 ]

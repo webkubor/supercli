@@ -13,10 +13,10 @@
   --muted: #62626c;
   --faint: #6b6b73;
   --line: #e3e3e8;
-  /* 默认极客绿（Geek Matrix Green）：活力先锋、对比鲜明 */
-  --accent: #059669;
-  --accent-hover: #047857;
-  --accent-glow: 0 0 24px rgb(5 150 105 / 0.35);
+  /* 默认极客绿（Geek Matrix Green）：活力先锋、对比达标（WCAG AA > 4.5:1） */
+  --accent: #047857;
+  --accent-hover: #065f46;
+  --accent-glow: 0 0 24px rgb(4 120 87 / 0.35);
   --on-accent: #fff;
   --terminal: #111418;
   --terminal-line: #222933;

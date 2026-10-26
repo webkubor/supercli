@@ -1,8 +1,8 @@
 <h1 align="center">SuperCLI</h1>
 
 <p align="center">
-  <strong>人工收录 91 个 CLI，公开核验范围，不编造数据。</strong><br>
-  厂商官方 40 · 社区项目 51 · 7 个用途分类 · 中英双语
+  <strong>人工收录 94 个 CLI，公开核验范围，不编造数据。</strong><br>
+  厂商官方 40 · 社区项目 54 · 7 个用途分类 · 中英双语
 </p>
 
 <p align="center">
@@ -50,17 +50,17 @@ SuperCLI 的做法是**人工收录 + 公开依据**：
 
 <img src="docs/tool-detail.png" alt="Wrangler 工具详情弹窗：来源标签、Stars 与下载量、安装命令、官方文档链接、收录与核验记录" width="720" style="max-width:100%">
 
-**收录分布**（91 个工具）
+**收录分布**（94 个工具）
 
 | 分类 | 数量 | 示例 |
 | --- | --- | --- |
-| 开发与协作 | 28 | gh · git · pnpm · uv |
-| AI 与 Agent | 16 | claude · codex · gemini · ollama |
+| 开发与协作 | 29 | gh · git · pnpm · uv · facet |
+| AI 与 Agent | 17 | claude · codex · gemini · ollama · claude-usage-statusline |
 | 云平台 | 13 | wrangler · vercel · supabase · firebase |
 | 终端与效率 | 12 | fzf · bat · fd · zoxide |
 | 安全与分析 | 10 | nmap · nuclei · sqlmap · frida |
 | 数据与网络 | 9 | jq · httpie · rclone · wget |
-| 音视频 | 3 | ffmpeg · sox · whisper |
+| 音视频 | 4 | ffmpeg · sox · whisper · reel-kit |
 
 </details>
 

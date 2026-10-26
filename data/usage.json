@@ -188,6 +188,9 @@
     "automake": null,
     "wget": null,
     "locateme": null,
-    "dyt-ashare-cli": null
+    "dyt-ashare-cli": null,
+    "facet": null,
+    "reel-kit": null,
+    "claude-usage-statusline": null
   }
 }

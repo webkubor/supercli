@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.6.6
+
+### 社区收录
+
+- **收录 3 款社区 CLI 工具**（总数 91 → 94）：
+  - `Facet`（开发与协作）：Markdown 排版 CLI，生成 PDF、长图与演讲页，由 @lunove 推荐（#5）
+  - `reel-kit`（音视频）：短视频合成引擎 CLI，支持本地 TTS 配音与 HTML/CSS 模板，由 @luminan-agent 推荐（#6）
+  - `claude-usage-statusline`（AI 与 Agent）：Claude Code 终端状态栏，实时监控会话开销与限额，由 @museav 推荐（#7）
+- **图标与依据**：新增 `facet.svg`、`reel-kit.svg` 与 `claude-usage-statusline.png`，在 `docs/ICONS.md` 登记来源。
+- **推荐者署名**：在 `data/community.json` 完整绑定推荐者与 Issue 依据，首页「最近收录」与「推荐者」榜单自动展现。
+
 ## 0.6.5
 
 ### 视觉与动效（UI）

@@ -89,5 +89,8 @@
   "automake": "Generate convention-compliant Makefiles for Autoconf projects.",
   "wget": "Download network resources with recursive downloads and resume support.",
   "locateme": "Get macOS location information from the terminal after system authorization.",
-  "dyt-ashare-cli": "A Rust CLI for historical A-share minute-data research, with coverage queries, minute-data synchronization, and local quality analysis."
+  "dyt-ashare-cli": "A Rust CLI for historical A-share minute-data research, with coverage queries, minute-data synchronization, and local quality analysis.",
+  "facet": "A Markdown publishing CLI that compiles tutorials, resumes, and slides into styled PDFs and long images.",
+  "reel-kit": "A video composition CLI that automates vertical MP4 creation using HTML/CSS templates, narration, and local TTS.",
+  "claude-usage-statusline": "A lightweight statusline for Claude Code to monitor session costs, token context, and usage limits in real time."
 }

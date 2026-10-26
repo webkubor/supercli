@@ -103,3 +103,7 @@
 | GNU Automake | 社区项目 | GNU | [文档](https://www.gnu.org/software/automake/) |
 | GNU Wget | 社区项目 | GNU | [文档](https://www.gnu.org/software/wget/) |
 | LocateMe | 社区项目 | iharder | [文档](https://iharder.sourceforge.net/current/macosx/locateme/) |
+| DYT AShare CLI | 社区项目 | renjiegod | [文档](https://github.com/renjiegod/dyt-ashare-cli#readme) · [仓库](https://github.com/renjiegod/dyt-ashare-cli) |
+| Facet | 社区项目 | webkubor | [文档](https://github.com/webkubor/facet#readme) · [仓库](https://github.com/webkubor/facet) |
+| reel-kit | 社区项目 | webkubor | [文档](https://github.com/webkubor/reel-kit#readme) · [仓库](https://github.com/webkubor/reel-kit) |
+| claude-usage-statusline | 社区项目 | webkubor | [文档](https://github.com/webkubor/claude-usage-statusline#readme) · [仓库](https://github.com/webkubor/claude-usage-statusline) |

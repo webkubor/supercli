@@ -1,8 +1,8 @@
 <h1 align="center">SuperCLI</h1>
 
 <p align="center">
-  <strong>Manually curated 91 CLIs. Public review scope. No fabricated metrics.</strong><br>
-  40 vendor · 51 community · 7 categories · bilingual (zh / en)
+  <strong>Manually curated 94 CLIs. Public review scope. No fabricated metrics.</strong><br>
+  40 vendor · 54 community · 7 categories · bilingual (zh / en)
 </p>
 
 <p align="center">
@@ -50,17 +50,17 @@ SuperCLI is **manually curated with public evidence**:
 
 <img src="docs/tool-detail.png" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="720" style="max-width:100%">
 
-**Directory at a glance** (91 tools)
+**Directory at a glance** (94 tools)
 
 | Category | Count | Examples |
 | --- | --- | --- |
-| Development | 28 | gh · git · pnpm · uv |
-| AI & Agents | 16 | claude · codex · gemini · ollama |
+| Development | 29 | gh · git · pnpm · uv · facet |
+| AI & Agents | 17 | claude · codex · gemini · ollama · claude-usage-statusline |
 | Cloud | 13 | wrangler · vercel · supabase · firebase |
 | Terminal | 12 | fzf · bat · fd · zoxide |
 | Security | 10 | nmap · nuclei · sqlmap · frida |
 | Data & Network | 9 | jq · httpie · rclone · wget |
-| Media | 3 | ffmpeg · sox · whisper |
+| Media | 4 | ffmpeg · sox · whisper · reel-kit |
 
 </details>
 
