@@ -8,6 +8,10 @@ import { queryEntries, catalog, stats, type Entry } from "./catalog";
 import { escapeHtml as escape } from "./escape";
 import { consoleIconMarkup } from "./tool-icon";
 import { commandMarkup } from "./command-markup";
+import { createIcons, Copy } from "lucide";
+
+/** 命令台用到的图标集合；重渲染后需重新转换。 */
+const LUCIDE = { Copy };
 
 /** 空输入时展示的推荐工具：取自目录内已有收录条目，不虚构工具。 */
 const FEATURED: readonly string[] = ["wrangler", "gh", "rg"];
@@ -79,6 +83,9 @@ export function setupConsole(): void {
       return;
     }
     results!.innerHTML = items.map(resultMarkup).join("");
+    // 重渲染后必须重新转换 lucide 占位符，否则 <i data-lucide> 停在未转换状态，
+    // 复制图标与工具图标会整体消失（0.7.1 实际事故）。
+    createIcons({ icons: LUCIDE });
   }
 
   input.addEventListener("input", render);

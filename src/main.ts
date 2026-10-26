@@ -300,10 +300,6 @@ function setupEvents(): void {
     if (target.dataset.category !== undefined) {
       category = target.dataset.category;
       render();
-      if (target.classList.contains("use-case"))
-        document
-          .querySelector("#directory")!
-          .scrollIntoView({ block: "start" });
     }
     const item = catalog.find(
       (entry) =>
