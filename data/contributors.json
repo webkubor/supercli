@@ -1,36 +1,41 @@
 {
-  "fetchedAt": "2026-10-26T13:04:04.277Z",
+  "fetchedAt": "2026-10-27T02:55:05.405Z",
   "source": "GitHub REST API /users/{login}",
   "users": {
     "luminan-agent": {
       "login": "luminan-agent",
       "followers": 0,
       "following": 0,
-      "publicRepos": 1
+      "publicRepos": 1,
+      "avatar": "luminan-agent.jpg"
     },
     "lunove": {
       "login": "lunove",
       "followers": 0,
       "following": 0,
-      "publicRepos": 2
+      "publicRepos": 2,
+      "avatar": "lunove.jpg"
     },
     "museav": {
       "login": "museav",
       "followers": 0,
       "following": 1,
-      "publicRepos": 0
+      "publicRepos": 0,
+      "avatar": "museav.jpg"
     },
     "renjiegod": {
       "login": "renjiegod",
       "followers": 9,
       "following": 10,
-      "publicRepos": 2
+      "publicRepos": 2,
+      "avatar": "renjiegod.png"
     },
     "webkubor": {
       "login": "webkubor",
       "followers": 27,
       "following": 11,
-      "publicRepos": 35
+      "publicRepos": 35,
+      "avatar": "webkubor.jpg"
     }
   }
 }

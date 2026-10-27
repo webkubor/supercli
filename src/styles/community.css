@@ -300,15 +300,25 @@
   color: var(--muted);
   margin-left: 8px;
 }
-.footer > p,
-.footer > a:last-child {
+.footer > p {
   font-size: 10px;
   color: var(--muted);
 }
-.footer > a:last-child {
+/* 页脚链接同一排：分享与收录标准同级，不再做成独立按钮抢视觉重量。 */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.footer-links a {
   display: flex;
   align-items: center;
   gap: 6px;
+  font-size: 10px;
+  color: var(--muted);
+}
+.footer-links a:hover {
+  color: var(--accent);
 }
 .footer svg {
   width: 12px;
@@ -350,7 +360,7 @@
     order: 3;
     flex-basis: 100%;
   }
-  .footer > a:last-child {
+  .footer-links {
     margin-left: auto;
   }
 }

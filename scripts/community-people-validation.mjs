@@ -82,6 +82,12 @@ export function validateContributors(snapshot, community) {
         `${name} ${field} 无效`,
       );
     }
+    // 头像文件名必须归属本人且扩展名受支持，防止把别人的图挂错人。
+    assert(
+      typeof profile.avatar === "string" &&
+        new RegExp(`^${name}\\.(png|jpg|webp|gif)$`).test(profile.avatar),
+      `${name} 头像文件名无效`,
+    );
   }
 }
 

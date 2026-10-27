@@ -2,6 +2,7 @@
 import categories from "../data/categories.json" with { type: "json" };
 import english from "../data/catalog.en.json" with { type: "json" };
 import community from "../data/community.json" with { type: "json" };
+import { avatarPath } from "../src/contributors.ts";
 import metrics from "../data/metrics.json" with { type: "json" };
 import type { CommunityRecord } from "../src/community.ts";
 import { escapeHtml as escape } from "../src/escape.ts";
@@ -34,10 +35,8 @@ export function inclusionMarkup(
 ): string {
   const record = records.find((row) => row.id === item.id);
   if (!record) return "";
-  const avatarUrl = (name: string, size = 48) =>
-    `https://github.com/${encodeURIComponent(name)}.png?size=${size}`;
   const profile = (name: string): string =>
-    `<a class="curator-chip" href="https://github.com/${encodeURIComponent(name)}"><img class="curator-avatar" src="${avatarUrl(name, 48)}" alt="${escape(name)}" width="18" height="18" loading="lazy" /><span>@${escape(name)}</span></a>`;
+    `<a class="curator-chip" href="https://github.com/${encodeURIComponent(name)}"><img class="curator-avatar" src="${avatarPath(name)}" alt="${escape(name)}" width="18" height="18" loading="lazy" /><span>@${escape(name)}</span></a>`;
   const date = new Date(record.addedAt).toLocaleDateString(
     language === "en" ? "en-US" : "zh-CN",
     { timeZone: "Asia/Taipei" },

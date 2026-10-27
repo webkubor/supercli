@@ -16,6 +16,8 @@ export interface ContributorProfile {
   readonly followers: number;
   readonly following: number;
   readonly publicRepos: number;
+  /** 本站静态目录里的头像文件名，格式随用户上传而定。 */
+  readonly avatar: string;
 }
 
 /** 经构建门禁校验的 GitHub 用户快照。 */
@@ -27,4 +29,16 @@ export function contributorProfile(
   profiles: ContributorSnapshot = contributors,
 ): ContributorProfile | null {
   return profiles.users[name.toLowerCase()] ?? null;
+}
+
+/**
+ * 署名者头像走本站静态目录，不走 GitHub 直链——直链对国内访客不可靠，
+ * 整页碎图比没有头像更糟。文件由 sync-contributors 落盘、构建门禁校验。
+ */
+export function avatarPath(
+  name: string,
+  profiles: ContributorSnapshot = contributors,
+): string {
+  const profile = contributorProfile(name, profiles);
+  return profile ? `/avatars/${profile.avatar}` : "";
 }

@@ -27,9 +27,10 @@
 
 ## 维护者关注数
 
-`data/contributors.json` 是 GitHub 用户 API（`/users/{login}`）的抓取快照，记录 followers、following、publicRepos。刷新命令：`node scripts/sync-contributors.mjs --gh`（需本机已登录 gh）。
+`data/contributors.json` 是 GitHub 用户 API（`/users/{login}`）的抓取快照，记录 followers、following、publicRepos 与头像文件名。刷新命令：`node scripts/sync-contributors.mjs --gh`（需本机已登录 gh），同时把署名者头像下载到 `public/avatars/`。
 
 - 快照必须覆盖 `data/community.json` 里出现的全部署名者（维护者与推荐者），缺一个就构建失败。
+- 头像走本站静态目录，不走 GitHub 直链——直链对国内访客不可靠，整页碎图。头像格式随用户上传而定（PNG/JPEG），按魔数判定扩展名落盘，缺文件由构建门禁拦下。
 - 抓取失败的单个用户记为 `null`，页面显示「关注数未取到」，不用 0 冒充查询结果。
 - 关注数不是实时值，面板脚注标明来源与抓取日期。
 

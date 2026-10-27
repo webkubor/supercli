@@ -22,7 +22,7 @@
           {
             "type": "object",
             "additionalProperties": false,
-            "required": ["login", "followers", "following", "publicRepos"],
+            "required": ["login", "followers", "following", "publicRepos", "avatar"],
             "properties": {
               "login": {
                 "type": "string",
@@ -39,6 +39,10 @@
               "publicRepos": {
                 "type": "integer",
                 "minimum": 0
+              },
+              "avatar": {
+                "type": "string",
+                "pattern": "^[a-z0-9-]+\\.(png|jpg|webp|gif)$"
               }
             }
           }

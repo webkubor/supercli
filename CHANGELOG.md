@@ -10,6 +10,8 @@
 - **关注数来自 GitHub 用户 API 快照**：新增 `data/contributors.json` 与 `scripts/sync-contributors.mjs`，记录 followers/following/publicRepos。抓取失败记为 null 并显示「关注数未取到」，不用 0 冒充；面板脚注标明来源与抓取日期，说明这不是实时值。
 - **轮播改用 transform 驱动**：`scroll-behavior: smooth` 依赖动画帧，在后台标签页与不持续绘制的环境里位移永不生效（实测自动轮播卡在第一张）。改为 transform 位移，状态立即生效、动画只是表现。
 - **窄屏横向溢出归零**：轨道宽度此前被 flex 内容宽撑破，390 视口下整页横向溢出 321px。现轨道与气泡宽度取父级约束（grid/flex 项 `min-width: 0`），390/768/1280/1600 四阶视口横向溢出均为 0。
+- **署名者头像本地化**：GitHub 头像直链（github.com/{user}.png）对国内访客不可靠，线上整页碎图。`sync-contributors.mjs` 现在把头像下载到 `public/avatars/`（格式按魔数判定，PNG/JPEG 落真实扩展名），快照记录文件名，构建门禁校验每个署名者头像存在；首页运行时与工具静态页全部改走本站路径。
+- **页脚分享从独立按钮改为文字链接**：原「分享到 X」单独成一颗按钮悬在页脚下方，视觉重量与它二等入口的身份不符；现在与收录标准/品牌与设计/贡献指南并列在同一排页脚导航里，分享行为不变（仍带当前筛选与工具参数）。
 - **社区样式拆出独立文件**：新增 `src/styles/curator.css` 承载气泡轮播与终端面板，社区通用样式留在 `src/styles/community.css`，一个选择器仍只有一个主人。
 
 ## 0.7.0

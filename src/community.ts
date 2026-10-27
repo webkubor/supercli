@@ -4,7 +4,7 @@ import rawRecords from "../data/community.json";
 import rawRecommendations from "../data/recommendations.json";
 import rawEnglishRecommendations from "../data/recommendations.en.json";
 import { catalog, type Entry } from "./catalog";
-import { contributorProfile, contributors } from "./contributors";
+import { avatarPath, contributorProfile, contributors } from "./contributors";
 import { description } from "./descriptions";
 import { escapeHtml as escape } from "./escape";
 import { iconMarkup } from "./tool-icon";
@@ -29,10 +29,8 @@ const englishRecommendations: Readonly<Record<string, string>> =
   rawEnglishRecommendations;
 const date = (value: string) =>
   new Date(value).toLocaleDateString(locale, { timeZone: "Asia/Taipei" });
-export const avatarUrl = (name: string, size = 64) =>
-  `https://github.com/${encodeURIComponent(name)}.png?size=${size}`;
 export const profile = (name: string) =>
-  `<a class="curator-chip" href="https://github.com/${encodeURIComponent(name)}" target="_blank" rel="noopener noreferrer"><img class="curator-avatar" src="${avatarUrl(name, 48)}" alt="${escape(name)}" width="18" height="18" loading="lazy" /><span>@${escape(name)}</span></a>`;
+  `<a class="curator-chip" href="https://github.com/${encodeURIComponent(name)}" target="_blank" rel="noopener noreferrer"><img class="curator-avatar" src="${avatarPath(name)}" alt="${escape(name)}" width="18" height="18" loading="lazy" /><span>@${escape(name)}</span></a>`;
 /** 收录时间不等于上游更新时间；推荐署名仅来自明确同意展示的投稿者。 */
 export function attributionMarkup(
   item: Pick<Entry, "id">,
@@ -137,7 +135,7 @@ export function setupCuratorReel(): void {
       return `<li class="curator-slide">
         <article class="curator-bubble">
           <header class="curator-bubble-head">
-            <img class="curator-bubble-avatar" src="${avatarUrl(pick.curator, 96)}" alt="${safeName}" width="44" height="44" loading="lazy" />
+            <img class="curator-bubble-avatar" src="${avatarPath(pick.curator)}" alt="${safeName}" width="44" height="44" loading="lazy" />
             <div class="curator-bubble-identity">
               <a class="curator-bubble-handle" href="https://github.com/${encodeURIComponent(pick.curator)}" target="_blank" rel="noopener noreferrer">@${safeName}</a>
               <span class="curator-bubble-role">${locale === "zh-CN" ? "推荐官" : "Curator"}</span>
@@ -239,7 +237,7 @@ export function setupMaintainerConsole(): void {
       return `<li class="maintainer-row">
         <span class="maintainer-prompt" aria-hidden="true">$</span>
         <a class="maintainer-handle" href="${url}" target="_blank" rel="noopener noreferrer">
-          <img class="maintainer-avatar" src="${avatarUrl(row.name, 96)}" alt="${safeName}" width="24" height="24" loading="lazy" />
+          <img class="maintainer-avatar" src="${avatarPath(row.name)}" alt="${safeName}" width="24" height="24" loading="lazy" />
           <span class="maintainer-name">@${safeName}</span>
         </a>
         <span class="maintainer-stats">
@@ -273,7 +271,7 @@ export function setupMaintainerConsole(): void {
         return `<li class="maintainer-row">
         <span class="maintainer-prompt" aria-hidden="true">$</span>
         <a class="maintainer-handle" href="${url}" target="_blank" rel="noopener noreferrer">
-          <img class="maintainer-avatar" src="${avatarUrl(row.name, 96)}" alt="${safeName}" width="24" height="24" loading="lazy" />
+          <img class="maintainer-avatar" src="${avatarPath(row.name)}" alt="${safeName}" width="24" height="24" loading="lazy" />
           <span class="maintainer-name">@${safeName}</span>
         </a>
         <span class="maintainer-stats">

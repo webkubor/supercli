@@ -20,9 +20,6 @@
 .language-switch a:active {
   transform: translateY(1px);
 }
-.site-share {
-  padding-bottom: 24px;
-}
 html[lang="en"] h1 {
   font-size: clamp(36px, 4.4vw, 60px);
   letter-spacing: -2px;

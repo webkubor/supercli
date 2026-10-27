@@ -30,6 +30,14 @@ validateMetrics(snapshot, catalog);
 validateUsage(read("data/usage.json"), catalog);
 for (const item of catalog)
   assert(existsSync(`public/icons/${item.icon}`), `缺少 ${item.icon} 图标`);
+// 头像本地化：每个署名者的头像文件必须真实存在，缺图直接拦构建。
+for (const [login, profile] of Object.entries(read("data/contributors.json").users)) {
+  assert(profile, `缺少 ${login} 的 GitHub 用户快照，请重跑 pnpm sync:people`);
+  assert(
+    existsSync(`public/avatars/${profile.avatar}`),
+    `缺少 ${login} 头像（${profile.avatar}），请重跑 pnpm sync:people`,
+  );
+}
 console.log(
   `Validated ${catalog.length} CLI entries, icons and repository snapshots.`,
 );
