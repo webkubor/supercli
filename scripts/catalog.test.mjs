@@ -2,6 +2,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { queryEntries, catalog, stats } from "../src/catalog.ts";
+import { formatStars } from "../src/tool-metrics.ts";
 test("cloud provider search composes with category and vendor", () => {
   assert.deepEqual(
     queryEntries("API", "cloud", "腾讯云", "stars").map((x) => x.id),
@@ -50,4 +51,14 @@ test("non-GitHub tools have no fabricated stars and remain discoverable", () => 
   const result = queryEntries("", "", "", "stars");
   const firstUnranked = result.findIndex((item) => stats(item) === null);
   assert(result.slice(firstUnranked).every((item) => stats(item) === null));
+});
+
+test("star labels never collapse two different counts into one tie", () => {
+  // 紧凑格式会把这两个值都舍成 255.4K，在榜单头部制造假并列。
+  assert.equal(formatStars(255446), "255,446");
+  assert.equal(formatStars(255431), "255,431");
+  assert.notEqual(formatStars(255446), formatStars(255431));
+  assert.equal(formatStars(4636), "4,636");
+  assert.equal(formatStars(0), "0");
+  assert.equal(formatStars(2_500_000), "2.5M");
 });

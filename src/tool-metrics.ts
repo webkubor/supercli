@@ -7,6 +7,13 @@ const number = (value: number): string =>
     notation: "compact",
     maximumFractionDigits: 1,
   }).format(value);
+/**
+ * Stars 用完整千分位：紧凑格式会把 255446 与 255431 都舍成 255.4K，
+ * 在榜单头部制造假并列——排行是目录页的核心价值，不能经不起第一眼推敲。
+ * 百万以上量级差异远大于舍入误差，才用紧凑。
+ */
+export const formatStars = (value: number): string =>
+  value >= 1_000_000 ? number(value) : value.toLocaleString("en");
 function updated(item: Entry): string {
   const metric = stats(item);
   if (!metric) return t('<span class="metric-missing">暂未接入</span>');

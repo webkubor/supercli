@@ -146,7 +146,6 @@
   "目录概况": "Directory overview",
   "收录 CLI": "CLI tools",
   "工具分类": "Categories",
-  "通过 PR 共同维护": "Maintained through PRs",
   "每个好用的命令，": "Every good command",
   "都值得被更多人发现。": "deserves to be found by more people.",
   "按用途发现": "Browse by use case",
@@ -194,7 +193,6 @@
   "收录上线，留下你的贡献": "Get listed and credited",
   "维护者审核、合并并发布后标为“已收录”。经你同意，工具详情会展示推荐者并链接投稿记录。": "After review, merge, and publication, submissions are marked Listed. With your consent, tool details credit you and link to your submission.",
   "每一份贡献，都有出处": "Every contribution has a source",
-  "一起维护这个目录": "Maintained together",
   "查看待核验投稿": "View pending suggestions",
   "还没有已署名的社区推荐。": "No credited community recommendations yet.",
   "来推荐第一个工具": "Suggest the first tool",
@@ -414,5 +412,7 @@
   "第 ": "Slide ",
   " 条": " of ",
   " 关注": " followers",
-  "关注数未取到": "followers unavailable"
+  "关注数未取到": "followers unavailable",
+  "社区投稿 · 核验收录": "Community submissions · reviewed",
+  "主编核验 · 社区共建": "Editor-reviewed, community-built"
 }

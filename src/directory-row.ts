@@ -6,15 +6,9 @@ import { description } from "./descriptions";
 import { t, msg, toolPath } from "./i18n";
 import { stats, categories, type Entry } from "./catalog";
 import { sourceBadge, reviewCard } from "./review-records";
-import { cardMetrics } from "./tool-metrics";
+import { cardMetrics, formatStars } from "./tool-metrics";
 import { escapeHtml as escape } from "./escape";
 import { cardIconMarkup } from "./tool-icon";
-
-const number = (value: number): string =>
-  Intl.NumberFormat("en", {
-    notation: "compact",
-    maximumFractionDigits: 1,
-  }).format(value);
 
 /**
  * 运行时渲染：在静态骨架上叠加交互层（指标、核验入口、复制、名次）。
@@ -39,7 +33,7 @@ export function cardMarkup(item: Entry, index: number, sort: string): string {
     ${reviewCard(item)}
   </div>
   <div class="card-side">
-    <a class="card-stars" href="${escape(destination)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(t(item.name))} 的原始项目来源"><i data-lucide="star"></i>${metric ? number(metric.stars) : t("未计分")}</a>
+    <a class="card-stars" href="${escape(destination)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(t(item.name))} 的原始项目来源"><i data-lucide="star"></i>${metric ? formatStars(metric.stars) : t("未计分")}</a>
     <button class="copy" data-copy="${escape(item.id)}" aria-label="复制 ${escape(t(item.name))} 安装命令"><i data-lucide="copy"></i><span>${item.install ? t("安装") : t("详情")}</span></button>
   </div>
 </article>`;

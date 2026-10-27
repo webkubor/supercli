@@ -4,6 +4,7 @@
  * 数据来源：data/catalog.json 与 data/metrics.json，与目录使用同一套查询逻辑。
  */
 import { t, msg } from "./i18n";
+import { formatStars } from "./tool-metrics";
 import { queryEntries, catalog, stats, type Entry } from "./catalog";
 import { escapeHtml as escape } from "./escape";
 import { consoleIconMarkup } from "./tool-icon";
@@ -18,12 +19,6 @@ const FEATURED: readonly string[] = ["wrangler", "gh", "rg"];
 
 /** 命令台一次最多展示的结果数，避免长列表把首屏撑破。 */
 const MAX_RESULTS = 6;
-
-const compact = (value: number): string =>
-  Intl.NumberFormat("en", {
-    notation: "compact",
-    maximumFractionDigits: 1,
-  }).format(value);
 
 /** 复制按钮沿用终端窗口的图标翻转结构，与目录和工具页共用同一套反馈。 */
 function copyButtonMarkup(item: Entry): string {
@@ -41,7 +36,7 @@ function resultMarkup(item: Entry): string {
     <span class="console-hit-icon">${consoleIconMarkup(item)}</span>
     <span class="console-hit-body">
       <a class="console-hit-name" href="/tools/${escape(item.id)}/" data-detail="${escape(item.id)}">${escape(t(item.name))}</a>
-      <span class="console-hit-meta">${escape(t(item.vendor))} · ${metric ? `${escape(compact(metric.stars))} Stars` : escape(t("未计分"))}</span>
+      <span class="console-hit-meta">${escape(t(item.vendor))} · ${metric ? `${escape(formatStars(metric.stars))} Stars` : escape(t("未计分"))}</span>
       <code class="console-hit-command"><span class="console-prompt">$</span>${command}</code>
     </span>
     ${copyButtonMarkup(item)}
