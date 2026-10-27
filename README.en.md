@@ -37,18 +37,18 @@ SuperCLI is **manually curated with public evidence**:
 | Want to keep a filtered set | Filter state lives in the URL — refresh and sharing both restore it |
 | Do not know what to install | Three scenario guides: AI coding, cloud deployment, terminal productivity |
 
-<img src="docs/home-hero.png" alt="SuperCLI homepage: brand statement and discovery entry on the left, live tool preview with a copyable install command on the right" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/home-hero.png" alt="SuperCLI homepage: brand statement and discovery entry on the left, live tool preview with a copyable install command on the right" width="720" style="max-width:100%">
 
 <details>
 <summary>See the filters, a tool detail, and the full breakdown</summary>
 
 **Directory filters** — category, vendor, and sort combine freely; filter state stays in the URL.
 
-<img src="docs/directory-filter.png" alt="CLI directory: inclusion standards notice, search box, vendor and sort dropdowns, category tabs, source filters, and tool cards" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/directory-filter.png" alt="CLI directory: inclusion standards notice, search box, vendor and sort dropdowns, category tabs, source filters, and tool cards" width="720" style="max-width:100%">
 
 **Tool detail** — open any tool for its purpose, source, metric definitions, install command, and inclusion record.
 
-<img src="docs/tool-detail.png" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/tool-detail.webp" alt="Wrangler detail dialog: source label, stars and downloads, install command, official docs link, and inclusion and review record" width="720" style="max-width:100%">
 
 **Directory at a glance** (94 tools)
 

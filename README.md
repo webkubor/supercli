@@ -37,18 +37,18 @@ SuperCLI 的做法是**人工收录 + 公开依据**：
 | 想收藏一组筛选结果 | 筛选状态写进 URL，刷新和分享都还原 |
 | 不知道该装什么 | 三个场景指南：AI 编程选型 / 云端部署 / 终端效率组合 |
 
-<img src="docs/home-hero.png" alt="SuperCLI 首页：左侧品牌主张与探索入口，右侧真实工具预览与可复制的安装命令" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/home-hero.png" alt="SuperCLI 首页：左侧品牌主张与探索入口，右侧真实工具预览与可复制的安装命令" width="720" style="max-width:100%">
 
 <details>
 <summary>展开看界面与收录分布</summary>
 
 **目录筛选**——分类、厂商、排序可组合，筛选状态同步 URL。
 
-<img src="docs/directory-filter.png" alt="CLI 排行榜：收录标准说明、搜索框、厂商与排序下拉、分类标签、来源筛选与工具卡片" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/directory-filter.png" alt="CLI 排行榜：收录标准说明、搜索框、厂商与排序下拉、分类标签、来源筛选与工具卡片" width="720" style="max-width:100%">
 
 **工具详情**——点开任一工具，给出用途、来源、指标口径、安装命令和收录记录。
 
-<img src="docs/tool-detail.png" alt="Wrangler 工具详情弹窗：来源标签、Stars 与下载量、安装命令、官方文档链接、收录与核验记录" width="720" style="max-width:100%">
+<img src="https://cdn.jsdelivr.net/gh/webkubor/free-imgbed@main/supercli/tool-detail.webp" alt="Wrangler 工具详情弹窗：来源标签、Stars 与下载量、安装命令、官方文档链接、收录与核验记录" width="720" style="max-width:100%">
 
 **收录分布**（94 个工具）
 
