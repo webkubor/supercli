@@ -133,14 +133,15 @@
   color: var(--terminal-muted);
   font-size: var(--fs-micro);
 }
+/* 命令行：终端里本来就有一行命令，不再套深色盒子。
+   去掉内层底色后不再出现「盒中盒」，宽度也随面板对齐。 */
 .console-hit-command {
   display: flex;
   align-items: baseline;
+  align-self: stretch;
+  width: 100%;
   gap: 7px;
   margin-top: 2px;
-  padding: 5px 8px;
-  border-radius: var(--radius);
-  background: rgb(0 0 0 / 0.35);
   font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   font-size: var(--fs-micro);
   color: var(--terminal-text);

@@ -145,8 +145,8 @@
   display: grid;
   grid-template-columns: 44px auto minmax(0, 1fr) auto;
   align-items: center;
-  gap: 18px;
-  padding: 16px 8px;
+  gap: 20px;
+  padding: 18px 12px;
   border-bottom: 1px solid var(--line);
   transition: background var(--fast) var(--ease);
 }
@@ -175,16 +175,23 @@
   height: 44px;
   flex: 0 0 44px;
 }
+/* 图标统一画布：厂商几何差异很大（黑底、线稿、彩色），
+   放进同一张衬底里视觉重量才一致，否则一行图标会显得参差。
+   深色下的深底图标衬底见 tokens-dark.css。 */
 .card-icon .vendor-icon {
   width: 40px;
   height: 40px;
+  padding: 6px;
   object-fit: contain;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
 }
 .card-icon .card-initial {
-  width: 40px;
-  height: 40px;
-  flex-basis: 40px;
-  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  flex-basis: 32px;
+  font-size: 14px;
 }
 .card-main {
   min-width: 0;
@@ -239,19 +246,20 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-/* 指标与操作右置：下载、更新时间、Stars、复制按钮一行排开。 */
+/* 右侧只留可比信号（Stars）与操作，所有行对齐成一列。
+   下载量与更新日期移到左侧描述下方，避免右侧挤成一串小字。 */
 .card-side {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 14px;
   justify-self: end;
 }
-/* 行内指标：横向单行。基座 .tool-metrics 归 tool-metrics.css（详情弹窗用两列网格）。 */
+/* 行内指标：跟在描述下方，横向单行。 */
 .card .tool-metrics {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
-  margin: 0;
+  gap: 4px 16px;
+  margin: 8px 0 0;
   padding: 0;
   border: 0;
   font-size: var(--fs-micro);
@@ -318,6 +326,18 @@
 .copy svg {
   width: 14px;
   height: 14px;
+}
+/* 目录行里的复制入口：91 行并排时，实心灰块会排成一列噪音。
+   默认只留图标与文字，悬停才显出底色与品牌色。 */
+.card .copy {
+  background: transparent;
+  border-color: transparent;
+  color: var(--muted);
+}
+.card .copy:hover {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--accent);
 }
 /* 翻页追加动画只在 runtime 生效；静态行不播。 */
 .card-new {

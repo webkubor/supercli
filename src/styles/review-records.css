@@ -30,16 +30,15 @@
   height: 12px;
   stroke-width: 1.7;
 }
+/* 厂商与社区共用同一套边框、尺寸与文字，只用建筑 / 群体图标区分来源。
+   之前厂商是品牌蓝、社区是墨黑，两套视觉语言在 91 行里排成一片蓝色噪音，
+   也与「标签表示维护来源、不表示质量排名」的约定相悖。 */
 .source-badge[data-kind="vendor"],
-.detail-stats > .source-badge[data-kind="vendor"] {
-  color: var(--accent);
-  border-color: var(--brand-tint);
-  background: var(--brand-tint);
-}
 .source-badge[data-kind="community"],
+.detail-stats > .source-badge[data-kind="vendor"],
 .detail-stats > .source-badge[data-kind="community"] {
-  color: var(--ink);
-  background: var(--bg);
+  color: var(--muted);
+  background: var(--surface);
   border-color: var(--line);
 }
 .review-entry {

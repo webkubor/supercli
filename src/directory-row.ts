@@ -35,14 +35,12 @@ export function cardMarkup(item: Entry, index: number, sort: string): string {
     <h3><a href="${escape(toolPath(item.id))}" class="card-title" data-detail="${escape(item.id)}">${escape(t(item.name))}<i data-lucide="arrow-up-right"></i></a></h3>
     <p class="card-identity"><span class="vendor-name">${escape(t(item.vendor))}</span>${sourceBadge(item)}</p>
     <p class="description">${escape(description(item))}</p>
+    ${cardMetrics(item)}
     ${reviewCard(item)}
   </div>
   <div class="card-side">
-    <dl class="tool-metrics">${cardMetrics(item)}</dl>
-    <div class="card-actions">
-      <a class="card-stars" href="${escape(destination)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(t(item.name))} 的原始项目来源"><i data-lucide="star"></i>${metric ? number(metric.stars) : t("未计分")}</a>
-      <button class="copy" data-copy="${escape(item.id)}" aria-label="复制 ${escape(t(item.name))} 安装命令"><i data-lucide="copy"></i><span>${item.install ? t("安装") : t("详情")}</span></button>
-    </div>
+    <a class="card-stars" href="${escape(destination)}" target="_blank" rel="noopener noreferrer" aria-label="${escape(t(item.name))} 的原始项目来源"><i data-lucide="star"></i>${metric ? number(metric.stars) : t("未计分")}</a>
+    <button class="copy" data-copy="${escape(item.id)}" aria-label="复制 ${escape(t(item.name))} 安装命令"><i data-lucide="copy"></i><span>${item.install ? t("安装") : t("详情")}</span></button>
   </div>
 </article>`;
 }

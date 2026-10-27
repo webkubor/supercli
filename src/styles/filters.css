@@ -1,9 +1,10 @@
-/* 筛选区共用品牌令牌；面板与工具卡片保持同一网格和触控尺寸。 */
+/* 筛选区共用品牌令牌；面板与工具卡片保持同一网格和触控尺寸。
+   面板本身不做灰盒：控件直接坐在页面上，用一条细分隔线与列表分开。 */
 .filter-panel {
-  padding: 20px;
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
+  padding: 0 0 22px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
 }
 .filter-panel .controls {
   gap: 10px;
@@ -122,7 +123,7 @@
 }
 @media (max-width: 640px) {
   .filter-panel {
-    padding: 12px;
+    padding: 0 0 16px;
   }
   .filter-panel .controls {
     display: grid;
